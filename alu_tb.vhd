@@ -11,7 +11,7 @@ architecture test of ALU_Testbench is
     signal shamt, aluCtrlVal : std_logic_vector(5 downto 0);
     signal zero, neg : std_logic;
 
-    component ALU
+    component mips_alu
         port (
             a           : in std_logic_vector(31 downto 0); 
             b           : in std_logic_vector(31 downto 0);    
@@ -29,7 +29,7 @@ begin
     shamt <= "000011"; -- 3 in decimal
 
     -- Test ADD
-    uut: ALU port map (a, b, result, shamt, aluCtrlVal, zero, neg);
+    uut: mips_alu port map (a, b, result, shamt, aluCtrlVal, zero, neg);
 
     process
     begin

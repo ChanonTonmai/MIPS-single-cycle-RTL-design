@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity alu is 
+entity mips_alu is 
     port (
         a           : in std_logic_vector(31 downto 0); 
         b           : in std_logic_vector(31 downto 0);    
@@ -12,9 +12,9 @@ entity alu is
         zero        : out std_logic; 
         neg         : out std_logic
     ); 
-end alu; 
+end mips_alu; 
 
-architecture Behavioral of ALU is
+architecture Behavioral of mips_alu is
     signal mult_temp : std_logic_vector(63 downto 0);
     signal div : std_logic_vector(31 downto 0);
     signal mod : std_logic_vector(31 downto 0);
