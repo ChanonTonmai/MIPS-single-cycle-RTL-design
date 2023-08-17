@@ -88,7 +88,7 @@ begin
             pc_reg <= pc_next; 
         end if; 
     end process; 
-    inst_addr <= pc_reg;
+    inst_addr <= pc_reg; 
    
     -- Instruction decoding
     dcd_op <= inst(31 downto 26);
