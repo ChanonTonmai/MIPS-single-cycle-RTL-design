@@ -17,29 +17,46 @@ entity mips_core is
     inst_excpt    : in STD_LOGIC;
     mem_excpt     : in STD_LOGIC;
     inst          : in STD_LOGIC_VECTOR(31 downto 0);
-    mem_data_out  : in STD_LOGIC_VECTOR(31 downto 0);
     rst_b         : in STD_LOGIC
   );
 end mips_core;
 
 architecture Behavioral of mips_core is
   -- Your architecture contents here
-   signal pc, nextpc, nextnextpc : STD_LOGIC_VECTOR(31 downto 0);
-   signal exception_halt, syscall_halt, internal_halt : STD_LOGIC;
-   signal load_epc, load_bva, load_bva_sel : STD_LOGIC;
-   signal rt_data, rs_data, rd_data, alu_out, r_v0 : STD_LOGIC_VECTOR(31 downto 0);
-   signal epc, cause, bad_v_addr : STD_LOGIC_VECTOR(31 downto 0);
-   signal cause_code : STD_LOGIC_VECTOR(4 downto 0);
-   
-   -- Decode signals
-   signal dcd_se_imm, dcd_se_offset, dcd_e_imm, dcd_se_mem_offset : STD_LOGIC_VECTOR(31 downto 0);
-   signal dcd_op, dcd_funct2 : STD_LOGIC_VECTOR(5 downto 0);
-   signal dcd_rs, dcd_funct1, dcd_rt, dcd_rd, dcd_shamt : STD_LOGIC_VECTOR(4 downto 0);
-   signal dcd_offset, dcd_imm : STD_LOGIC_VECTOR(15 downto 0);
-   signal dcd_target : STD_LOGIC_VECTOR(25 downto 0);
-   signal dcd_code : STD_LOGIC_VECTOR(19 downto 0);
-   signal dcd_bczft : STD_LOGIC;
+  signal pc, nextpc, nextnextpc : STD_LOGIC_VECTOR(31 downto 0);
+  signal exception_halt, syscall_halt, internal_halt : STD_LOGIC;
+  signal load_epc, load_bva, load_bva_sel : STD_LOGIC;
+  signal rt_data, rs_data, rd_data, alu_out, r_v0 : STD_LOGIC_VECTOR(31 downto 0);
+  signal epc, cause, bad_v_addr : STD_LOGIC_VECTOR(31 downto 0);
+  signal cause_code : STD_LOGIC_VECTOR(4 downto 0);
 
+  -- Decode signals
+  signal dcd_se_imm, dcd_se_offset, dcd_e_imm, dcd_se_mem_offset : STD_LOGIC_VECTOR(31 downto 0);
+  signal dcd_op, dcd_funct2 : STD_LOGIC_VECTOR(5 downto 0);
+  signal dcd_rs, dcd_funct1, dcd_rt, dcd_rd, dcd_shamt : STD_LOGIC_VECTOR(4 downto 0);
+  signal dcd_offset, dcd_imm : STD_LOGIC_VECTOR(15 downto 0);
+  signal dcd_target : STD_LOGIC_VECTOR(25 downto 0);
+  signal dcd_code : STD_LOGIC_VECTOR(19 downto 0);
+  signal dcd_bczft : STD_LOGIC;
+
+  signal read_data_1, read_data_2 : std_logic_vector(31 downto 0); 
+
+
+  component mips_reg is
+  port (
+    -- Outputs
+    read_data_1   : out STD_LOGIC_VECTOR(31 downto 0);
+    read_data_2   : out STD_LOGIC_VECTOR(31 downto 0);
+    -- Inputs
+    read_reg_1    : in STD_LOGIC_VECTOR(4 downto 0);
+    read_reg_2    : in STD_LOGIC_VECTOR(4 downto 0);
+    write_reg     : in STD_LOGIC_VECTOR(4 downto 0);
+    write_data    : in STD_LOGIC_VECTOR(31 downto 0);
+    mem_data_out  : in STD_LOGIC_VECTOR(31 downto 0);
+    RegWrite      : in STD_LOGIC;
+    clk, rst_b    : in STD_LOGIC
+  );
+  end component;
 
    -- PC Management
    component PCReg
@@ -107,6 +124,21 @@ begin
     dcd_se_imm <= (others => dcd_imm(15)) & dcd_imm;
     dcd_target <= inst(25 downto 0);
     dcd_code <= inst(25 downto 6);
+
+    reg32 : mips_reg 
+      port map (
+        -- Outputs
+        read_data_1   => read_data_1,
+        read_data_2   => read_data_2,
+        -- Inputs
+        read_reg_1    => read_reg_1, 
+        read_reg_2    => read_reg_2, 
+        write_reg     => write_reg,
+        write_data    => write_data,
+        RegWrite      => RegWrite,
+        clk           => clk, 
+        rst_b         => rst_b      
+      );
 
     -- Debugging display
     --    process(clk)
