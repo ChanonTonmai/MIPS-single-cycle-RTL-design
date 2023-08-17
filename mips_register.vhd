@@ -14,7 +14,6 @@ entity mips_reg is
     read_reg_2    : in STD_LOGIC_VECTOR(4 downto 0);
     write_reg     : in STD_LOGIC_VECTOR(4 downto 0);
     write_data    : in STD_LOGIC_VECTOR(31 downto 0);
-    mem_data_out  : in STD_LOGIC_VECTOR(31 downto 0);
     RegWrite      : in STD_LOGIC;
     clk, rst_b    : in STD_LOGIC
   );
