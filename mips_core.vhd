@@ -83,7 +83,26 @@ architecture Behavioral of mips_core is
         write_data_to_mem : std_logic_vetor(31 downto 0);
         addr : std_logic_vector(31 downto 0);
     );
-end component;
+  end component;
+
+  component mips_ctrl is
+    Port (
+        inst: in STD_LOGIC_VECTOR(31 downto 0);
+        RegDst: out STD_LOGIC;
+        Jump: out STD_LOGIC;
+        Branch: out STD_LOGIC;
+        MemRead: out STD_LOGIC;
+        MemtoReg: out STD_LOGIC;
+        ALUop: out STD_LOGIC_VECTOR(2 downto 0);
+        MemWrite: out STD_LOGIC;
+        ALUSrc: out STD_LOGIC;
+        RegWrite: out STD_LOGIC;
+        BranchType: out STD_LOGIC_VECTOR(2 downto 0);
+        AndLink : out STD_LOGIC; 
+        ALR: out STD_LOGIC;
+        SpecialMemwrite: out STD_LOGIC_VECTOR(3 downto 0);
+    );
+  end component;
 
   signal PC_reg, PC_next; 
   signal muxRegDst, muxAndLink : std_logic_vector(4 downto 0); 
@@ -126,7 +145,23 @@ begin
     dcd_target <= inst(25 downto 0);
     dcd_code <= inst(25 downto 6);
 
-   
+    ctrlMIPS: mips_ctrl 
+      Port map(
+          inst              => inst,--: in STD_LOGIC_VECTOR(31 downto 0);
+          RegDst            => RegDst,--: out STD_LOGIC;
+          Jump              => Jump,--: out STD_LOGIC;
+          Branch            => Branch,--: out STD_LOGIC;
+          MemRead           => MemRead,--: out STD_LOGIC;
+          MemtoReg          => MemtoReg,--: out STD_LOGIC;
+          ALUop             => ALUop,--: out STD_LOGIC_VECTOR(2 downto 0);
+          MemWrite          => MemWrite,--: out STD_LOGIC;
+          ALUSrc            => ALUSrc,--: out STD_LOGIC;
+          RegWrite          => RegWrite,--:  out STD_LOGIC;
+          BranchType        => BranchType,--: out STD_LOGIC_VECTOR(2 downto 0);
+          AndLink           => AndLink,--: out STD_LOGIC; 
+          ALR               => ALR,--: out STD_LOGIC;
+          SpecialMemwrite   => SpecialMemwrite,--: out STD_LOGIC_VECTOR(3 downto 0);
+      );
 
     write_reg <= muxRegDst when ALR = 0 else muxAndLink; 
     muxAndLink <= muxRegDst when Andlink = 0 else std_logic_vector(to_unsigned(31,5)); 
