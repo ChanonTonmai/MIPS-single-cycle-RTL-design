@@ -1,7 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.all;
 
 -- Define your entity here
 entity mips_reg is
@@ -25,18 +24,18 @@ architecture Behavioral of mips_reg is
 begin
 
 process(clk, rst_b) begin
-    if rst_b == 0 then 
+    if rst_b = '0' then 
         mem_zero : for k in 0 to 31 loop
             mem(k) <= (others=>'0'); 
         end loop; 
     elsif rising_edge(clk) then
-        if RegWrite == '1' and write_reg != std_logic_vector(to_unsigned(0,4)) then
+        if RegWrite = '1' and write_reg /= std_logic_vector(to_unsigned(0,4)) then
             mem(to_integer(unsigned(write_reg))) <= write_data; 
         end if; 
     end if; 
 end process;
 
-read_data_1 <= (others=>'0') when read_reg_1 = std_logic_vector(to_unsigned(0,4)) else mem(to_integer(unsigned(read_reg_1)))  
-read_data_2 <= (others=>'0') when read_reg_2 = std_logic_vector(to_unsigned(0,4)) else mem(to_integer(unsigned(read_reg_2)))  
+read_data_1 <= (others=>'0') when read_reg_1 = std_logic_vector(to_unsigned(0,4)) else mem(to_integer(unsigned(read_reg_1)));
+read_data_2 <= (others=>'0') when read_reg_2 = std_logic_vector(to_unsigned(0,4)) else mem(to_integer(unsigned(read_reg_2)));  
 
 end Behavioral; 

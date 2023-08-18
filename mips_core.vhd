@@ -1,9 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.all;
 
--- Define your entity here
 entity mips_core is
   port (
     -- Outputs
@@ -39,8 +37,8 @@ architecture Behavioral of mips_core is
   signal dcd_code : STD_LOGIC_VECTOR(19 downto 0);
   signal dcd_bczft : STD_LOGIC;
 
-  signal read_data_1, read_data_2 : std_logic_vector(31 downto 0); 
-
+  signal read_data_1, read_data_2, write_data : std_logic_vector(31 downto 0); 
+  signal condALU, condNotEq, condBltz, condBlez, condBgtz, condBgez : std_logic;
 
   component mips_reg is
   port (
@@ -52,7 +50,6 @@ architecture Behavioral of mips_core is
     read_reg_2    : in STD_LOGIC_VECTOR(4 downto 0);
     write_reg     : in STD_LOGIC_VECTOR(4 downto 0);
     write_data    : in STD_LOGIC_VECTOR(31 downto 0);
-    mem_data_out  : in STD_LOGIC_VECTOR(31 downto 0);
     RegWrite      : in STD_LOGIC;
     clk, rst_b    : in STD_LOGIC
   );
@@ -79,11 +76,13 @@ architecture Behavioral of mips_core is
         MemRead : in STD_LOGIC;
         SpecialMemOp : in STD_LOGIC_VECTOR(3 downto 0); 
         -- memory signal
-        write_enable : std_logic_vector(3 downto 0); 
-        write_data_to_mem : std_logic_vector(31 downto 0);
-        addr : std_logic_vector(31 downto 0)
+        write_enable : out std_logic_vector(3 downto 0); 
+        write_data_to_mem : out std_logic_vector(31 downto 0);
+        addr : out std_logic_vector(31 downto 0)
     );
   end component;
+  signal datamem_addr: std_logic_vector(31 downto 0); 
+  signal write_data_mem, read_data_mem : std_logic_vector(31 downto 0); 
 
   component mips_ctrl is
     Port (
@@ -100,9 +99,12 @@ architecture Behavioral of mips_core is
         BranchType: out STD_LOGIC_VECTOR(2 downto 0);
         AndLink : out STD_LOGIC; 
         ALR: out STD_LOGIC;
-        SpecialMemwrite: out STD_LOGIC_VECTOR(3 downto 0)
+        SpecialMemOp: out STD_LOGIC_VECTOR(3 downto 0)
     );
   end component;
+  signal RegDst, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, AndLink, ALR, JalCtrl: std_logic; 
+  signal ALUop, BranchType : std_logic_vector(2 downto 0); 
+  signal SpecialMemOp : std_logic_vector(3 downto 0); 
 
   component mips_aluctrl is
     port (
@@ -113,17 +115,20 @@ architecture Behavioral of mips_core is
     );
   end component;
 
-  signal PC_reg, PC_next; 
+  signal PC_reg, PC_next : std_logic_vector(31 downto 0); 
   signal muxRegDst, muxAndLink : std_logic_vector(4 downto 0); 
   signal write_reg, read_reg_1, read_reg_2 : std_logic_vector(4 downto 0); 
-  signal read_data_1, read_data_2 : std_logic_vector(31 downto 0); 
   signal dcd_offset_extend : std_logic_vector(31 downto 0); 
   signal a, b, result: std_logic_vector(31 downto 0);
   signal neg, zero : std_logic; 
   signal aluCtrlVal : std_logic_vector(5 downto 0); 
-  signal jumpAddr : std_logic_vector(31 downto 0); 
+  signal jumpAddr, pcPlusFour2, pcForNextMux1, pcForNextMux2 : std_logic_vector(31 downto 0); 
   signal pcPlusFour, pcForJ : std_logic_vector(31 downto 0); 
   signal seAddr : std_logic_vector(31 downto 0); -- signed extend address
+  signal shamt : std_logic_vector(4 downto 0); 
+  signal JalrCtrl : std_logic; 
+  
+  signal BrachType : std_logic_vector(2 downto 0); 
    
 begin
    -- Instantiate PCReg, PCReg2, and NextPCAdder here
@@ -147,12 +152,17 @@ begin
     dcd_funct2 <= inst(5 downto 0);
     dcd_offset <= inst(15 downto 0);
     dcd_se_offset <= (others => dcd_offset(15));
-    dcd_se_mem_offset <= (others => dcd_offset(15)) & dcd_offset;
+    dcd_se_mem_offset(31 downto 16) <= (others => dcd_offset(15)) ;
+    dcd_se_mem_offset(15 downto 0) <= dcd_offset;
     dcd_imm <= inst(15 downto 0);
-    dcd_e_imm <= (others => '0') & dcd_imm;
-    dcd_se_imm <= (others => dcd_imm(15)) & dcd_imm;
+    dcd_e_imm(31 downto 16) <= (others => '0') ; 
+    dcd_e_imm(15 downto 0) <= dcd_imm;
+    dcd_se_imm(31 downto 16) <= (others => dcd_imm(15)); 
+    dcd_se_imm(15 downto 0) <= dcd_imm;
     dcd_target <= inst(25 downto 0);
     dcd_code <= inst(25 downto 6);
+    
+    
 
     ctrlMIPS: mips_ctrl 
       Port map(
@@ -169,12 +179,12 @@ begin
           BranchType        => BranchType,--: out STD_LOGIC_VECTOR(2 downto 0);
           AndLink           => AndLink,--: out STD_LOGIC; 
           ALR               => ALR,--: out STD_LOGIC;
-          SpecialMemwrite   => SpecialMemwrite,--: out STD_LOGIC_VECTOR(3 downto 0);
+          SpecialMemOp      => SpecialMemOp--: out STD_LOGIC_VECTOR(3 downto 0);
       );
 
-    write_reg <= muxRegDst when ALR = 0 else muxAndLink; 
-    muxAndLink <= muxRegDst when Andlink = 0 else std_logic_vector(to_unsigned(31,5)); 
-    muxRegDst <= dcd_rd when RegDst = 1 else dcd_rt; 
+    write_reg <= muxRegDst when ALR = '0' else muxAndLink; 
+    muxAndLink <= muxRegDst when Andlink = '0' else std_logic_vector(to_unsigned(31,5)); 
+    muxRegDst <= dcd_rd when RegDst = '1' else dcd_rt; 
     read_reg_1 <= dcd_rs; 
     read_reg_2 <= dcd_rt; 
     reg32 : mips_reg 
@@ -192,9 +202,10 @@ begin
         rst_b         => rst_b      
       );
     -- singed_extend 
-    dcd_offset_extend <= (others => dcd_offset(15)) & dcd_offset;
+    dcd_offset_extend(31 downto 16) <= (others => dcd_offset(15));
+    dcd_offset_extend(15 downto 0) <= dcd_offset;
     a <= read_data_1; 
-    b <= read_data_2 when ALUSrc = 0 else dcd_offset_extend; 
+    b <= read_data_2 when ALUSrc = '0' else dcd_offset_extend; 
     mipsAlu_32: mips_alu 
     port map (
         a           => a,
@@ -211,7 +222,7 @@ begin
         inst            => inst,--VECTOR(31 downto 0);
         ALUop           => ALUop,--VECTOR(2 downto 0);
         aluCtrlVal      => aluCtrlVal,--_VECTOR(5 downto 0);
-        JalCtrl;        => JalCtrl,--
+        JalCtrl        => JalCtrl--
       );
 
 
@@ -220,37 +231,67 @@ begin
     seAddr <= dcd_offset_extend(29 downto 0) & "00";      
     pcForJ <= std_logic_vector(unsigned(seAddr) + unsigned(pcPlusFour)); 
 
+    
     -- brach control left 
     process(neg, zero, BranchType, Branch) begin
       if BranchType = std_logic_vector(to_unsigned(1,5)) then 
-        condALU = zero and Branch;  
-        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condALU = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+        condALU <= zero and Branch;
+        if condALU = '1' then
+            pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
+        else
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+        end if;  
       elsif BrachType = std_logic_vector(to_unsigned(0,5)) then 
-        condNotEq = (not zero) and Branch;  
-        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condNotEq = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+        condNotEq <= (not zero) and Branch;  
+        if condNotEq = '1' then
+            pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
+        else
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+        end if;
+        --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condNotEq = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
       elsif BrachType = std_logic_vector(to_unsigned(2,5)) then 
-        condBgez = (not neg) and Branch;  
-        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgez = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+        condBgez <= (not neg) and Branch;  
+        if condBgez = '1' then
+            pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
+        else
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+        end if;
+        --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgez = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
       elsif BrachType = std_logic_vector(to_unsigned(3,5)) then 
-        condBltz = neg and Branch;  
-        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBltz = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+        condBltz <= neg and Branch;  
+        if condBltz = '1' then
+            pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
+        else
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+        end if;
+        --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBltz = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
       elsif BrachType = std_logic_vector(to_unsigned(4,5)) then 
-        condBlez = (neg or zero) and Branch;  
-        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBlez = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+        condBlez <= (neg or zero) and Branch;  
+        if condBlez = '1' then
+            pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
+        else
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+        end if;
+        --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBlez = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
       elsif BrachType = std_logic_vector(to_unsigned(5,5)) then 
-        condBgtz = ((not neg) or (not zero)) and Branch;  
-        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgtz = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+        condBgtz <= ((not neg) or (not zero)) and Branch;  
+        if condBgtz = '1' then
+            pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
+        else
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+        end if;
+        --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgtz = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
       end if; 
     end process;
 
-    pcForNextMux1 <= pcPlusFour2 when Branch = 0 else pcForJ; 
-    pcForNextMux2 <= pcForNext1 when Jump = 0 else jumpAddr; 
-    pc_next <= read_data_1 when JalrCtrl = 1 else pcForNextMux2
+    pcForNextMux1 <= pcPlusFour2 when Branch = '0' else pcForJ; 
+    pcForNextMux2 <= pcForNextMux1 when Jump = '0' else jumpAddr; 
+    pc_next <= read_data_1 when JalrCtrl = '1' else pcForNextMux2;
 
     datamem_addr <= result; 
     write_data_mem <= read_data_2;      
     memMIPS: DataMemory 
-      Port (
+      Port map(
           datamem_addr  => datamem_addr,
           write_data    => write_data_mem,
           read_data     => read_data_mem,
@@ -258,15 +299,11 @@ begin
           MemRead       => MemRead,
           SpecialMemOp  => SpecialMemOp,
           -- memory signal
-          write_enable      => write_enable,
-          write_data_to_mem => write_data_to_mem,
-          addr              => addr,
+          write_enable      => mem_write_en,
+          write_data_to_mem => mem_data_in,
+          addr              => mem_addr 
       );
-    write_data <= read_data_mem when memtoReg = 1 else result; 
-
-
-
-
+    write_data <= read_data_mem when memtoReg = '1' else result; 
 end Behavioral;
 
 
