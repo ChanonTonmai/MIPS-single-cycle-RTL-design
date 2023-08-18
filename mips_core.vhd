@@ -80,8 +80,8 @@ architecture Behavioral of mips_core is
         SpecialMemOp : in STD_LOGIC_VECTOR(3 downto 0); 
         -- memory signal
         write_enable : std_logic_vector(3 downto 0); 
-        write_data_to_mem : std_logic_vetor(31 downto 0);
-        addr : std_logic_vector(31 downto 0);
+        write_data_to_mem : std_logic_vector(31 downto 0);
+        addr : std_logic_vector(31 downto 0)
     );
   end component;
 
@@ -100,7 +100,7 @@ architecture Behavioral of mips_core is
         BranchType: out STD_LOGIC_VECTOR(2 downto 0);
         AndLink : out STD_LOGIC; 
         ALR: out STD_LOGIC;
-        SpecialMemwrite: out STD_LOGIC_VECTOR(3 downto 0);
+        SpecialMemwrite: out STD_LOGIC_VECTOR(3 downto 0)
     );
   end component;
 
@@ -109,7 +109,7 @@ architecture Behavioral of mips_core is
       inst            : in STD_LOGIC_VECTOR(31 downto 0);
       ALUop           : in STD_LOGIC_VECTOR(2 downto 0);
       aluCtrlVal      : out STD_LOGIC_VECTOR(5 downto 0);
-      JalCtrl;        : out STD_LOGIC
+      JalCtrl        : out STD_LOGIC
     );
   end component;
 

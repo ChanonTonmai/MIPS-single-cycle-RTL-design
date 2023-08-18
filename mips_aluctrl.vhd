@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.all;
+use work.mips_defines.ALL; 
 
 -- Define your entity here
 entity mips_aluctrl is
@@ -9,7 +9,7 @@ entity mips_aluctrl is
     inst            : in STD_LOGIC_VECTOR(31 downto 0);
     ALUop           : in STD_LOGIC_VECTOR(2 downto 0);
     aluCtrlVal      : out STD_LOGIC_VECTOR(5 downto 0);
-    JalCtrl;        : out STD_LOGIC
+    JalCtrl        : out STD_LOGIC
   );
 end mips_aluctrl;
 

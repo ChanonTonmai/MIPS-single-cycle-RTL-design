@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.all;
+use work.mips_defines.ALL; 
 
 entity mips_ctrl is
     Port (
@@ -18,7 +18,7 @@ entity mips_ctrl is
         BranchType: out STD_LOGIC_VECTOR(2 downto 0);
         AndLink : out STD_LOGIC; 
         ALR: out STD_LOGIC;
-        SpecialMemwrite: out STD_LOGIC_VECTOR(3 downto 0);
+        SpecialMemOp: out STD_LOGIC_VECTOR(3 downto 0)
     );
 end mips_ctrl;
 
@@ -43,10 +43,13 @@ begin
     dcd_funct2 <= inst(5 downto 0);
     dcd_offset <= inst(15 downto 0);
     dcd_se_offset <= (others => dcd_offset(15));
-    dcd_se_mem_offset <= (others => dcd_offset(15)) & dcd_offset;
+    dcd_se_mem_offset(31 downto 16) <= (others => dcd_offset(15)) ;
+    dcd_se_mem_offset(15 downto 0) <= dcd_offset;
     dcd_imm <= inst(15 downto 0);
-    dcd_e_imm <= (others => '0') & dcd_imm;
-    dcd_se_imm <= (others => dcd_imm(15)) & dcd_imm;
+    dcd_e_imm(31 downto 16) <= (others => '0') ; 
+    dcd_e_imm(15 downto 0) <= dcd_imm;
+    dcd_se_imm(31 downto 16) <= (others => dcd_imm(15)); 
+    dcd_se_imm(15 downto 0) <= dcd_imm;
     dcd_target <= inst(25 downto 0);
     dcd_code <= inst(25 downto 6);
     
@@ -62,23 +65,23 @@ begin
         AndLink     <= '0'; 
         ALR         <= '0'; 
         Branch      <= '0'; 
-        BranchType  <= '0';
+        BranchType  <= (others=>'0');
         ALUop <= std_logic_vector(to_unsigned(2,3));    
-        if dcd_funct2 == OP0_JALR  then
+        if dcd_funct2 = OP0_JALR  then
             AndLink    <= '1';
             ALR        <= '1'; 
             Jump       <= '1'; 
         end if; 
-        if (dcd_funct2 == OP0_JR) then
+        if (dcd_funct2 = OP0_JR) then
             AndLink    <= '0';
             ALR        <= '0'; 
             Jump       <= '1'; 
         end if; 
-    elsif dcd_op = OPCODE_OTHER1 then 
+    elsif dcd_op = OP_OTHER1 then 
         if dcd_rt = OP1_BGEZ then
-            RegDst <= 'x';  
+            RegDst <= 'X';  
             ALUSrc <= '0'; 
-            MemtoReg <= 'x';
+            MemtoReg <= 'X';
             RegWrite <= '0'; 
             MemRead <= '0'; 
             MemWrite <= '1'; 
@@ -86,11 +89,11 @@ begin
             AndLink <= '0';
             Branch <= '1'; 
             BranchType <= std_logic_vector(to_unsigned(2,3)); -- 2 = BGEZ
-            ALUop <= '1';
+            ALUop <= std_logic_vector(to_unsigned(1,3));
         elsif dcd_rt = OP1_BGEZAL then
-            RegDst <= 'x';  
+            RegDst <= 'X';  
             ALUSrc <= '0'; 
-            MemtoReg <= 'x';
+            MemtoReg <= 'X';
             RegWrite <= '1'; 
             MemRead <= '0'; 
             MemWrite <= '1'; 
@@ -98,11 +101,11 @@ begin
             AndLink <= '1';
             Branch <= '1'; 
             BranchType <= std_logic_vector(to_unsigned(2,3)); -- 2 = BGEZ
-            ALUop <= '1'; 
+            ALUop <= std_logic_vector(to_unsigned(1,3));
         elsif dcd_rt = OP1_BLTZ then
-            RegDst <= 'x';  
+            RegDst <= 'X';  
             ALUSrc <= '0'; 
-            MemtoReg <= 'x';
+            MemtoReg <= 'X';
             RegWrite <= '0'; 
             MemRead <= '0'; 
             MemWrite <= '1'; 
@@ -110,11 +113,11 @@ begin
             AndLink <= '0';
             Branch <= '1'; 
             BranchType <= std_logic_vector(to_unsigned(3,3)); -- 3 = BLTZ
-            ALUop <= '1';
+            ALUop <= std_logic_vector(to_unsigned(1,3));
         elsif dcd_rt = OP1_BLTZAL then
-            RegDst <= 'x';  
+            RegDst <= 'X';  
             ALUSrc <= '0'; 
-            MemtoReg <= 'x';
+            MemtoReg <= 'X';
             RegWrite <= '1'; 
             MemRead <= '0'; 
             MemWrite <= '1'; 
@@ -122,7 +125,7 @@ begin
             AndLink <= '1';
             Branch <= '1'; 
             BranchType <= std_logic_vector(to_unsigned(3,3)); -- 3 = BLTZ
-            ALUop <= '1'; 
+            ALUop <= std_logic_vector(to_unsigned(1,3));
         end if;
     elsif dcd_op = OP_LUI then 
         RegDst <= '0';  
@@ -135,7 +138,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_LW then 
         RegDst <= '0';  
         ALUSrc <= '1'; 
@@ -147,11 +150,11 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_BEQ then 
-        RegDst <= 'x';  
+        RegDst <= 'X';  
         ALUSrc <= '0'; 
-        MemtoReg <= 'x';
+        MemtoReg <= 'X';
         RegWrite <= '0'; 
         MemRead <= '0'; 
         MemWrite <= '1'; 
@@ -159,11 +162,11 @@ begin
         AndLink <= '0';
         Branch <= '1'; 
         BranchType <= std_logic_vector(to_unsigned(1,3)); 
-        ALUop <= '1'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3));
     elsif dcd_op = OP_BNE then 
-        RegDst <= 'x';  
+        RegDst <= 'X';  
         ALUSrc <= '0'; 
-        MemtoReg <= 'x';
+        MemtoReg <= 'X';
         RegWrite <= '0'; 
         MemRead <= '0'; 
         MemWrite <= '1'; 
@@ -171,11 +174,11 @@ begin
         AndLink <= '0';
         Branch <= '1'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '1';  
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_SW then
-        RegDst <= 'x';  
+        RegDst <= 'X';  
         ALUSrc <= '1'; 
-        MemtoReg <= 'x';
+        MemtoReg <= 'X';
         RegWrite <= '0'; 
         MemRead <= '0'; 
         MemWrite <= '1'; 
@@ -183,9 +186,9 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0';   
+        ALUop <= std_logic_vector(to_unsigned(1,3));   
     elsif (dcd_op = OP_ADDI) or (dcd_op = OP_ANDI) or (dcd_op = OP_ORI) or
-            (dcd_op = OP_XORI) or (dcd_op = OP_SLTI) or (dcd_op = SLTIU) then 
+            (dcd_op = OP_XORI) or (dcd_op = OP_SLTI) or (dcd_op = OP_SLTIU) then 
         RegDst <= '0';  
         ALUSrc <= '1'; 
         MemtoReg <= '0';
@@ -196,7 +199,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif (dcd_op = OP_J) then 
         RegDst <= '0';  
         ALUSrc <= '0'; 
@@ -208,7 +211,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0';   
+        ALUop <= std_logic_vector(to_unsigned(1,3));   
     elsif (dcd_op = OP_JAL) then 
         RegDst <= '0';  
         ALUSrc <= '0'; 
@@ -220,11 +223,11 @@ begin
         AndLink <= '1';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0';               
+        ALUop <= std_logic_vector(to_unsigned(1,3));               
     elsif (dcd_op = OP_BLEZ) then 
-        RegDst <= 'x';  
+        RegDst <= 'X';  
         ALUSrc <= '0'; 
-        MemtoReg <= 'x';
+        MemtoReg <= 'X';
         RegWrite <= '0'; 
         MemRead <= '0'; 
         MemWrite <= '1'; 
@@ -232,11 +235,11 @@ begin
         AndLink <= '0';
         Branch <= '1'; 
         BranchType <= std_logic_vector(to_unsigned(4,3)); -- 4 branch less than
-        ALUop <= '1'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3));
     elsif (dcd_op = OP_BGTZ) then 
-        RegDst <= 'x';  
+        RegDst <= 'X';  
         ALUSrc <= '0'; 
-        MemtoReg <= 'x';
+        MemtoReg <= 'X';
         RegWrite <= '0'; 
         MemRead <= '0'; 
         MemWrite <= '1'; 
@@ -244,11 +247,11 @@ begin
         AndLink <= '0';
         Branch <= '1'; 
         BranchType <= std_logic_vector(to_unsigned(5,3)); -- 5 brach greater than
-        ALUop <= '1';    
+        ALUop <= std_logic_vector(to_unsigned(1,3));   
     elsif (dcd_op = OP_SB) then 
-        RegDst <= 'x';  
+        RegDst <= 'X';  
         ALUSrc <= '1'; 
-        MemtoReg <= 'x';
+        MemtoReg <= 'X';
         RegWrite <= '0'; 
         MemRead <= '1'; 
         MemWrite <= '1'; SpecialMemOp <= std_logic_vector(to_unsigned(1,4)); 
@@ -256,11 +259,11 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_SH then 
-        RegDst <= 'x';  
+        RegDst <= 'X';  
         ALUSrc <= '1'; 
-        MemtoReg <= 'x';
+        MemtoReg <= 'X';
         RegWrite <= '0'; 
         MemRead <= '1'; 
         MemWrite <= '1'; SpecialMemOp <= std_logic_vector(to_unsigned(2,4)); 
@@ -268,7 +271,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_LB then 
         RegDst <= '0';  
         ALUSrc <= '1'; 
@@ -280,7 +283,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_LH then 
         RegDst <= '0';  
         ALUSrc <= '1'; 
@@ -292,7 +295,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_LBU then 
         RegDst <= '0';  
         ALUSrc <= '1'; 
@@ -304,7 +307,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     elsif dcd_op = OP_LHU then
         RegDst <= '0';  
         ALUSrc <= '1'; 
@@ -316,8 +319,8 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= '0'; 
+        ALUop <= std_logic_vector(to_unsigned(1,3)); 
     end if; 
-        
+  end process;   
 
 end beh; 
