@@ -58,43 +58,44 @@ architecture Behavioral of mips_core is
   );
   end component;
 
-   -- PC Management
-   component PCReg
-     generic (
-       width : positive;
-       initial_value : STD_LOGIC_VECTOR(width - 1 downto 0)
-     );
-     port (
-       q, d : out STD_LOGIC_VECTOR(width - 1 downto 0);
-       clk : in STD_LOGIC;
-       enable, rst_b : in STD_LOGIC
-     );
-   end component;
-   
-   component PCReg2
-     generic (
-       width : positive;
-       initial_value : STD_LOGIC_VECTOR(width - 1 downto 0)
-     );
-     port (
-       q, d : out STD_LOGIC_VECTOR(width - 1 downto 0);
-       clk : in STD_LOGIC;
-       enable, rst_b : in STD_LOGIC
-     );
-   end component;
-   
-   component NextPCAdder
-     generic (
-       add_value : positive
-     );
-     port (
-       out : out STD_LOGIC_VECTOR(31 downto 0);
-       in1 : in STD_LOGIC_VECTOR(31 downto 0);
-       in2 : in STD_LOGIC_VECTOR(31 downto 0);
-       sub : in STD_LOGIC
-     );
-   end component;
-   signal PC_reg, PC_next; 
+  component mips_alu is 
+  port (
+      a           : in std_logic_vector(31 downto 0); 
+      b           : in std_logic_vector(31 downto 0);    
+      result      : out std_logic_vector(31 downto 0); 
+      shamt       : in std_logic_vector(5 downto 0);
+      aluCtrlVal  : in std_logic_vector(5 downto 0);
+      zero        : out std_logic; 
+      neg         : out std_logic
+  ); 
+  end component; 
+
+  component DataMemory is
+    Port (
+        datamem_addr : in STD_LOGIC_VECTOR(31 downto 0);
+        write_data : in STD_LOGIC_VECTOR(31 downto 0);
+        read_data : out STD_LOGIC_VECTOR(31 downto 0);
+        MemWrite : in STD_LOGIC;
+        MemRead : in STD_LOGIC;
+        SpecialMemOp : in STD_LOGIC_VECTOR(3 downto 0); 
+        -- memory signal
+        write_enable : std_logic_vector(3 downto 0); 
+        write_data_to_mem : std_logic_vetor(31 downto 0);
+        addr : std_logic_vector(31 downto 0);
+    );
+end component;
+
+  signal PC_reg, PC_next; 
+  signal muxRegDst, muxAndLink : std_logic_vector(4 downto 0); 
+  signal write_reg, read_reg_1, read_reg_2 : std_logic_vector(4 downto 0); 
+  signal read_data_1, read_data_2 : std_logic_vector(31 downto 0); 
+  signal dcd_offset_extend : std_logic_vector(31 downto 0); 
+  signal a, b, result: std_logic_vector(31 downto 0);
+  signal neg, zero : std_logic; 
+  signal aluCtrlVal : std_logic_vector(5 downto 0); 
+  signal jumpAddr : std_logic_vector(31 downto 0); 
+  signal pcPlusFour, pcForJ : std_logic_vector(31 downto 0); 
+  signal seAddr : std_logic_vector(31 downto 0); -- signed extend address
    
 begin
    -- Instantiate PCReg, PCReg2, and NextPCAdder here
@@ -125,6 +126,13 @@ begin
     dcd_target <= inst(25 downto 0);
     dcd_code <= inst(25 downto 6);
 
+   
+
+    write_reg <= muxRegDst when ALR = 0 else muxAndLink; 
+    muxAndLink <= muxRegDst when Andlink = 0 else std_logic_vector(to_unsigned(31,5)); 
+    muxRegDst <= dcd_rd when RegDst = 1 else dcd_rt; 
+    read_reg_1 <= dcd_rs; 
+    read_reg_2 <= dcd_rt; 
     reg32 : mips_reg 
       port map (
         -- Outputs
@@ -139,18 +147,49 @@ begin
         clk           => clk, 
         rst_b         => rst_b      
       );
+    -- singed_extend 
+    dcd_offset_extend <= (others => dcd_offset(15)) & dcd_offset;
+    a <= read_data_1; 
+    b <= read_data_2 when ALUSrc = 0 else dcd_offset_extend; 
+    mipsAlu_32: mips_alu 
+    port map (
+        a           => a,
+        b           => b,
+        result      => result,
+        shamt       => shamt,
+        aluCtrlVal  => aluCtrlVal,
+        zero        => zero,
+        neg         => neg
+    ); 
 
-    -- Debugging display
-    --    process(clk)
-    --    begin
-    --      if rst_b = '0' then
-    --        $display ( "=== Simulation Cycle %d ===", now );
-    --        $display ( "[pc=%x, inst=%x] [op=%x, rs=%d, rt=%d, rd=%d, imm=%x, f2=%x] [reset=%d, halted=%d]",
-    --                    pc, inst, dcd_op, dcd_rs, dcd_rt, dcd_rd, dcd_imm, dcd_funct2, not rst_b, halted);
-    --      end if;
-    --    end process;
+    pcPlusFour <= std_logic_vector(unsigned(pc_reg)+4); 
+    jumpAddr <= pcPlusFour(31 downto 28) & dcd_target & "00";  
+    seAddr <= dcd_offset_extend(29 downto 0) & "00";      
+    pcForJ <= std_logic_vector(unsigned(seAddr) + unsigned(pcPlusFour)); 
 
-    -- Automatic wires
+    pcForNextMux1 <= pcPlusFour when Branch = 0 else pcForJ; 
+    pcForNextMux2 <= pcForNext1 when Jump = 0 else jumpAddr; 
+    pc_next <= pcForNextMux2; 
+
+    datamem_addr <= result; 
+    write_data_mem <= read_data_2;      
+    memMIPS: DataMemory 
+      Port (
+          datamem_addr  => datamem_addr,
+          write_data    => write_data_mem,
+          read_data     => read_data_mem,
+          MemWrite      => MemWrite,
+          MemRead       => MemRead,
+          SpecialMemOp  => SpecialMemOp,
+          -- memory signal
+          write_enable      => write_enable,
+          write_data_to_mem => write_data_to_mem,
+          addr              => addr,
+      );
+    write_data <= read_data_mem when memtoReg = 1 else result; 
+
+
+
     signal alu__sel : STD_LOGIC_VECTOR(3 downto 0);
     signal ctrl_RI, ctrl_Sys, ctrl_we : STD_LOGIC;
     -- Define your other wire signals here
@@ -168,33 +207,6 @@ begin
         -- Connect other ports here
         );
 
-    -- Register File
-    -- Instantiate the register file from reg_file.vhd here
-    -- Connect the "halted" signal to trigger the register dump
-
-    -- Automatic wires (commented out due to VHDL's strong type checking)
-    -- signal alu__sel : STD_LOGIC_VECTOR(3 downto 0);
-    -- signal ctrl_RI, ctrl_Sys, ctrl_we : STD_LOGIC;
-    -- Instantiate mips_decode and connect automatic wires
-    -- Also connect other signals accordingly
-
-    -- Register file instantiation (to be completed)
-    -- Instantiate registers and connect them to the register file
-
-    -- Execution
-    -- Instantiate the ALU (mips_ALU entity) and connect signals
-    ALU: entity work.mips_ALU
-        port map (
-        alu__out => alu_out,
-        alu__op1 => rs_data,
-        alu__op2 => dcd_se_imm,
-        alu__sel => alu__sel
-        );
-
-    -- Miscellaneous stuff (Exceptions, syscalls, and halt)
-    -- Define exception_unit and syscall_unit units here
-
-    -- Other signal assignments and instances here
 end Behavioral;
 
 
