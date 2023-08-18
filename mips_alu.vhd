@@ -17,12 +17,12 @@ end mips_alu;
 architecture Behavioral of mips_alu is
     signal mult_temp : std_logic_vector(63 downto 0);
     signal div : std_logic_vector(31 downto 0);
-    signal mod : std_logic_vector(31 downto 0);
+    signal mod_d : std_logic_vector(31 downto 0);
     signal rd, rs : std_logic_vector(4 downto 0);
 begin
-    process (a, b, shamt, ALU_ctrl_val)
+    process (a, b, shamt, aluCtrlVal)
     begin
-        case ALU_ctrl_val is
+        case to_integer(unsigned(aluCtrlVal)) is
             when 0 => -- ADD
                 result <= std_logic_vector(signed(a) + signed(b));
             when 1 => -- ADDU
@@ -38,21 +38,21 @@ begin
             when 6 => -- XOR
                 result <= a xor b;
             when 7 => -- SLL
-                result <= a sll shamt;
+                result <= std_logic_vector(a sll to_integer(unsigned(shamt)));
             when 8 => -- SRL
-                result <= a srl shamt;
+                result <= std_logic_vector(a srl to_integer(unsigned(shamt)));
             when 9 => -- SRA
-                result <= a sra shamt;
+                result <= std_logic_vector(shift_right(signed(a), to_integer(unsigned(shamt))));
             when 10 => -- SLT
-                result <= '1' when signed(a) < signed(b) else '0';
+                result <= x"0001" when signed(a) < signed(b) else x"0000"; 
             when 11 => -- NOR
                 result <= not (a or b);
             when 12 =>
-                result <= std_logic_vector(signed(b) sll (unsigned(a) and x"00000001F")); 
+                result <= std_logic_vector(signed(b) sll to_integer(unsigned(a) and x"00000001F")); 
             when 13 =>
-                result <= std_logic_vector(signed(b) srl (unsigned(a) and x"00000001F")); 
+                result <= std_logic_vector(signed(b) srl to_integer(unsigned(a) and x"00000001F")); 
             when 14 =>
-                result <= std_logic_vector(signed(b) sra (signed(a) and x"00000001F")); 
+                result <= std_logic_vector(signed(b) sra to_integer(signed(a) and x"00000001F")); 
             when 15 =>
                 mult_temp <= std_logic_vector(signed(a) * signed(b));
                 result <= mult_temp(63 downto 0);
@@ -63,7 +63,7 @@ begin
                 result <= (others => '0');
         end case;
 
-        zero <= '1' when result = (others => '0') else '0';
+        zero <= '1' when result = x"00000000" else '0';
         neg <= result(31);
     end process;
 
