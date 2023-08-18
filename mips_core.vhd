@@ -220,7 +220,30 @@ begin
     seAddr <= dcd_offset_extend(29 downto 0) & "00";      
     pcForJ <= std_logic_vector(unsigned(seAddr) + unsigned(pcPlusFour)); 
 
-    pcForNextMux1 <= pcPlusFour when Branch = 0 else pcForJ; 
+    -- brach control left 
+    process(neg, zero, BranchType, Branch) begin
+      if BranchType = std_logic_vector(to_unsigned(1,5)) then 
+        condALU = zero and Branch;  
+        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condALU = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+      elsif BrachType = std_logic_vector(to_unsigned(0,5)) then 
+        condNotEq = (not zero) and Branch;  
+        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condNotEq = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+      elsif BrachType = std_logic_vector(to_unsigned(2,5)) then 
+        condBgez = (not neg) and Branch;  
+        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgez = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+      elsif BrachType = std_logic_vector(to_unsigned(3,5)) then 
+        condBltz = neg and Branch;  
+        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBltz = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+      elsif BrachType = std_logic_vector(to_unsigned(4,5)) then 
+        condBlez = (neg or zero) and Branch;  
+        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBlez = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+      elsif BrachType = std_logic_vector(to_unsigned(5,5)) then 
+        condBgtz = ((not neg) or (not zero)) and Branch;  
+        pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgtz = 1 else std_logic_vector(unsigned(pcPlusFour) - 4);
+      end if; 
+    end process;
+
+    pcForNextMux1 <= pcPlusFour2 when Branch = 0 else pcForJ; 
     pcForNextMux2 <= pcForNext1 when Jump = 0 else jumpAddr; 
     pc_next <= read_data_1 when JalrCtrl = 1 else pcForNextMux2
 
