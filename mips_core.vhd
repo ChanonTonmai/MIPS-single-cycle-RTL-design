@@ -225,22 +225,6 @@ begin
 
 
 
-    signal alu__sel : STD_LOGIC_VECTOR(3 downto 0);
-    signal ctrl_RI, ctrl_Sys, ctrl_we : STD_LOGIC;
-    -- Define your other wire signals here
-
-    -- Instantiate mips_decode
-    -- Generate control signal here
-    Decoder: entity work.mips_decode
-        port map (
-        ctrl_we => ctrl_we,
-        ctrl_Sys => ctrl_Sys,
-        ctrl_RI => ctrl_RI,
-        alu__sel => alu__sel(3 downto 0),
-        dcd_op => dcd_op(5 downto 0),
-        dcd_funct2 => dcd_funct2(5 downto 0)
-        -- Connect other ports here
-        );
 
 end Behavioral;
 
