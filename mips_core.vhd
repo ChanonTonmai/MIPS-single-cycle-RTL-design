@@ -104,6 +104,15 @@ architecture Behavioral of mips_core is
     );
   end component;
 
+  component mips_aluctrl is
+    port (
+      inst            : in STD_LOGIC_VECTOR(31 downto 0);
+      ALUop           : in STD_LOGIC_VECTOR(2 downto 0);
+      aluCtrlVal      : out STD_LOGIC_VECTOR(5 downto 0);
+      JalCtrl;        : out STD_LOGIC
+    );
+  end component;
+
   signal PC_reg, PC_next; 
   signal muxRegDst, muxAndLink : std_logic_vector(4 downto 0); 
   signal write_reg, read_reg_1, read_reg_2 : std_logic_vector(4 downto 0); 
@@ -197,6 +206,15 @@ begin
         neg         => neg
     ); 
 
+    aluctrlmips:  mips_aluctrl 
+      port map(
+        inst            => inst,--VECTOR(31 downto 0);
+        ALUop           => ALUop,--VECTOR(2 downto 0);
+        aluCtrlVal      => aluCtrlVal,--_VECTOR(5 downto 0);
+        JalCtrl;        => JalCtrl,--
+      );
+
+
     pcPlusFour <= std_logic_vector(unsigned(pc_reg)+4); 
     jumpAddr <= pcPlusFour(31 downto 28) & dcd_target & "00";  
     seAddr <= dcd_offset_extend(29 downto 0) & "00";      
@@ -204,7 +222,7 @@ begin
 
     pcForNextMux1 <= pcPlusFour when Branch = 0 else pcForJ; 
     pcForNextMux2 <= pcForNext1 when Jump = 0 else jumpAddr; 
-    pc_next <= pcForNextMux2; 
+    pc_next <= read_data_1 when JalrCtrl = 1 else pcForNextMux2
 
     datamem_addr <= result; 
     write_data_mem <= read_data_2;      
