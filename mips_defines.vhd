@@ -225,4 +225,29 @@ package mips_defines is
     constant MUL_DIV   : std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(6, 4)); 
     constant MUL_DIVU  : std_logic_vector(3 downto 0) := std_logic_vector(to_unsigned(7, 4)); 
     
+    constant FUNC_ADD    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(0,6)); 
+    constant FUNC_ADDU   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(1,6)); 
+    constant FUNC_SUB    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(2,6)); 
+    constant FUNC_SUBU   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(3,6)); 
+    constant FUNC_AND    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(4,6)); 
+    constant FUNC_OR     : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(5,6)); 
+    constant FUNC_XOR    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(6,6)); 
+    constant FUNC_SLL    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(7,6)); 
+    constant FUNC_SRL    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(8,6)); 
+    constant FUNC_SRA    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(9,6)); 
+    constant FUNC_SLT    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(10,6)); 
+    constant FUNC_NOR    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(11,6));  
+    constant FUNC_SLLV   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(12,6)); 
+    constant FUNC_SRLV   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(13,6)); 
+    constant FUNC_SRAV   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(14,6)); 
+    constant FUNC_MULT   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(15,6)); 
+    constant FUNC_MULTU  : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(16,6)); 
+    constant FUNC_DIV    : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(17,6)); 
+    constant FUNC_DIVU   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(18,6)); 
+    constant FUNC_MFHI   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(19,6)); 
+    constant FUNC_MFLO   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(20,6)); 
+    constant FUNC_MTHI   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(21,6)); 
+    constant FUNC_MTLO   : std_logic_vecotr(5 downto 0) := std_logic_vector(to_unsigned(22,6)); 
+
+
 end package; 

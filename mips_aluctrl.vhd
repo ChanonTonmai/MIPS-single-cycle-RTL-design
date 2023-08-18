@@ -24,56 +24,50 @@ begin
 
 process(ALUop, inst)
 begin
-
     if ALUop = "10" then
-        
-        
         case to_integer(unsigned(opcode_operation)) is
-            when OP0_ADD    => tempAluLine <= ADD;
-            when OP0_ADDU   => 
-            when OP0_SUB    => tempAluLine <= SUB;
-            when OP0_SUBU
-            when OP0_AND   => tempAluLine <= AND;
-            when OP0_NOR   => tempAluLine <= NOR;
-            when OP0_OR    => tempAluLine <= OR;
-            when OP0_SLL   => tempAluLine <= SLL;
-            when OP0_SLLV  => tempAluLine <= SLLV;
-            when OP0_SLT  => tempAluLine <= SLT;
-            when OP0_SLTU   => 
-            when OP0_SRA   => tempAluLine <= SRA;
-            when OP0_SRAV  => tempAluLine <= SRAV;
-            when OP0_SRL   => tempAluLine <= SRL;
-            when OP0_SRLV  => tempAluLine <= SRLV;
-            when OP0_XOR   => tempAluLine <= XOR;
-            when OP0_SYSCALL    => tempAluLine <= ADD; RUN_BIT <= '0';
-            when OP0_JALR => tempAluLine <= ADD; JalrCtrl <= '1';
-            when OP0_MULT  => tempAluLine <= MULT;
-            when OP0_MULTU => tempAluLine <= MULTU;
-            when OP0_DIV   => tempAluLine <= MULT;
-            when OP0_DIVU  => tempAluLine <= MULTU;
-            when OP0_MFHI  => tempAluLine <= MFHI;
-            when OP0_MFLO  => tempAluLine <= MFLO;
-            when OP0_MTHI  => tempAluLine <= MTHI;
-            when OP0_MTLO  => tempAluLine <= MTLO;
-            when others => tempAluLine <= ADD; -- Default case
+            when OP0_ADD        => tempAluLine <= FUNC_ADD;
+            when OP0_ADDU       => tempAluLine <= FUNC_ADDU;
+            when OP0_SUB        => tempAluLine <= FUNC_SUB;
+            when OP0_SUBU       => tempAluLine <= FUNC_SUBU;
+            when OP0_AND        => tempAluLine <= FUNC_AND;
+            when OP0_NOR        => tempAluLine <= FUNC_NOR;
+            when OP0_OR         => tempAluLine <= FUNC_OR;
+            when OP0_SLL        => tempAluLine <= FUNC_SLL;
+            when OP0_SLLV       => tempAluLine <= FUNC_SLLV;
+            when OP0_SLT        => tempAluLine <= FUNC_SLT;
+            when OP0_SLTU       => tempAluLine <= FUNC_SUB;
+            when OP0_SRA        => tempAluLine <= FUNC_SRA;
+            when OP0_SRAV       => tempAluLine <= FUNC_SRAV;
+            when OP0_SRL        => tempAluLine <= FUNC_SRL;
+            when OP0_SRLV       => tempAluLine <= FUNC_SRLV;
+            when OP0_XOR        => tempAluLine <= FUNC_XOR;
+            when OP0_SYSCALL    => tempAluLine <= FUNC_ADD; RUN_BIT <= '0';
+            when OP0_JALR       => tempAluLine <= FUNC_ADD; JalrCtrl <= '1';
+            when OP0_MULT       => tempAluLine <= FUNC_MULT;
+            when OP0_MULTU      => tempAluLine <= FUNC_MULTU;
+            when OP0_DIV        => tempAluLine <= FUNC_DIV;
+            when OP0_DIVU       => tempAluLine <= FUNC_DIVU;
+            when OP0_MFHI       => tempAluLine <= FUNC_MFHI;
+            when OP0_MFLO       => tempAluLine <= FUNC_MFLO;
+            when OP0_MTHI       => tempAluLine <= FUNC_MTHI;
+            when OP0_MTLO       => tempAluLine <= FUNC_MTLO;
+            when others         => tempAluLine <= FUNC_ADD; -- Default case
         end case;
     elsif ALUop = "01" then
-        tempAluLine <= SUB;
+        tempAluLine <= FUNC_SUB;
     else
         case to_integer(unsigned(opcode_operation)) is
-            when OPCODE_LUI => tempAluLine <= SHIFT_UPPER;
-            when OPCODE_LW => 
-            when OPCODE_SW
-            when OPCODE_ADDI
-            when OPCODE_ORI =>
-            when OPCODE_XORI =>
-                tempAluLine <= ADD;
-            when OPCODE_SLTI =>
-                tempAluLine <= SLT;
-            when OPCODE_SLTIU 
-            when others =>
-                -- printf("error something\n");
-                tempAluLine <= ADD; -- Default case
+            when OPCODE_LUI     => tempAluLine <= SHIFT_UPPER;
+            when OPCODE_LW      => tempAluLine <= FUNC_ADD;
+            when OPCODE_SW      => tempAluLine <= FUNC_ADD;
+            when OPCODE_ADDI    => tempAluLine <= FUNC_ADD;
+            when OPCODE_ANDI    => tempAluLine <= FUNC_AND;
+            when OPCODE_ORI     => tempAluLine <= FUNC_OR;
+            when OPCODE_XORI    => tempAluLine <= FUNC_XOR;
+            when OPCODE_SLTI    => tempAluLine <= FUNC_SLT;
+            when OPCODE_SLTIU   => tempAluLine <= FUNC_SLT;
+            when others         => tempAluLine <= FUNC_ADD; -- Default case
         end case;
     end if;
     
