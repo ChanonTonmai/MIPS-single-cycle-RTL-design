@@ -20,7 +20,7 @@ architecture Behavioral of mips_alu is
     signal mod_d : std_logic_vector(31 downto 0);
     signal rd, rs : std_logic_vector(4 downto 0);
 begin
-    process (a, b, shamt, aluCtrlVal)
+    process (a, b, shamt, aluCtrlVal, mult_temp)
     begin
         case to_integer(unsigned(aluCtrlVal)) is
             when 0 => -- ADD

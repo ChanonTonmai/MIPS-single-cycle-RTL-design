@@ -1,0 +1,29 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+| Date         : Sun Aug 20 22:40:01 2023
+| Host         : chanon-Yoga running 64-bit Ubuntu 22.04.3 LTS
+| Command      : report_design_analysis -logic_level_distribution -file opt_report_design_analysis_0.rpt
+| Design       : mips_core
+| Device       : xc7z020
+| Design State : Optimized
+---------------------------------------------------------------------------------------------------------
+
+Report Design Analysis
+
+Table of Contents
+-----------------
+1. Logic Level Distribution
+
+1. Logic Level Distribution
+---------------------------
+
++-----------------+-------------+---+-----+----+
+| End Point Clock | Requirement | 3 |  9  | 12 |
++-----------------+-------------+---+-----+----+
+| SysClk          | 10.000ns    | 8 | 961 | 31 |
++-----------------+-------------+---+-----+----+
+* Columns represent the logic levels per end point clock
+** Distribution is for top worst 1000 paths
+
+

@@ -239,7 +239,7 @@ begin
 
     
     -- brach control left 
-    process(neg, zero, BranchType, Branch, pcPlusFour, pcForJ) begin
+    process(neg, zero, BranchType, Branch, pcPlusFour, pcForJ, condALU, condNotEq, condBgez, condBltz, condBlez, condBgtz) begin
       if BranchType = std_logic_vector(to_unsigned(1,3)) then 
         condALU <= zero and Branch;
         if condALU = '1' then

@@ -53,7 +53,7 @@ begin
     dcd_target <= inst(25 downto 0);
     dcd_code <= inst(25 downto 6);
     
-    process(dcd_op, dcd_rs, dcd_rt, dcd_rd) begin 
+    process(dcd_op, dcd_rs, dcd_rt, dcd_rd, dcd_funct2) begin 
     if dcd_op = OP_OTHER0 then
         RegDst      <= '1'; 
         ALUSrc      <= '0'; 

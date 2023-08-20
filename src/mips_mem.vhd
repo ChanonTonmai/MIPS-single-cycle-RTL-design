@@ -21,7 +21,7 @@ end DataMemory;
 architecture Behavioral of DataMemory is
     signal temp_read_data : STD_LOGIC_VECTOR(31 downto 0);
 begin
-    process (datamem_addr, write_data, MemWrite, MemRead, SpecialMemop)
+    process (datamem_addr, write_data, MemWrite, MemRead, SpecialMemop, read_data_from_mem, temp_read_data)
     begin
         if MemRead = '1' then
             temp_read_data <= read_data_from_mem; 

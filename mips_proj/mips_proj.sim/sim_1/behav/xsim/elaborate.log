@@ -5,24 +5,4 @@ Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
-Starting simulation data flow analysis
-WARNING: [XSIM 43-4100] "/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.sim/sim_1/behav/xsim/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
-WARNING: [XSIM 43-4100] "/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.sim/sim_1/behav/xsim/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling package std.standard
-Compiling package std.textio
-Compiling package ieee.std_logic_1164
-Compiling package ieee.numeric_std
-Compiling package xil_defaultlib.mips_defines
-Compiling module xil_defaultlib.clock
-Compiling architecture beh of entity xil_defaultlib.mips_ctrl [mips_ctrl_default]
-Compiling architecture behavioral of entity xil_defaultlib.mips_reg [mips_reg_default]
-Compiling architecture behavioral of entity xil_defaultlib.mips_alu [mips_alu_default]
-Compiling architecture beh of entity xil_defaultlib.mips_aluctrl [mips_aluctrl_default]
-Compiling architecture behavioral of entity xil_defaultlib.DataMemory [datamemory_default]
-Compiling architecture behavioral of entity xil_defaultlib.mips_core [mips_core_default]
-Compiling module xil_defaultlib.mips_mem_default
-Compiling module xil_defaultlib.testbench
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot testbench_behav
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
