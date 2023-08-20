@@ -6,7 +6,7 @@ package mips_defines is
     -- MIPS Defines: Numerical parameters of the MIPS processor
     -- USEFUL CONSTANTS
     -- Mask for the coprocessor number from the opcode
-    constant OP__ZMASK : std_logic_vector(5 downto 0) := "000011"; 
+--    constant OP_ZMASK : std_logic_vector(5 downto 0) := "000011"; 
 
     -- Mask to force word-alignment of addresses
     constant ADDR_ALIGN_MASK : std_logic_vector(31 downto 0) := x"fffffffc";
@@ -82,10 +82,10 @@ package mips_defines is
 
 
     -- -- Secondary opcodes (rt field; OP_OTHER1)
-    constant OP1_BLTZ    : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(0,5)); --5'h00
-    constant OP1_BGEZ    : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(1,5)); --5'h01
-    constant OP1_BLTZAL  : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(16,5)); --5'h10
-    constant OP1_BGEZAL  : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(17,5)); --5'h11
+    constant OP1_BLTZ    : std_logic_vector(4 downto 0) := std_logic_vector(to_unsigned(0,5)); --5'h00
+    constant OP1_BGEZ    : std_logic_vector(4 downto 0) := std_logic_vector(to_unsigned(1,5)); --5'h01
+    constant OP1_BLTZAL  : std_logic_vector(4 downto 0) := std_logic_vector(to_unsigned(16,5)); --5'h10
+    constant OP1_BGEZAL  : std_logic_vector(4 downto 0) := std_logic_vector(to_unsigned(17,5)); --5'h11
 
     -- Secondary opcodes (funct2 field; OP_OTHER0)
     constant OP0_SLL     : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(0, 6));   
@@ -202,7 +202,7 @@ package mips_defines is
     constant EX_VCED  : std_logic_vector(4 downto 0) := std_logic_vector(to_unsigned(31, 5)); 
 
     -- System calls
-    constant SYS_EXIT : std_logic_vector(31 downto 0) := std_logic_vector(to_unsigned(10, 31)); 
+    constant SYS_EXIT : std_logic_vector(31 downto 0) := std_logic_vector(to_unsigned(10, 32)); 
 
 
     --Multiply unit opcodes
@@ -238,6 +238,8 @@ package mips_defines is
     constant FUNC_MFLO   : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(20,6)); 
     constant FUNC_MTHI   : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(21,6)); 
     constant FUNC_MTLO   : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(22,6)); 
+    
+    constant SHIFT_UPPER : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(23,6)); 
 
 
 end package; 

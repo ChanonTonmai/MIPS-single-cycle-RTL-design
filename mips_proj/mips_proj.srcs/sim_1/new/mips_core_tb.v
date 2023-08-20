@@ -74,7 +74,7 @@ module testbench;
    initial
      begin
 	rst_b = 0;
-	#75;
+	#15;
 	rst_b <= 1;
      end
 
@@ -92,7 +92,7 @@ endmodule
 // Clock module for the MIPS core.  You may increase the clock period
 // if your design requires it.
 module clock(clockSignal);
-   parameter start = 0, halfPeriod = 50;
+   parameter start = 0, halfPeriod = 5;
    output    clockSignal;
    reg 	     clockSignal;
    

@@ -7,7 +7,7 @@ entity mips_alu is
         a           : in std_logic_vector(31 downto 0); 
         b           : in std_logic_vector(31 downto 0);    
         result      : out std_logic_vector(31 downto 0); 
-        shamt       : in std_logic_vector(5 downto 0);
+        shamt       : in std_logic_vector(4 downto 0);
         aluCtrlVal  : in std_logic_vector(5 downto 0);
         zero        : out std_logic; 
         neg         : out std_logic
@@ -44,7 +44,7 @@ begin
             when 9 => -- SRA
                 result <= std_logic_vector(shift_right(signed(a), to_integer(unsigned(shamt))));
             when 10 => -- SLT
-                result <= x"0001" when signed(a) < signed(b) else x"0000"; 
+                result <= x"00000001" ; --when signed(a) < signed(b) else x"00000000"; 
             when 11 => -- NOR
                 result <= not (a or b);
             when 12 =>
@@ -55,16 +55,17 @@ begin
                 result <= std_logic_vector(signed(b) sra to_integer(signed(a) and x"00000001F")); 
             when 15 =>
                 mult_temp <= std_logic_vector(signed(a) * signed(b));
-                result <= mult_temp(63 downto 0);
+                result <= mult_temp(31 downto 0); -- temp
             when 16 =>
                 mult_temp <= std_logic_vector(unsigned(a) * unsigned(b));
-                result <= mult_temp(63 downto 0);
+                result <= mult_temp(31 downto 0); -- temp
             when others =>
                 result <= (others => '0');
         end case;
 
-        zero <= '1' when result = x"00000000" else '0';
-        neg <= result(31);
+
     end process;
+    zero <= '1' when result = x"00000000" else '0';
+    neg <= result(31);
 
 end Behavioral;

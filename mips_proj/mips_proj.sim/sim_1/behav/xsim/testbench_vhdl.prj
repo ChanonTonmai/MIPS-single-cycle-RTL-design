@@ -1,0 +1,12 @@
+# compile vhdl design source files
+vhdl2008 xil_defaultlib  \
+"../../../../../src/mips_alu.vhd" \
+"../../../../../src/mips_defines.vhd" \
+"../../../../../src/mips_aluctrl.vhd" \
+"../../../../../src/mips_core.vhd" \
+"../../../../../src/mips_ctrl.vhd" \
+"../../../../../src/mips_mem.vhd" \
+"../../../../../src/mips_register.vhd" \
+
+# Do not sort compile order
+nosort

@@ -2,6 +2,13 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
+--   // The MIPS core
+--   mips_core core(.clk(clk), .inst_addr(pc), .inst(inst),
+--		  .inst_excpt(inst_excpt), .mem_addr(mem_addr),
+--		  .mem_data_in(mem_data_in), .mem_data_out(mem_data_out),
+--		  .mem_write_en(mem_write_en), .mem_excpt(mem_excpt),
+--		  .halted(halted), .rst_b(rst_b));
+
 entity mips_core is
   port (
     -- Outputs
@@ -15,6 +22,7 @@ entity mips_core is
     inst_excpt    : in STD_LOGIC;
     mem_excpt     : in STD_LOGIC;
     inst          : in STD_LOGIC_VECTOR(31 downto 0);
+    mem_data_out  : in std_logic_vector(31 downto 0); 
     rst_b         : in STD_LOGIC
   );
 end mips_core;
@@ -60,7 +68,7 @@ architecture Behavioral of mips_core is
       a           : in std_logic_vector(31 downto 0); 
       b           : in std_logic_vector(31 downto 0);    
       result      : out std_logic_vector(31 downto 0); 
-      shamt       : in std_logic_vector(5 downto 0);
+      shamt       : in std_logic_vector(4 downto 0);
       aluCtrlVal  : in std_logic_vector(5 downto 0);
       zero        : out std_logic; 
       neg         : out std_logic
@@ -74,10 +82,11 @@ architecture Behavioral of mips_core is
         read_data : out STD_LOGIC_VECTOR(31 downto 0);
         MemWrite : in STD_LOGIC;
         MemRead : in STD_LOGIC;
-        SpecialMemOp : in STD_LOGIC_VECTOR(3 downto 0); 
+        SpecialMemOp : in STD_LOGIC_VECTOR(2 downto 0); 
         -- memory signal
         write_enable : out std_logic_vector(3 downto 0); 
         write_data_to_mem : out std_logic_vector(31 downto 0);
+        read_data_from_mem : in std_logic_vector(31 downto 0); 
         addr : out std_logic_vector(31 downto 0)
     );
   end component;
@@ -99,23 +108,24 @@ architecture Behavioral of mips_core is
         BranchType: out STD_LOGIC_VECTOR(2 downto 0);
         AndLink : out STD_LOGIC; 
         ALR: out STD_LOGIC;
-        SpecialMemOp: out STD_LOGIC_VECTOR(3 downto 0)
+        SpecialMemOp: out STD_LOGIC_VECTOR(2 downto 0)
     );
   end component;
-  signal RegDst, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, AndLink, ALR, JalCtrl: std_logic; 
+  signal RegDst, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, AndLink, ALR, JalrCtrl: std_logic; 
   signal ALUop, BranchType : std_logic_vector(2 downto 0); 
-  signal SpecialMemOp : std_logic_vector(3 downto 0); 
+  signal SpecialMemOp : std_logic_vector(2 downto 0); 
+  signal mem_addr_temp: std_logic_vector(31 downto 0); 
 
   component mips_aluctrl is
     port (
       inst            : in STD_LOGIC_VECTOR(31 downto 0);
       ALUop           : in STD_LOGIC_VECTOR(2 downto 0);
       aluCtrlVal      : out STD_LOGIC_VECTOR(5 downto 0);
-      JalCtrl        : out STD_LOGIC
+      JalrCtrl        : out STD_LOGIC
     );
   end component;
 
-  signal PC_reg, PC_next : std_logic_vector(31 downto 0); 
+  signal pc_reg, pc_next : std_logic_vector(31 downto 0); 
   signal muxRegDst, muxAndLink : std_logic_vector(4 downto 0); 
   signal write_reg, read_reg_1, read_reg_2 : std_logic_vector(4 downto 0); 
   signal dcd_offset_extend : std_logic_vector(31 downto 0); 
@@ -126,20 +136,18 @@ architecture Behavioral of mips_core is
   signal pcPlusFour, pcForJ : std_logic_vector(31 downto 0); 
   signal seAddr : std_logic_vector(31 downto 0); -- signed extend address
   signal shamt : std_logic_vector(4 downto 0); 
-  signal JalrCtrl : std_logic; 
   
-  signal BrachType : std_logic_vector(2 downto 0); 
    
 begin
    -- Instantiate PCReg, PCReg2, and NextPCAdder here
     process(clk, rst_b) begin 
         if rst_b = '0' then 
-            pc_reg <= (others=>'0');    
+            pc_reg <= x"00400000";
         elsif rising_edge(clk) then
             pc_reg <= pc_next; 
         end if; 
     end process; 
-    inst_addr <= pc_reg; 
+    inst_addr <= pc_reg(31 downto 2); 
    
     -- Instruction decoding
     dcd_op <= inst(31 downto 26);
@@ -222,68 +230,70 @@ begin
         inst            => inst,--VECTOR(31 downto 0);
         ALUop           => ALUop,--VECTOR(2 downto 0);
         aluCtrlVal      => aluCtrlVal,--_VECTOR(5 downto 0);
-        JalCtrl        => JalCtrl--
+        JalrCtrl        => JalrCtrl--
       );
 
 
-    pcPlusFour <= std_logic_vector(unsigned(pc_reg)+4); 
-    jumpAddr <= pcPlusFour(31 downto 28) & dcd_target & "00";  
-    seAddr <= dcd_offset_extend(29 downto 0) & "00";      
-    pcForJ <= std_logic_vector(unsigned(seAddr) + unsigned(pcPlusFour)); 
+
 
     
     -- brach control left 
-    process(neg, zero, BranchType, Branch) begin
-      if BranchType = std_logic_vector(to_unsigned(1,5)) then 
+    process(neg, zero, BranchType, Branch, pcPlusFour, pcForJ) begin
+      if BranchType = std_logic_vector(to_unsigned(1,3)) then 
         condALU <= zero and Branch;
         if condALU = '1' then
             pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
         else
-            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) );
         end if;  
-      elsif BrachType = std_logic_vector(to_unsigned(0,5)) then 
+      elsif BranchType = std_logic_vector(to_unsigned(0,3)) then 
         condNotEq <= (not zero) and Branch;  
         if condNotEq = '1' then
             pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
         else
-            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) );
         end if;
         --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condNotEq = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
-      elsif BrachType = std_logic_vector(to_unsigned(2,5)) then 
+      elsif BranchType = std_logic_vector(to_unsigned(2,3)) then 
         condBgez <= (not neg) and Branch;  
         if condBgez = '1' then
             pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
         else
-            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) );
         end if;
         --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgez = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
-      elsif BrachType = std_logic_vector(to_unsigned(3,5)) then 
+      elsif BranchType = std_logic_vector(to_unsigned(3,3)) then 
         condBltz <= neg and Branch;  
         if condBltz = '1' then
             pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
         else
-            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) );
         end if;
         --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBltz = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
-      elsif BrachType = std_logic_vector(to_unsigned(4,5)) then 
+      elsif BranchType = std_logic_vector(to_unsigned(4,3)) then 
         condBlez <= (neg or zero) and Branch;  
         if condBlez = '1' then
             pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
         else
-            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) );
         end if;
         --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBlez = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
-      elsif BrachType = std_logic_vector(to_unsigned(5,5)) then 
+      elsif BranchType = std_logic_vector(to_unsigned(5,3)) then 
         condBgtz <= ((not neg) or (not zero)) and Branch;  
         if condBgtz = '1' then
             pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4);
         else
-            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) - 4);
+            pcPlusFour2 <= std_logic_vector(unsigned(pcPlusFour) );
         end if;
         --pcPlusFour2 <= std_logic_vector(unsigned(pcForJ) - 4) when condBgtz = '1' else std_logic_vector(unsigned(pcPlusFour) - 4);
       end if; 
     end process;
-
+    
+    pcPlusFour <= std_logic_vector(unsigned(pc_reg)+4); 
+    jumpAddr <= pcPlusFour(31 downto 28) & dcd_target & "00";  
+    seAddr <= dcd_offset_extend(29 downto 0) & "00";    
+      
+    pcForJ <= std_logic_vector(unsigned(seAddr) + unsigned(pcPlusFour)); 
     pcForNextMux1 <= pcPlusFour2 when Branch = '0' else pcForJ; 
     pcForNextMux2 <= pcForNextMux1 when Jump = '0' else jumpAddr; 
     pc_next <= read_data_1 when JalrCtrl = '1' else pcForNextMux2;
@@ -299,10 +309,12 @@ begin
           MemRead       => MemRead,
           SpecialMemOp  => SpecialMemOp,
           -- memory signal
-          write_enable      => mem_write_en,
-          write_data_to_mem => mem_data_in,
-          addr              => mem_addr 
+          write_enable       => mem_write_en,
+          write_data_to_mem  => mem_data_in,
+          read_data_from_mem => mem_data_out, 
+          addr               => mem_addr_temp 
       );
+    mem_addr <= mem_addr_temp(31 downto 2); 
     write_data <= read_data_mem when memtoReg = '1' else result; 
 end Behavioral;
 
