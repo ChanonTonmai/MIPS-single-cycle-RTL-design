@@ -31,6 +31,7 @@ process(clk, rst_b, write_data) begin
     elsif rising_edge(clk) then
         if RegWrite = '1' and write_reg /= std_logic_vector(to_unsigned(0,5)) then
             mem(to_integer(unsigned(write_reg))) <= write_data; 
+            report "write to register[" & to_hstring(unsigned(write_reg)) & "] = " & to_hstring(write_data) & "h";
         end if; 
     end if; 
 end process;

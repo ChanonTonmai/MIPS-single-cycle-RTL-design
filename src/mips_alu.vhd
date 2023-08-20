@@ -38,21 +38,31 @@ begin
             when 6 => -- XOR
                 result <= a xor b;
             when 7 => -- SLL
-                result <= std_logic_vector(a sll to_integer(unsigned(shamt)));
+                result <= std_logic_vector(b sll to_integer(unsigned(shamt)));
             when 8 => -- SRL
-                result <= std_logic_vector(a srl to_integer(unsigned(shamt)));
+                result <= std_logic_vector(b srl to_integer(unsigned(shamt)));
             when 9 => -- SRA
-                result <= std_logic_vector(shift_right(signed(a), to_integer(unsigned(shamt))));
+                result <= std_logic_vector(unsigned(b) sra to_integer(unsigned(shamt))); --std_logic_vector(shift_right(unsigned(a), to_integer(unsigned(shamt))));
             when 10 => -- SLT
-                result <= x"00000001" ; --when signed(a) < signed(b) else x"00000000"; 
+                if signed(a) < signed(b) then
+                    result <= x"00000001" ; --when signed(a) < signed(b) else x"00000000";
+                else 
+                    result <= (others=>'0');
+                end if; 
+            when 23 => 
+                if unsigned(a) < unsigned(b) then
+                    result <= x"00000001" ; --when signed(a) < signed(b) else x"00000000";
+                else 
+                    result <= (others=>'0');
+                end if; 
             when 11 => -- NOR
                 result <= not (a or b);
             when 12 =>
-                result <= std_logic_vector(signed(b) sll to_integer(unsigned(a) and x"00000001F")); 
+                result <= std_logic_vector(unsigned(b) sll to_integer(unsigned(a) and x"0000001F")); 
             when 13 =>
-                result <= std_logic_vector(signed(b) srl to_integer(unsigned(a) and x"00000001F")); 
+                result <= std_logic_vector(unsigned(b) srl to_integer(unsigned(a) and x"0000001F")); 
             when 14 =>
-                result <= std_logic_vector(signed(b) sra to_integer(signed(a) and x"00000001F")); 
+                result <= std_logic_vector(unsigned(b) sra to_integer(signed(a) and x"0000001F")); 
             when 15 =>
                 mult_temp <= std_logic_vector(signed(a) * signed(b));
                 result <= mult_temp(31 downto 0); -- temp

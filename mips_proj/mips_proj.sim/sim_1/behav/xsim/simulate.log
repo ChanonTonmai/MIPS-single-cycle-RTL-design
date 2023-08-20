@@ -1,0 +1,174 @@
+Vivado Simulator 2020.1
+Time resolution is 1 ps
+Note: write to register[04] = 00000003h
+Time: 25 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[08] = 000000FFh
+Time: 35 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[09] = 0000000Fh
+Time: 45 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[0A] = 0000007Bh
+Time: 55 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[0B] = FFFFFF80h
+Time: 65 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[0C] = 0000007Fh
+Time: 75 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[16] = FFFFFF10h
+Time: 85 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[0D] = FFFFFF10h
+Time: 95 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[0E] = 00000074h
+Time: 105 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[0F] = 0000000Bh
+Time: 115 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[10] = 0000003Ch
+Time: 125 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[11] = 00000078h
+Time: 135 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[12] = 0000003Ch
+Time: 145 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[13] = 00000007h
+Time: 155 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[14] = 0000001Eh
+Time: 165 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[15] = 0000000Fh
+Time: 175 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[16] = 00000102h
+Time: 185 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = 00000102h
+Time: 195 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[18] = 00000001h
+Time: 205 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[19] = 00000001h
+Time: 215 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 235 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 245 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 255 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 265 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 275 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 285 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 295 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 305 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 315 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 325 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 335 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 345 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 355 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 365 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 375 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 385 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 395 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 405 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 415 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 425 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 435 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 445 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 455 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 465 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 475 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 485 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 495 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 505 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 515 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 525 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 535 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 545 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 555 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 565 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 575 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 585 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 595 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 605 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 615 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 625 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 635 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 645 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 655 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 665 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 675 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 685 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 695 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 705 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 715 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 725 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 735 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 745 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 755 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 765 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 775 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 785 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 795 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 805 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 815 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 825 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 835 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 845 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 855 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 865 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 875 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+Note: write to register[17] = FFFFFF1Fh
+Time: 885 ns  Iteration: 1  Process: /testbench/core/reg32/line__26  File: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd

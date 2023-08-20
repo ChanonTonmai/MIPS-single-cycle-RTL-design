@@ -214,6 +214,7 @@ begin
     dcd_offset_extend(15 downto 0) <= dcd_offset;
     a <= read_data_1; 
     b <= read_data_2 when ALUSrc = '0' else dcd_offset_extend; 
+    shamt <= dcd_shamt; 
     mipsAlu_32: mips_alu 
     port map (
         a           => a,

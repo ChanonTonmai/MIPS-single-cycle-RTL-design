@@ -17,15 +17,16 @@ architecture beh of mips_aluctrl is
 
 signal tempAluLine : std_logic_vector(5 downto 0);
 signal opcode_operation : STD_LOGIC_VECTOR(5 downto 0);
-
+signal function_operation : std_logic_vector(5 downto 0); 
 begin
 
-    opcode_operation <= inst(31 downto 26);
+    function_operation <= inst(5 downto 0);
+    opcode_operation <= inst(31 downto 26); 
 
-process(ALUop, inst)
+process(ALUop, inst, opcode_operation, function_operation)
 begin
     if ALUop = "010" then
-        case to_integer(unsigned(opcode_operation)) is
+        case to_integer(unsigned(function_operation)) is
             when to_integer(unsigned(OP0_ADD     ))  => tempAluLine <= FUNC_ADD;
             when to_integer(unsigned(OP0_ADDU    ))  => tempAluLine <= FUNC_ADDU;
             when to_integer(unsigned(OP0_SUB     ))  => tempAluLine <= FUNC_SUB;
@@ -36,7 +37,7 @@ begin
             when to_integer(unsigned(OP0_SLL     ))  => tempAluLine <= FUNC_SLL;
             when to_integer(unsigned(OP0_SLLV    ))  => tempAluLine <= FUNC_SLLV;
             when to_integer(unsigned(OP0_SLT     ))  => tempAluLine <= FUNC_SLT;
-            when to_integer(unsigned(OP0_SLTU    ))  => tempAluLine <= FUNC_SUB;
+            when to_integer(unsigned(OP0_SLTU    ))  => tempAluLine <= FUNC_SLTU;
             when to_integer(unsigned(OP0_SRA     ))  => tempAluLine <= FUNC_SRA;
             when to_integer(unsigned(OP0_SRAV    ))  => tempAluLine <= FUNC_SRAV;
             when to_integer(unsigned(OP0_SRL     ))  => tempAluLine <= FUNC_SRL;
@@ -72,8 +73,9 @@ begin
         end case;
     end if;
     
-    aluCtrlVal <= tempAluLine;
+  
     -- printf("alu ctrl line : %d\n", ALUctrlLine);
 end process;
+  aluCtrlVal <= tempAluLine;
 
 end beh; 

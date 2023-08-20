@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="mips_defines" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="148695fs"></ZoomStartTime>
+      <ZoomEndTime time="252996fs"></ZoomEndTime>
+      <Cursor1Time time="208295fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="169"></NameColumnWidth>
+      <ValueColumnWidth column_width="81"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wvobject type="array" fp_name="/testbench/i">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/addr">
+      <obj_property name="ElementShortName">addr[29:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[29:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/inst_excpt">
+      <obj_property name="ElementShortName">inst_excpt</obj_property>
+      <obj_property name="ObjectShortName">inst_excpt</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/mem_excpt">
+      <obj_property name="ElementShortName">mem_excpt</obj_property>
+      <obj_property name="ObjectShortName">mem_excpt</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/halted">
+      <obj_property name="ElementShortName">halted</obj_property>
+      <obj_property name="ObjectShortName">halted</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/rst_b">
+      <obj_property name="ElementShortName">rst_b</obj_property>
+      <obj_property name="ObjectShortName">rst_b</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/pc">
+      <obj_property name="ElementShortName">pc[29:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[29:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/mem_write_en">
+      <obj_property name="ElementShortName">mem_write_en[3:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_write_en[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/mem_addr">
+      <obj_property name="ElementShortName">mem_addr[29:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_addr[29:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/inst">
+      <obj_property name="ElementShortName">inst[31:0]</obj_property>
+      <obj_property name="ObjectShortName">inst[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/mem_data_in">
+      <obj_property name="ElementShortName">mem_data_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_data_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/mem_data_out">
+      <obj_property name="ElementShortName">mem_data_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_data_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/reg32/mem">
+      <obj_property name="ElementShortName">mem[31:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[31:0][31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/mipsAlu_32/a">
+      <obj_property name="ElementShortName">a[31:0]</obj_property>
+      <obj_property name="ObjectShortName">a[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/mipsAlu_32/b">
+      <obj_property name="ElementShortName">b[31:0]</obj_property>
+      <obj_property name="ObjectShortName">b[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/mipsAlu_32/shamt">
+      <obj_property name="ElementShortName">shamt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">shamt[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/mipsAlu_32/result">
+      <obj_property name="ElementShortName">result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">result[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/mipsAlu_32/result">
+      <obj_property name="ElementShortName">result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">result[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/mipsAlu_32/aluCtrlVal">
+      <obj_property name="ElementShortName">aluCtrlVal[5:0]</obj_property>
+      <obj_property name="ObjectShortName">aluCtrlVal[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/aluctrlmips/ALUop">
+      <obj_property name="ElementShortName">ALUop[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ALUop[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/core/aluctrlmips/function_operation">
+      <obj_property name="ElementShortName">function_operation[5:0]</obj_property>
+      <obj_property name="ObjectShortName">function_operation[5:0]</obj_property>
+   </wvobject>
+</wave_config>

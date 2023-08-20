@@ -238,6 +238,7 @@ package mips_defines is
     constant FUNC_MFLO   : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(20,6)); 
     constant FUNC_MTHI   : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(21,6)); 
     constant FUNC_MTLO   : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(22,6)); 
+    constant FUNC_SLTU   : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(23,6)); 
     
     constant SHIFT_UPPER : std_logic_vector(5 downto 0) := std_logic_vector(to_unsigned(23,6)); 
 
