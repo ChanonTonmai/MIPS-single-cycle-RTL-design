@@ -316,7 +316,7 @@ begin
           addr               => mem_addr_temp 
       );
     mem_addr <= mem_addr_temp(31 downto 2); 
-    write_data <= read_data_mem when memtoReg = '1' else result; 
+    write_data <= mem_data_out when memtoReg = '1' else result; 
 end Behavioral;
 
 

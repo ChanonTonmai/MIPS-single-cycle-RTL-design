@@ -138,7 +138,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= std_logic_vector(to_unsigned(1,3)); 
+        ALUop <= std_logic_vector(to_unsigned(0,3)); 
     elsif dcd_op = OP_LW then 
         RegDst <= '0';  
         ALUSrc <= '1'; 
@@ -150,7 +150,7 @@ begin
         AndLink <= '0';
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
-        ALUop <= std_logic_vector(to_unsigned(1,3)); 
+        ALUop <= std_logic_vector(to_unsigned(0,3)); 
     elsif dcd_op = OP_BEQ then 
         RegDst <= 'X';  
         ALUSrc <= '0'; 

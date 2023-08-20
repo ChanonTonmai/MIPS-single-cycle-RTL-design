@@ -55,6 +55,8 @@ begin
                 else 
                     result <= (others=>'0');
                 end if; 
+            when 24 => -- SHIFT UPPER
+                result <= b(15 downto 0) & x"0000";
             when 11 => -- NOR
                 result <= not (a or b);
             when 12 =>

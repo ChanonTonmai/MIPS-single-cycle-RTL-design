@@ -51,4 +51,5 @@ begin
             write_enable <= "0000";           
         end if;
     end process;
+    addr <= datamem_addr; 
 end Behavioral;
