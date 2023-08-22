@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Sun Aug 20 22:40:22 2023
-| Host         : chanon-Yoga running 64-bit Ubuntu 22.04.3 LTS
+| Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date         : Tue Aug 22 13:17:22 2023
+| Host         : chanon running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file phys_opt_report_timing_summary_0.rpt -pb phys_opt_report_timing_summary_0.pb -rpx phys_opt_report_timing_summary_0.rpx
 | Design       : mips_core
 | Device       : 7z020-clg484
@@ -68,13 +68,13 @@ Table of Contents
 
  There is 1 register/latch pin with no clock driven by root clock pin: inst[20] (HIGH)
 
- There are 41 register/latch pins with no clock driven by root clock pin: inst[26] (HIGH)
+ There are 44 register/latch pins with no clock driven by root clock pin: inst[26] (HIGH)
 
  There are 44 register/latch pins with no clock driven by root clock pin: inst[27] (HIGH)
 
  There are 44 register/latch pins with no clock driven by root clock pin: inst[28] (HIGH)
 
- There are 44 register/latch pins with no clock driven by root clock pin: inst[29] (HIGH)
+ There are 41 register/latch pins with no clock driven by root clock pin: inst[29] (HIGH)
 
  There are 32 register/latch pins with no clock driven by root clock pin: inst[2] (HIGH)
 
@@ -166,7 +166,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      0.507        0.000                      0                 1022        0.812        0.000                      0                 1022        4.500        0.000                       0                  1022  
+      0.506        0.000                      0                 1022        0.753        0.000                      0                 1022        4.500        0.000                       0                  1022  
 
 
 All user specified timing constraints are met.
@@ -189,7 +189,7 @@ SysClk  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-SysClk              0.507        0.000                      0                 1022        0.812        0.000                      0                 1022        4.500        0.000                       0                  1022  
+SysClk              0.506        0.000                      0                 1022        0.753        0.000                      0                 1022        4.500        0.000                       0                  1022  
 
 
 ------------------------------------------------------------------------------------------------
@@ -220,23 +220,88 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  SysClk
   To Clock:  SysClk
 
-Setup :            0  Failing Endpoints,  Worst Slack        0.507ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.812ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        0.506ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.753ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.507ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[31][0]/C
+Slack (MET) :             0.506ns  (required time - arrival time)
+  Source:                 reg32/mem_reg[12][20]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[12][27]/D
+  Destination:            reg32/mem_reg[14][17]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.342ns  (logic 2.219ns (23.753%)  route 7.123ns (76.247%))
+  Data Path Delay:        9.352ns  (logic 2.550ns (27.267%)  route 6.802ns (72.733%))
+  Logic Levels:           10  (LUT4=1 LUT5=3 LUT6=3 MUXF7=2 MUXF8=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.973     0.973    reg32/clk
+    SLICE_X50Y102        FDCE                                         r  reg32/mem_reg[12][20]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X50Y102        FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[12][20]/Q
+                         net (fo=2, estimated)        1.113     2.604    reg32/mem_reg[12]_19[20]
+    SLICE_X47Y100        LUT6 (Prop_lut6_I1_O)        0.124     2.728 r  reg32/write_data_to_mem_reg[20]_i_13/O
+                         net (fo=1, routed)           0.000     2.728    reg32/write_data_to_mem_reg[20]_i_13_n_0
+    SLICE_X47Y100        MUXF7 (Prop_muxf7_I1_O)      0.245     2.973 r  reg32/write_data_to_mem_reg[20]_i_5/O
+                         net (fo=2, routed)           0.000     2.973    reg32/write_data_to_mem_reg[20]_i_5_n_0
+    SLICE_X47Y100        MUXF8 (Prop_muxf8_I0_O)      0.104     3.077 r  reg32/D0_i_41/O
+                         net (fo=1, estimated)        0.640     3.717    reg32/D0_i_41_n_0
+    SLICE_X47Y93         LUT5 (Prop_lut5_I4_O)        0.316     4.033 r  reg32/D0_i_12/O
+                         net (fo=23, estimated)       1.406     5.439    reg32/b[20]
+    SLICE_X53Y81         LUT4 (Prop_lut4_I2_O)        0.152     5.591 r  reg32/mem_addr[13]_INST_0_i_41/O
+                         net (fo=3, estimated)        0.521     6.112    reg32/mem_addr[13]_INST_0_i_41_n_0
+    SLICE_X52Y88         LUT5 (Prop_lut5_I4_O)        0.332     6.444 r  reg32/mem_addr[18]_INST_0_i_15/O
+                         net (fo=4, estimated)        1.107     7.551    reg32/mem_addr[18]_INST_0_i_15_n_0
+    SLICE_X51Y84         LUT6 (Prop_lut6_I0_O)        0.124     7.675 r  reg32/mem_addr[15]_INST_0_i_9/O
+                         net (fo=1, routed)           0.000     7.675    reg32/mem_addr[15]_INST_0_i_9_n_0
+    SLICE_X51Y84         MUXF7 (Prop_muxf7_I0_O)      0.212     7.887 r  reg32/mem_addr[15]_INST_0_i_4/O
+                         net (fo=1, estimated)        0.798     8.685    reg32/mem_addr[15]_INST_0_i_4_n_0
+    SLICE_X42Y85         LUT6 (Prop_lut6_I1_O)        0.299     8.984 r  reg32/mem_addr[15]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.308     9.292    ctrlMIPS/mem_reg[1][17]
+    SLICE_X41Y86         LUT5 (Prop_lut5_I3_O)        0.124     9.416 r  ctrlMIPS/mem[31][17]_i_1/O
+                         net (fo=31, estimated)       0.909    10.325    reg32/D[17]
+    SLICE_X40Y95         FDCE                                         r  reg32/mem_reg[14][17]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock SysClk rise edge)    10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1021, unset)         0.924    10.924    reg32/clk
+    SLICE_X40Y95         FDCE                                         r  reg32/mem_reg[14][17]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+    SLICE_X40Y95         FDCE (Setup_fdce_C_D)       -0.058    10.831    reg32/mem_reg[14][17]
+  -------------------------------------------------------------------
+                         required time                         10.831    
+                         arrival time                         -10.325    
+  -------------------------------------------------------------------
+                         slack                                  0.506    
+
+Slack (MET) :             0.506ns  (required time - arrival time)
+  Source:                 reg32/mem_reg[13][18]/C
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            reg32/mem_reg[6][28]/D
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             SysClk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
+  Data Path Delay:        9.379ns  (logic 2.313ns (24.661%)  route 7.066ns (75.339%))
   Logic Levels:           10  (LUT5=2 LUT6=5 MUXF7=2 MUXF8=1)
   Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
@@ -253,56 +318,119 @@ Slack (MET) :             0.507ns  (required time - arrival time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X59Y72         FDCE                                         r  reg32/mem_reg[31][0]/C
+    SLICE_X54Y92         FDCE                                         r  reg32/mem_reg[13][18]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y72         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[31][0]/Q
-                         net (fo=2, estimated)        1.095     2.524    reg32/mem_reg[31]_0[0]
-    SLICE_X57Y74         LUT6 (Prop_lut6_I0_O)        0.124     2.648 r  reg32/write_data_to_mem_reg[0]_i_7/O
-                         net (fo=1, routed)           0.000     2.648    reg32/write_data_to_mem_reg[0]_i_7_n_0
-    SLICE_X57Y74         MUXF7 (Prop_muxf7_I1_O)      0.217     2.865 r  reg32/write_data_to_mem_reg[0]_i_2/O
-                         net (fo=2, routed)           0.000     2.865    reg32/write_data_to_mem_reg[0]_i_2_n_0
-    SLICE_X57Y74         MUXF8 (Prop_muxf8_I1_O)      0.094     2.959 r  reg32/D0__0_i_50/O
-                         net (fo=2, estimated)        0.737     3.696    reg32/D0__0_i_50_n_0
-    SLICE_X55Y74         LUT5 (Prop_lut5_I2_O)        0.316     4.012 r  reg32/D0__0_i_17/O
-                         net (fo=29, estimated)       1.614     5.626    reg32/b[0]
-    SLICE_X36Y76         LUT6 (Prop_lut6_I0_O)        0.124     5.750 r  reg32/mem_addr[24]_INST_0_i_38/O
-                         net (fo=4, estimated)        1.025     6.775    reg32/mem_addr[24]_INST_0_i_38_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I1_O)        0.124     6.899 r  reg32/mem_addr[24]_INST_0_i_19/O
-                         net (fo=2, estimated)        0.560     7.459    reg32/mem_addr[24]_INST_0_i_19_n_0
-    SLICE_X39Y79         LUT6 (Prop_lut6_I2_O)        0.124     7.583 r  reg32/mem_addr[25]_INST_0_i_12/O
-                         net (fo=1, routed)           0.000     7.583    reg32/mem_addr[25]_INST_0_i_12_n_0
-    SLICE_X39Y79         MUXF7 (Prop_muxf7_I1_O)      0.217     7.800 r  reg32/mem_addr[25]_INST_0_i_5/O
-                         net (fo=1, estimated)        0.735     8.535    ctrlMIPS/mem_addr[25]_0
-    SLICE_X51Y79         LUT6 (Prop_lut6_I3_O)        0.299     8.834 r  ctrlMIPS/mem_addr[25]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.447     9.281    ctrlMIPS/mem_addr[25]_INST_0_i_1_n_0
-    SLICE_X53Y82         LUT5 (Prop_lut5_I3_O)        0.124     9.405 r  ctrlMIPS/mem[31][27]_i_1/O
-                         net (fo=31, estimated)       0.910    10.315    reg32/D[27]
-    SLICE_X59Y85         FDCE                                         r  reg32/mem_reg[12][27]/D
+    SLICE_X54Y92         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[13][18]/Q
+                         net (fo=2, estimated)        1.223     2.714    reg32/mem_reg[13]_18[18]
+    SLICE_X46Y92         LUT6 (Prop_lut6_I1_O)        0.124     2.838 r  reg32/write_data_to_mem_reg[18]_i_9/O
+                         net (fo=1, routed)           0.000     2.838    reg32/write_data_to_mem_reg[18]_i_9_n_0
+    SLICE_X46Y92         MUXF7 (Prop_muxf7_I1_O)      0.247     3.085 r  reg32/write_data_to_mem_reg[18]_i_3/O
+                         net (fo=2, routed)           0.000     3.085    reg32/write_data_to_mem_reg[18]_i_3_n_0
+    SLICE_X46Y92         MUXF8 (Prop_muxf8_I0_O)      0.098     3.183 r  reg32/D0_i_44/O
+                         net (fo=1, estimated)        0.586     3.769    reg32/D0_i_44_n_0
+    SLICE_X49Y93         LUT5 (Prop_lut5_I2_O)        0.319     4.088 r  reg32/D0_i_14/O
+                         net (fo=23, estimated)       1.633     5.721    reg32/b[18]
+    SLICE_X55Y82         LUT6 (Prop_lut6_I1_O)        0.124     5.845 r  reg32/mem_addr[24]_INST_0_i_40/O
+                         net (fo=3, estimated)        0.816     6.661    reg32/mem_addr[24]_INST_0_i_40_n_0
+    SLICE_X55Y83         LUT6 (Prop_lut6_I1_O)        0.124     6.785 r  reg32/mem_addr[27]_INST_0_i_15/O
+                         net (fo=2, estimated)        0.462     7.247    reg32/mem_addr[27]_INST_0_i_15_n_0
+    SLICE_X54Y86         LUT6 (Prop_lut6_I4_O)        0.124     7.371 r  reg32/mem_addr[26]_INST_0_i_12/O
+                         net (fo=1, routed)           0.000     7.371    reg32/mem_addr[26]_INST_0_i_12_n_0
+    SLICE_X54Y86         MUXF7 (Prop_muxf7_I1_O)      0.214     7.585 r  reg32/mem_addr[26]_INST_0_i_5/O
+                         net (fo=1, estimated)        0.907     8.492    reg32/mem_addr[26]_INST_0_i_5_n_0
+    SLICE_X53Y90         LUT6 (Prop_lut6_I3_O)        0.297     8.789 r  reg32/mem_addr[26]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.497     9.286    ctrlMIPS/mem_reg[1][28]
+    SLICE_X53Y98         LUT5 (Prop_lut5_I3_O)        0.124     9.410 r  ctrlMIPS/mem[31][28]_i_1/O
+                         net (fo=31, estimated)       0.942    10.352    reg32/D[28]
+    SLICE_X62Y101        FDCE                                         r  reg32/mem_reg[6][28]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)    10.000    10.000 r  
                                                       0.000    10.000 r  clk (IN)
                          net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X59Y85         FDCE                                         r  reg32/mem_reg[12][27]/C
+    SLICE_X62Y101        FDCE                                         r  reg32/mem_reg[6][28]/C
                          clock pessimism              0.000    10.924    
                          clock uncertainty           -0.035    10.889    
-    SLICE_X59Y85         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[12][27]
+    SLICE_X62Y101        FDCE (Setup_fdce_C_D)       -0.031    10.858    reg32/mem_reg[6][28]
+  -------------------------------------------------------------------
+                         required time                         10.858    
+                         arrival time                         -10.352    
+  -------------------------------------------------------------------
+                         slack                                  0.506    
+
+Slack (MET) :             0.507ns  (required time - arrival time)
+  Source:                 reg32/mem_reg[15][25]/C
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            reg32/mem_reg[16][2]/D
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             SysClk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
+  Data Path Delay:        9.342ns  (logic 2.119ns (22.683%)  route 7.223ns (77.317%))
+  Logic Levels:           9  (LUT5=3 LUT6=4 MUXF7=1 MUXF8=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.973     0.973    reg32/clk
+    SLICE_X42Y97         FDCE                                         r  reg32/mem_reg[15][25]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X42Y97         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[15][25]/Q
+                         net (fo=2, estimated)        1.018     2.509    reg32/mem_reg[15]_16[25]
+    SLICE_X41Y104        LUT6 (Prop_lut6_I1_O)        0.124     2.633 r  reg32/write_data_to_mem_reg[25]_i_7/O
+                         net (fo=1, routed)           0.000     2.633    reg32/write_data_to_mem_reg[25]_i_7_n_0
+    SLICE_X41Y104        MUXF7 (Prop_muxf7_I1_O)      0.217     2.850 r  reg32/write_data_to_mem_reg[25]_i_2/O
+                         net (fo=2, routed)           0.000     2.850    reg32/write_data_to_mem_reg[25]_i_2_n_0
+    SLICE_X41Y104        MUXF8 (Prop_muxf8_I1_O)      0.094     2.944 r  reg32/D0_i_30/O
+                         net (fo=2, estimated)        1.261     4.205    reg32/D0_i_30_n_0
+    SLICE_X53Y88         LUT5 (Prop_lut5_I2_O)        0.316     4.521 r  reg32/D0_i_7/O
+                         net (fo=24, estimated)       1.365     5.886    reg32/b[25]
+    SLICE_X55Y79         LUT5 (Prop_lut5_I2_O)        0.152     6.038 r  reg32/mem_addr[7]_INST_0_i_14/O
+                         net (fo=4, estimated)        0.932     6.970    reg32/mem_addr[7]_INST_0_i_14_n_0
+    SLICE_X53Y79         LUT6 (Prop_lut6_I0_O)        0.326     7.296 r  reg32/mem_addr[1]_INST_0_i_10/O
+                         net (fo=2, estimated)        0.606     7.902    reg32/mem_addr[1]_INST_0_i_10_n_0
+    SLICE_X50Y78         LUT6 (Prop_lut6_I3_O)        0.124     8.026 r  reg32/mem_addr[0]_INST_0_i_4/O
+                         net (fo=1, estimated)        0.794     8.820    reg32/mem_addr[0]_INST_0_i_4_n_0
+    SLICE_X47Y78         LUT6 (Prop_lut6_I1_O)        0.124     8.944 r  reg32/mem_addr[0]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.303     9.247    ctrlMIPS/mem_reg[1][2]
+    SLICE_X47Y79         LUT5 (Prop_lut5_I3_O)        0.124     9.371 r  ctrlMIPS/mem[31][2]_i_1/O
+                         net (fo=31, estimated)       0.944    10.315    reg32/D[2]
+    SLICE_X33Y83         FDCE                                         r  reg32/mem_reg[16][2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock SysClk rise edge)    10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1021, unset)         0.924    10.924    reg32/clk
+    SLICE_X33Y83         FDCE                                         r  reg32/mem_reg[16][2]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+    SLICE_X33Y83         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[16][2]
   -------------------------------------------------------------------
                          required time                         10.822    
                          arrival time                         -10.315    
   -------------------------------------------------------------------
                          slack                                  0.507    
 
-Slack (MET) :             0.509ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[31][0]/C
+Slack (MET) :             0.508ns  (required time - arrival time)
+  Source:                 reg32/mem_reg[15][25]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[9][27]/D
+  Destination:            reg32/mem_reg[28][2]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.326ns  (logic 2.219ns (23.794%)  route 7.107ns (76.206%))
-  Logic Levels:           10  (LUT5=2 LUT6=5 MUXF7=2 MUXF8=1)
+  Data Path Delay:        9.377ns  (logic 2.119ns (22.598%)  route 7.258ns (77.402%))
+  Logic Levels:           9  (LUT5=3 LUT6=4 MUXF7=1 MUXF8=1)
   Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
     Source Clock Delay      (SCD):    0.973ns
@@ -318,56 +446,182 @@ Slack (MET) :             0.509ns  (required time - arrival time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X59Y72         FDCE                                         r  reg32/mem_reg[31][0]/C
+    SLICE_X42Y97         FDCE                                         r  reg32/mem_reg[15][25]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y72         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[31][0]/Q
-                         net (fo=2, estimated)        1.095     2.524    reg32/mem_reg[31]_0[0]
-    SLICE_X57Y74         LUT6 (Prop_lut6_I0_O)        0.124     2.648 r  reg32/write_data_to_mem_reg[0]_i_7/O
-                         net (fo=1, routed)           0.000     2.648    reg32/write_data_to_mem_reg[0]_i_7_n_0
-    SLICE_X57Y74         MUXF7 (Prop_muxf7_I1_O)      0.217     2.865 r  reg32/write_data_to_mem_reg[0]_i_2/O
-                         net (fo=2, routed)           0.000     2.865    reg32/write_data_to_mem_reg[0]_i_2_n_0
-    SLICE_X57Y74         MUXF8 (Prop_muxf8_I1_O)      0.094     2.959 r  reg32/D0__0_i_50/O
-                         net (fo=2, estimated)        0.737     3.696    reg32/D0__0_i_50_n_0
-    SLICE_X55Y74         LUT5 (Prop_lut5_I2_O)        0.316     4.012 r  reg32/D0__0_i_17/O
-                         net (fo=29, estimated)       1.614     5.626    reg32/b[0]
-    SLICE_X36Y76         LUT6 (Prop_lut6_I0_O)        0.124     5.750 r  reg32/mem_addr[24]_INST_0_i_38/O
-                         net (fo=4, estimated)        1.025     6.775    reg32/mem_addr[24]_INST_0_i_38_n_0
-    SLICE_X36Y76         LUT6 (Prop_lut6_I1_O)        0.124     6.899 r  reg32/mem_addr[24]_INST_0_i_19/O
-                         net (fo=2, estimated)        0.560     7.459    reg32/mem_addr[24]_INST_0_i_19_n_0
-    SLICE_X39Y79         LUT6 (Prop_lut6_I2_O)        0.124     7.583 r  reg32/mem_addr[25]_INST_0_i_12/O
-                         net (fo=1, routed)           0.000     7.583    reg32/mem_addr[25]_INST_0_i_12_n_0
-    SLICE_X39Y79         MUXF7 (Prop_muxf7_I1_O)      0.217     7.800 r  reg32/mem_addr[25]_INST_0_i_5/O
-                         net (fo=1, estimated)        0.735     8.535    ctrlMIPS/mem_addr[25]_0
-    SLICE_X51Y79         LUT6 (Prop_lut6_I3_O)        0.299     8.834 r  ctrlMIPS/mem_addr[25]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.447     9.281    ctrlMIPS/mem_addr[25]_INST_0_i_1_n_0
-    SLICE_X53Y82         LUT5 (Prop_lut5_I3_O)        0.124     9.405 r  ctrlMIPS/mem[31][27]_i_1/O
-                         net (fo=31, estimated)       0.894    10.299    reg32/D[27]
-    SLICE_X57Y86         FDCE                                         r  reg32/mem_reg[9][27]/D
+    SLICE_X42Y97         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[15][25]/Q
+                         net (fo=2, estimated)        1.018     2.509    reg32/mem_reg[15]_16[25]
+    SLICE_X41Y104        LUT6 (Prop_lut6_I1_O)        0.124     2.633 r  reg32/write_data_to_mem_reg[25]_i_7/O
+                         net (fo=1, routed)           0.000     2.633    reg32/write_data_to_mem_reg[25]_i_7_n_0
+    SLICE_X41Y104        MUXF7 (Prop_muxf7_I1_O)      0.217     2.850 r  reg32/write_data_to_mem_reg[25]_i_2/O
+                         net (fo=2, routed)           0.000     2.850    reg32/write_data_to_mem_reg[25]_i_2_n_0
+    SLICE_X41Y104        MUXF8 (Prop_muxf8_I1_O)      0.094     2.944 r  reg32/D0_i_30/O
+                         net (fo=2, estimated)        1.261     4.205    reg32/D0_i_30_n_0
+    SLICE_X53Y88         LUT5 (Prop_lut5_I2_O)        0.316     4.521 r  reg32/D0_i_7/O
+                         net (fo=24, estimated)       1.365     5.886    reg32/b[25]
+    SLICE_X55Y79         LUT5 (Prop_lut5_I2_O)        0.152     6.038 r  reg32/mem_addr[7]_INST_0_i_14/O
+                         net (fo=4, estimated)        0.932     6.970    reg32/mem_addr[7]_INST_0_i_14_n_0
+    SLICE_X53Y79         LUT6 (Prop_lut6_I0_O)        0.326     7.296 r  reg32/mem_addr[1]_INST_0_i_10/O
+                         net (fo=2, estimated)        0.606     7.902    reg32/mem_addr[1]_INST_0_i_10_n_0
+    SLICE_X50Y78         LUT6 (Prop_lut6_I3_O)        0.124     8.026 r  reg32/mem_addr[0]_INST_0_i_4/O
+                         net (fo=1, estimated)        0.794     8.820    reg32/mem_addr[0]_INST_0_i_4_n_0
+    SLICE_X47Y78         LUT6 (Prop_lut6_I1_O)        0.124     8.944 r  reg32/mem_addr[0]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.303     9.247    ctrlMIPS/mem_reg[1][2]
+    SLICE_X47Y79         LUT5 (Prop_lut5_I3_O)        0.124     9.371 r  ctrlMIPS/mem[31][2]_i_1/O
+                         net (fo=31, estimated)       0.979    10.350    reg32/D[2]
+    SLICE_X34Y82         FDCE                                         r  reg32/mem_reg[28][2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)    10.000    10.000 r  
                                                       0.000    10.000 r  clk (IN)
                          net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X57Y86         FDCE                                         r  reg32/mem_reg[9][27]/C
+    SLICE_X34Y82         FDCE                                         r  reg32/mem_reg[28][2]/C
                          clock pessimism              0.000    10.924    
                          clock uncertainty           -0.035    10.889    
-    SLICE_X57Y86         FDCE (Setup_fdce_C_D)       -0.081    10.808    reg32/mem_reg[9][27]
+    SLICE_X34Y82         FDCE (Setup_fdce_C_D)       -0.031    10.858    reg32/mem_reg[28][2]
+  -------------------------------------------------------------------
+                         required time                         10.858    
+                         arrival time                         -10.350    
+  -------------------------------------------------------------------
+                         slack                                  0.508    
+
+Slack (MET) :             0.514ns  (required time - arrival time)
+  Source:                 reg32/mem_reg[15][25]/C
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            reg32/mem_reg[14][2]/D
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             SysClk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
+  Data Path Delay:        9.371ns  (logic 2.119ns (22.612%)  route 7.252ns (77.388%))
+  Logic Levels:           9  (LUT5=3 LUT6=4 MUXF7=1 MUXF8=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.973     0.973    reg32/clk
+    SLICE_X42Y97         FDCE                                         r  reg32/mem_reg[15][25]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X42Y97         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[15][25]/Q
+                         net (fo=2, estimated)        1.018     2.509    reg32/mem_reg[15]_16[25]
+    SLICE_X41Y104        LUT6 (Prop_lut6_I1_O)        0.124     2.633 r  reg32/write_data_to_mem_reg[25]_i_7/O
+                         net (fo=1, routed)           0.000     2.633    reg32/write_data_to_mem_reg[25]_i_7_n_0
+    SLICE_X41Y104        MUXF7 (Prop_muxf7_I1_O)      0.217     2.850 r  reg32/write_data_to_mem_reg[25]_i_2/O
+                         net (fo=2, routed)           0.000     2.850    reg32/write_data_to_mem_reg[25]_i_2_n_0
+    SLICE_X41Y104        MUXF8 (Prop_muxf8_I1_O)      0.094     2.944 r  reg32/D0_i_30/O
+                         net (fo=2, estimated)        1.261     4.205    reg32/D0_i_30_n_0
+    SLICE_X53Y88         LUT5 (Prop_lut5_I2_O)        0.316     4.521 r  reg32/D0_i_7/O
+                         net (fo=24, estimated)       1.365     5.886    reg32/b[25]
+    SLICE_X55Y79         LUT5 (Prop_lut5_I2_O)        0.152     6.038 r  reg32/mem_addr[7]_INST_0_i_14/O
+                         net (fo=4, estimated)        0.932     6.970    reg32/mem_addr[7]_INST_0_i_14_n_0
+    SLICE_X53Y79         LUT6 (Prop_lut6_I0_O)        0.326     7.296 r  reg32/mem_addr[1]_INST_0_i_10/O
+                         net (fo=2, estimated)        0.606     7.902    reg32/mem_addr[1]_INST_0_i_10_n_0
+    SLICE_X50Y78         LUT6 (Prop_lut6_I3_O)        0.124     8.026 r  reg32/mem_addr[0]_INST_0_i_4/O
+                         net (fo=1, estimated)        0.794     8.820    reg32/mem_addr[0]_INST_0_i_4_n_0
+    SLICE_X47Y78         LUT6 (Prop_lut6_I1_O)        0.124     8.944 r  reg32/mem_addr[0]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.303     9.247    ctrlMIPS/mem_reg[1][2]
+    SLICE_X47Y79         LUT5 (Prop_lut5_I3_O)        0.124     9.371 r  ctrlMIPS/mem[31][2]_i_1/O
+                         net (fo=31, estimated)       0.973    10.344    reg32/D[2]
+    SLICE_X34Y84         FDCE                                         r  reg32/mem_reg[14][2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock SysClk rise edge)    10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1021, unset)         0.924    10.924    reg32/clk
+    SLICE_X34Y84         FDCE                                         r  reg32/mem_reg[14][2]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+    SLICE_X34Y84         FDCE (Setup_fdce_C_D)       -0.031    10.858    reg32/mem_reg[14][2]
+  -------------------------------------------------------------------
+                         required time                         10.858    
+                         arrival time                         -10.344    
+  -------------------------------------------------------------------
+                         slack                                  0.514    
+
+Slack (MET) :             0.515ns  (required time - arrival time)
+  Source:                 reg32/mem_reg[27][3]/C
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            reg32/mem_reg[11][26]/D
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             SysClk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
+  Data Path Delay:        9.320ns  (logic 2.271ns (24.367%)  route 7.049ns (75.633%))
+  Logic Levels:           10  (LUT5=4 LUT6=3 MUXF7=2 MUXF8=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.973     0.973    reg32/clk
+    SLICE_X46Y90         FDCE                                         r  reg32/mem_reg[27][3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X46Y90         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[27][3]/Q
+                         net (fo=2, estimated)        1.003     2.494    reg32/mem_reg[27]_4[3]
+    SLICE_X45Y89         LUT6 (Prop_lut6_I0_O)        0.124     2.618 r  reg32/write_data_to_mem_reg[3]_i_6/O
+                         net (fo=1, routed)           0.000     2.618    reg32/write_data_to_mem_reg[3]_i_6_n_0
+    SLICE_X45Y89         MUXF7 (Prop_muxf7_I0_O)      0.212     2.830 r  reg32/write_data_to_mem_reg[3]_i_2/O
+                         net (fo=2, routed)           0.000     2.830    reg32/write_data_to_mem_reg[3]_i_2_n_0
+    SLICE_X45Y89         MUXF8 (Prop_muxf8_I1_O)      0.094     2.924 r  reg32/D0__0_i_44/O
+                         net (fo=2, estimated)        0.757     3.681    reg32/D0__0_i_44_n_0
+    SLICE_X46Y88         LUT5 (Prop_lut5_I2_O)        0.316     3.997 r  reg32/D0__0_i_14/O
+                         net (fo=29, estimated)       1.286     5.283    reg32/b[3]
+    SLICE_X55Y82         LUT5 (Prop_lut5_I2_O)        0.124     5.407 r  reg32/mem_addr[24]_INST_0_i_33/O
+                         net (fo=4, estimated)        0.994     6.401    reg32/mem_addr[24]_INST_0_i_33_n_0
+    SLICE_X56Y82         LUT6 (Prop_lut6_I0_O)        0.124     6.525 r  reg32/mem_addr[24]_INST_0_i_18/O
+                         net (fo=2, estimated)        0.858     7.383    reg32/mem_addr[24]_INST_0_i_18_n_0
+    SLICE_X46Y83         LUT6 (Prop_lut6_I2_O)        0.124     7.507 r  reg32/mem_addr[24]_INST_0_i_10/O
+                         net (fo=1, estimated)        0.885     8.392    ctrlMIPS/mem_addr[24]_2
+    SLICE_X40Y90         LUT5 (Prop_lut5_I0_O)        0.124     8.516 r  ctrlMIPS/mem_addr[24]_INST_0_i_4/O
+                         net (fo=2, routed)           0.000     8.516    ctrlMIPS/mem_addr[24]_INST_0_i_4_n_0
+    SLICE_X40Y90         MUXF7 (Prop_muxf7_I0_O)      0.212     8.728 r  ctrlMIPS/mem_reg[31][26]_i_2/O
+                         net (fo=1, estimated)        0.499     9.227    ctrlMIPS/mem_reg[31][26]_i_2_n_0
+    SLICE_X41Y98         LUT5 (Prop_lut5_I3_O)        0.299     9.526 r  ctrlMIPS/mem[31][26]_i_1/O
+                         net (fo=31, estimated)       0.767    10.293    reg32/D[26]
+    SLICE_X39Y103        FDCE                                         r  reg32/mem_reg[11][26]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock SysClk rise edge)    10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1021, unset)         0.924    10.924    reg32/clk
+    SLICE_X39Y103        FDCE                                         r  reg32/mem_reg[11][26]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+    SLICE_X39Y103        FDCE (Setup_fdce_C_D)       -0.081    10.808    reg32/mem_reg[11][26]
   -------------------------------------------------------------------
                          required time                         10.808    
-                         arrival time                         -10.299    
+                         arrival time                         -10.293    
   -------------------------------------------------------------------
-                         slack                                  0.509    
+                         slack                                  0.515    
 
 Slack (MET) :             0.517ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[13][7]/C
+  Source:                 reg32/mem_reg[15][25]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[22][29]/D
+  Destination:            reg32/mem_reg[4][2]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.332ns  (logic 2.574ns (27.583%)  route 6.758ns (72.417%))
-  Logic Levels:           10  (LUT5=3 LUT6=4 MUXF7=2 MUXF8=1)
+  Data Path Delay:        9.332ns  (logic 2.119ns (22.707%)  route 7.213ns (77.293%))
+  Logic Levels:           9  (LUT5=3 LUT6=4 MUXF7=1 MUXF8=1)
   Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
     Source Clock Delay      (SCD):    0.973ns
@@ -383,40 +637,38 @@ Slack (MET) :             0.517ns  (required time - arrival time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X66Y81         FDCE                                         r  reg32/mem_reg[13][7]/C
+    SLICE_X42Y97         FDCE                                         r  reg32/mem_reg[15][25]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X66Y81         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[13][7]/Q
-                         net (fo=2, estimated)        0.811     2.302    reg32/mem_reg[13]_18[7]
-    SLICE_X65Y80         LUT6 (Prop_lut6_I1_O)        0.124     2.426 r  reg32/write_data_to_mem_reg[7]_i_9/O
-                         net (fo=1, routed)           0.000     2.426    reg32/write_data_to_mem_reg[7]_i_9_n_0
-    SLICE_X65Y80         MUXF7 (Prop_muxf7_I1_O)      0.245     2.671 r  reg32/write_data_to_mem_reg[7]_i_3/O
-                         net (fo=2, routed)           0.000     2.671    reg32/write_data_to_mem_reg[7]_i_3_n_0
-    SLICE_X65Y80         MUXF8 (Prop_muxf8_I0_O)      0.104     2.775 r  reg32/D0__0_i_36/O
-                         net (fo=2, estimated)        0.887     3.662    reg32/D0__0_i_36_n_0
-    SLICE_X60Y78         LUT5 (Prop_lut5_I2_O)        0.316     3.978 r  reg32/D0__0_i_10/O
-                         net (fo=25, estimated)       1.638     5.616    reg32/b[7]
-    SLICE_X38Y76         LUT5 (Prop_lut5_I2_O)        0.146     5.762 r  reg32/mem_addr[24]_INST_0_i_34/O
-                         net (fo=4, estimated)        0.968     6.730    reg32/mem_addr[24]_INST_0_i_34_n_0
-    SLICE_X37Y77         LUT6 (Prop_lut6_I0_O)        0.328     7.058 r  reg32/mem_addr[28]_INST_0_i_15/O
-                         net (fo=2, estimated)        0.462     7.520    reg32/mem_addr[28]_INST_0_i_15_n_0
-    SLICE_X34Y77         LUT6 (Prop_lut6_I4_O)        0.124     7.644 r  reg32/mem_addr[27]_INST_0_i_12/O
-                         net (fo=1, routed)           0.000     7.644    reg32/mem_addr[27]_INST_0_i_12_n_0
-    SLICE_X34Y77         MUXF7 (Prop_muxf7_I1_O)      0.247     7.891 r  reg32/mem_addr[27]_INST_0_i_5/O
-                         net (fo=1, estimated)        0.801     8.692    reg32/mem_addr[27]_INST_0_i_5_n_0
-    SLICE_X43Y84         LUT6 (Prop_lut6_I3_O)        0.298     8.990 r  reg32/mem_addr[27]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.310     9.300    ctrlMIPS/mem_reg[1][29]
-    SLICE_X45Y84         LUT5 (Prop_lut5_I3_O)        0.124     9.424 r  ctrlMIPS/mem[31][29]_i_1/O
-                         net (fo=31, estimated)       0.881    10.305    reg32/D[29]
-    SLICE_X47Y94         FDCE                                         r  reg32/mem_reg[22][29]/D
+    SLICE_X42Y97         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[15][25]/Q
+                         net (fo=2, estimated)        1.018     2.509    reg32/mem_reg[15]_16[25]
+    SLICE_X41Y104        LUT6 (Prop_lut6_I1_O)        0.124     2.633 r  reg32/write_data_to_mem_reg[25]_i_7/O
+                         net (fo=1, routed)           0.000     2.633    reg32/write_data_to_mem_reg[25]_i_7_n_0
+    SLICE_X41Y104        MUXF7 (Prop_muxf7_I1_O)      0.217     2.850 r  reg32/write_data_to_mem_reg[25]_i_2/O
+                         net (fo=2, routed)           0.000     2.850    reg32/write_data_to_mem_reg[25]_i_2_n_0
+    SLICE_X41Y104        MUXF8 (Prop_muxf8_I1_O)      0.094     2.944 r  reg32/D0_i_30/O
+                         net (fo=2, estimated)        1.261     4.205    reg32/D0_i_30_n_0
+    SLICE_X53Y88         LUT5 (Prop_lut5_I2_O)        0.316     4.521 r  reg32/D0_i_7/O
+                         net (fo=24, estimated)       1.365     5.886    reg32/b[25]
+    SLICE_X55Y79         LUT5 (Prop_lut5_I2_O)        0.152     6.038 r  reg32/mem_addr[7]_INST_0_i_14/O
+                         net (fo=4, estimated)        0.932     6.970    reg32/mem_addr[7]_INST_0_i_14_n_0
+    SLICE_X53Y79         LUT6 (Prop_lut6_I0_O)        0.326     7.296 r  reg32/mem_addr[1]_INST_0_i_10/O
+                         net (fo=2, estimated)        0.606     7.902    reg32/mem_addr[1]_INST_0_i_10_n_0
+    SLICE_X50Y78         LUT6 (Prop_lut6_I3_O)        0.124     8.026 r  reg32/mem_addr[0]_INST_0_i_4/O
+                         net (fo=1, estimated)        0.794     8.820    reg32/mem_addr[0]_INST_0_i_4_n_0
+    SLICE_X47Y78         LUT6 (Prop_lut6_I1_O)        0.124     8.944 r  reg32/mem_addr[0]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.303     9.247    ctrlMIPS/mem_reg[1][2]
+    SLICE_X47Y79         LUT5 (Prop_lut5_I3_O)        0.124     9.371 r  ctrlMIPS/mem[31][2]_i_1/O
+                         net (fo=31, estimated)       0.934    10.305    reg32/D[2]
+    SLICE_X33Y82         FDCE                                         r  reg32/mem_reg[4][2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)    10.000    10.000 r  
                                                       0.000    10.000 r  clk (IN)
                          net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X47Y94         FDCE                                         r  reg32/mem_reg[22][29]/C
+    SLICE_X33Y82         FDCE                                         r  reg32/mem_reg[4][2]/C
                          clock pessimism              0.000    10.924    
                          clock uncertainty           -0.035    10.889    
-    SLICE_X47Y94         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[22][29]
+    SLICE_X33Y82         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[4][2]
   -------------------------------------------------------------------
                          required time                         10.822    
                          arrival time                         -10.305    
@@ -424,15 +676,15 @@ Slack (MET) :             0.517ns  (required time - arrival time)
                          slack                                  0.517    
 
 Slack (MET) :             0.518ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[24][30]/C
+  Source:                 reg32/mem_reg[12][20]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[4][19]/D
+  Destination:            reg32/mem_reg[22][17]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.293ns  (logic 2.535ns (27.279%)  route 6.758ns (72.721%))
-  Logic Levels:           10  (LUT4=1 LUT5=4 LUT6=2 MUXF7=2 MUXF8=1)
+  Data Path Delay:        9.331ns  (logic 2.550ns (27.328%)  route 6.781ns (72.672%))
+  Logic Levels:           10  (LUT4=1 LUT5=3 LUT6=3 MUXF7=2 MUXF8=1)
   Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
     Source Clock Delay      (SCD):    0.973ns
@@ -448,166 +700,40 @@ Slack (MET) :             0.518ns  (required time - arrival time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X38Y95         FDCE                                         r  reg32/mem_reg[24][30]/C
+    SLICE_X50Y102        FDCE                                         r  reg32/mem_reg[12][20]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X38Y95         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[24][30]/Q
-                         net (fo=2, estimated)        1.001     2.492    reg32/mem_reg[24]_7[30]
-    SLICE_X39Y95         LUT5 (Prop_lut5_I0_O)        0.124     2.616 r  reg32/write_data_to_mem_reg[30]_i_12/O
-                         net (fo=1, routed)           0.000     2.616    reg32/write_data_to_mem_reg[30]_i_12_n_0
-    SLICE_X39Y95         MUXF7 (Prop_muxf7_I0_O)      0.238     2.854 r  reg32/write_data_to_mem_reg[30]_i_5/O
-                         net (fo=2, routed)           0.000     2.854    reg32/write_data_to_mem_reg[30]_i_5_n_0
-    SLICE_X39Y95         MUXF8 (Prop_muxf8_I0_O)      0.104     2.958 r  reg32/D0_i_21/O
-                         net (fo=1, estimated)        0.692     3.650    reg32/D0_i_21_n_0
-    SLICE_X39Y90         LUT5 (Prop_lut5_I4_O)        0.316     3.966 r  reg32/D0_i_2/O
-                         net (fo=27, estimated)       1.388     5.354    reg32/b[30]
-    SLICE_X45Y70         LUT4 (Prop_lut4_I0_O)        0.150     5.504 r  reg32/mem_addr[13]_INST_0_i_39/O
-                         net (fo=3, estimated)        0.599     6.103    reg32/mem_addr[13]_INST_0_i_39_n_0
-    SLICE_X43Y73         LUT5 (Prop_lut5_I4_O)        0.326     6.429 r  reg32/mem_addr[20]_INST_0_i_15/O
-                         net (fo=4, estimated)        0.977     7.406    reg32/mem_addr[20]_INST_0_i_15_n_0
-    SLICE_X45Y74         LUT6 (Prop_lut6_I0_O)        0.124     7.530 r  reg32/mem_addr[17]_INST_0_i_9/O
-                         net (fo=1, routed)           0.000     7.530    reg32/mem_addr[17]_INST_0_i_9_n_0
-    SLICE_X45Y74         MUXF7 (Prop_muxf7_I0_O)      0.212     7.742 r  reg32/mem_addr[17]_INST_0_i_4/O
-                         net (fo=1, estimated)        0.868     8.610    reg32/mem_addr[17]_INST_0_i_4_n_0
-    SLICE_X52Y74         LUT6 (Prop_lut6_I1_O)        0.299     8.909 r  reg32/mem_addr[17]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.171     9.080    ctrlMIPS/mem_reg[1][19]
-    SLICE_X52Y74         LUT5 (Prop_lut5_I3_O)        0.124     9.204 r  ctrlMIPS/mem[31][19]_i_1/O
-                         net (fo=31, estimated)       1.062    10.266    reg32/D[19]
-    SLICE_X51Y78         FDCE                                         r  reg32/mem_reg[4][19]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock SysClk rise edge)    10.000    10.000 r  
-                                                      0.000    10.000 r  clk (IN)
-                         net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X51Y78         FDCE                                         r  reg32/mem_reg[4][19]/C
-                         clock pessimism              0.000    10.924    
-                         clock uncertainty           -0.035    10.889    
-    SLICE_X51Y78         FDCE (Setup_fdce_C_D)       -0.105    10.784    reg32/mem_reg[4][19]
-  -------------------------------------------------------------------
-                         required time                         10.784    
-                         arrival time                         -10.266    
-  -------------------------------------------------------------------
-                         slack                                  0.518    
-
-Slack (MET) :             0.518ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[21][2]/C
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[16][21]/D
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             SysClk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.340ns  (logic 2.157ns (23.094%)  route 7.183ns (76.906%))
-  Logic Levels:           9  (LUT5=2 LUT6=5 MUXF7=2)
-  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
-    Source Clock Delay      (SCD):    0.973ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X60Y66         FDCE                                         r  reg32/mem_reg[21][2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X60Y66         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[21][2]/Q
-                         net (fo=2, estimated)        0.905     2.334    reg32/mem_reg[21]_10[2]
-    SLICE_X58Y68         LUT6 (Prop_lut6_I3_O)        0.124     2.458 r  reg32/pc_reg[2]_i_9/O
-                         net (fo=1, routed)           0.000     2.458    reg32/pc_reg[2]_i_9_n_0
-    SLICE_X58Y68         MUXF7 (Prop_muxf7_I1_O)      0.247     2.705 r  reg32/pc_reg_reg[2]_i_3/O
-                         net (fo=1, estimated)        0.961     3.666    reg32/pc_reg_reg[2]_i_3_n_0
-    SLICE_X59Y69         LUT6 (Prop_lut6_I1_O)        0.298     3.964 r  reg32/pc_reg[2]_i_1/O
-                         net (fo=84, estimated)       1.628     5.592    reg32/a[2]
-    SLICE_X45Y73         LUT6 (Prop_lut6_I1_O)        0.124     5.716 r  reg32/mem_addr[20]_INST_0_i_17/O
-                         net (fo=4, estimated)        0.741     6.457    reg32/mem_addr[20]_INST_0_i_17_n_0
-    SLICE_X43Y74         LUT6 (Prop_lut6_I1_O)        0.124     6.581 r  reg32/mem_addr[19]_INST_0_i_13/O
-                         net (fo=2, estimated)        0.730     7.311    reg32/inst[21]_7
-    SLICE_X43Y77         LUT5 (Prop_lut5_I0_O)        0.124     7.435 r  reg32/mem_addr[19]_INST_0_i_7/O
-                         net (fo=1, routed)           0.000     7.435    ctrlMIPS/mem_addr[19]_INST_0_i_1_0
-    SLICE_X43Y77         MUXF7 (Prop_muxf7_I0_O)      0.238     7.673 r  ctrlMIPS/mem_addr[19]_INST_0_i_3/O
-                         net (fo=1, estimated)        0.861     8.534    ctrlMIPS/mem_addr[19]_INST_0_i_3_n_0
-    SLICE_X46Y81         LUT6 (Prop_lut6_I0_O)        0.298     8.832 r  ctrlMIPS/mem_addr[19]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.312     9.144    ctrlMIPS/mem_addr[19]_INST_0_i_1_n_0
-    SLICE_X49Y81         LUT5 (Prop_lut5_I3_O)        0.124     9.268 r  ctrlMIPS/mem[31][21]_i_1/O
-                         net (fo=31, estimated)       1.045    10.313    reg32/D[21]
-    SLICE_X59Y89         FDCE                                         r  reg32/mem_reg[16][21]/D
+    SLICE_X50Y102        FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[12][20]/Q
+                         net (fo=2, estimated)        1.113     2.604    reg32/mem_reg[12]_19[20]
+    SLICE_X47Y100        LUT6 (Prop_lut6_I1_O)        0.124     2.728 r  reg32/write_data_to_mem_reg[20]_i_13/O
+                         net (fo=1, routed)           0.000     2.728    reg32/write_data_to_mem_reg[20]_i_13_n_0
+    SLICE_X47Y100        MUXF7 (Prop_muxf7_I1_O)      0.245     2.973 r  reg32/write_data_to_mem_reg[20]_i_5/O
+                         net (fo=2, routed)           0.000     2.973    reg32/write_data_to_mem_reg[20]_i_5_n_0
+    SLICE_X47Y100        MUXF8 (Prop_muxf8_I0_O)      0.104     3.077 r  reg32/D0_i_41/O
+                         net (fo=1, estimated)        0.640     3.717    reg32/D0_i_41_n_0
+    SLICE_X47Y93         LUT5 (Prop_lut5_I4_O)        0.316     4.033 r  reg32/D0_i_12/O
+                         net (fo=23, estimated)       1.406     5.439    reg32/b[20]
+    SLICE_X53Y81         LUT4 (Prop_lut4_I2_O)        0.152     5.591 r  reg32/mem_addr[13]_INST_0_i_41/O
+                         net (fo=3, estimated)        0.521     6.112    reg32/mem_addr[13]_INST_0_i_41_n_0
+    SLICE_X52Y88         LUT5 (Prop_lut5_I4_O)        0.332     6.444 r  reg32/mem_addr[18]_INST_0_i_15/O
+                         net (fo=4, estimated)        1.107     7.551    reg32/mem_addr[18]_INST_0_i_15_n_0
+    SLICE_X51Y84         LUT6 (Prop_lut6_I0_O)        0.124     7.675 r  reg32/mem_addr[15]_INST_0_i_9/O
+                         net (fo=1, routed)           0.000     7.675    reg32/mem_addr[15]_INST_0_i_9_n_0
+    SLICE_X51Y84         MUXF7 (Prop_muxf7_I0_O)      0.212     7.887 r  reg32/mem_addr[15]_INST_0_i_4/O
+                         net (fo=1, estimated)        0.798     8.685    reg32/mem_addr[15]_INST_0_i_4_n_0
+    SLICE_X42Y85         LUT6 (Prop_lut6_I1_O)        0.299     8.984 r  reg32/mem_addr[15]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.308     9.292    ctrlMIPS/mem_reg[1][17]
+    SLICE_X41Y86         LUT5 (Prop_lut5_I3_O)        0.124     9.416 r  ctrlMIPS/mem[31][17]_i_1/O
+                         net (fo=31, estimated)       0.888    10.304    reg32/D[17]
+    SLICE_X40Y96         FDCE                                         r  reg32/mem_reg[22][17]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)    10.000    10.000 r  
                                                       0.000    10.000 r  clk (IN)
                          net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X59Y89         FDCE                                         r  reg32/mem_reg[16][21]/C
+    SLICE_X40Y96         FDCE                                         r  reg32/mem_reg[22][17]/C
                          clock pessimism              0.000    10.924    
                          clock uncertainty           -0.035    10.889    
-    SLICE_X59Y89         FDCE (Setup_fdce_C_D)       -0.058    10.831    reg32/mem_reg[16][21]
-  -------------------------------------------------------------------
-                         required time                         10.831    
-                         arrival time                         -10.313    
-  -------------------------------------------------------------------
-                         slack                                  0.518    
-
-Slack (MET) :             0.518ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[21][2]/C
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[2][21]/D
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             SysClk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.331ns  (logic 2.157ns (23.116%)  route 7.174ns (76.884%))
-  Logic Levels:           9  (LUT5=2 LUT6=5 MUXF7=2)
-  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
-    Source Clock Delay      (SCD):    0.973ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X60Y66         FDCE                                         r  reg32/mem_reg[21][2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X60Y66         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[21][2]/Q
-                         net (fo=2, estimated)        0.905     2.334    reg32/mem_reg[21]_10[2]
-    SLICE_X58Y68         LUT6 (Prop_lut6_I3_O)        0.124     2.458 r  reg32/pc_reg[2]_i_9/O
-                         net (fo=1, routed)           0.000     2.458    reg32/pc_reg[2]_i_9_n_0
-    SLICE_X58Y68         MUXF7 (Prop_muxf7_I1_O)      0.247     2.705 r  reg32/pc_reg_reg[2]_i_3/O
-                         net (fo=1, estimated)        0.961     3.666    reg32/pc_reg_reg[2]_i_3_n_0
-    SLICE_X59Y69         LUT6 (Prop_lut6_I1_O)        0.298     3.964 r  reg32/pc_reg[2]_i_1/O
-                         net (fo=84, estimated)       1.628     5.592    reg32/a[2]
-    SLICE_X45Y73         LUT6 (Prop_lut6_I1_O)        0.124     5.716 r  reg32/mem_addr[20]_INST_0_i_17/O
-                         net (fo=4, estimated)        0.741     6.457    reg32/mem_addr[20]_INST_0_i_17_n_0
-    SLICE_X43Y74         LUT6 (Prop_lut6_I1_O)        0.124     6.581 r  reg32/mem_addr[19]_INST_0_i_13/O
-                         net (fo=2, estimated)        0.730     7.311    reg32/inst[21]_7
-    SLICE_X43Y77         LUT5 (Prop_lut5_I0_O)        0.124     7.435 r  reg32/mem_addr[19]_INST_0_i_7/O
-                         net (fo=1, routed)           0.000     7.435    ctrlMIPS/mem_addr[19]_INST_0_i_1_0
-    SLICE_X43Y77         MUXF7 (Prop_muxf7_I0_O)      0.238     7.673 r  ctrlMIPS/mem_addr[19]_INST_0_i_3/O
-                         net (fo=1, estimated)        0.861     8.534    ctrlMIPS/mem_addr[19]_INST_0_i_3_n_0
-    SLICE_X46Y81         LUT6 (Prop_lut6_I0_O)        0.298     8.832 r  ctrlMIPS/mem_addr[19]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.312     9.144    ctrlMIPS/mem_addr[19]_INST_0_i_1_n_0
-    SLICE_X49Y81         LUT5 (Prop_lut5_I3_O)        0.124     9.268 r  ctrlMIPS/mem[31][21]_i_1/O
-                         net (fo=31, estimated)       1.036    10.304    reg32/D[21]
-    SLICE_X63Y88         FDCE                                         r  reg32/mem_reg[2][21]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock SysClk rise edge)    10.000    10.000 r  
-                                                      0.000    10.000 r  clk (IN)
-                         net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X63Y88         FDCE                                         r  reg32/mem_reg[2][21]/C
-                         clock pessimism              0.000    10.924    
-                         clock uncertainty           -0.035    10.889    
-    SLICE_X63Y88         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[2][21]
+    SLICE_X40Y96         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[22][17]
   -------------------------------------------------------------------
                          required time                         10.822    
                          arrival time                         -10.304    
@@ -615,14 +741,14 @@ Slack (MET) :             0.518ns  (required time - arrival time)
                          slack                                  0.518    
 
 Slack (MET) :             0.520ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[31][14]/C
+  Source:                 reg32/mem_reg[29][19]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[7][24]/D
+  Destination:            reg32/mem_reg[17][22]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.329ns  (logic 2.276ns (24.397%)  route 7.053ns (75.603%))
+  Data Path Delay:        9.329ns  (logic 2.482ns (26.605%)  route 6.847ns (73.395%))
   Logic Levels:           10  (LUT5=4 LUT6=3 MUXF7=2 MUXF8=1)
   Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
@@ -639,40 +765,40 @@ Slack (MET) :             0.520ns  (required time - arrival time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X62Y80         FDCE                                         r  reg32/mem_reg[31][14]/C
+    SLICE_X51Y90         FDCE                                         r  reg32/mem_reg[29][19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X62Y80         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[31][14]/Q
-                         net (fo=2, estimated)        0.960     2.451    reg32/mem_reg[31]_0[14]
-    SLICE_X63Y81         LUT6 (Prop_lut6_I0_O)        0.124     2.575 r  reg32/write_data_to_mem_reg[14]_i_7/O
-                         net (fo=1, routed)           0.000     2.575    reg32/write_data_to_mem_reg[14]_i_7_n_0
-    SLICE_X63Y81         MUXF7 (Prop_muxf7_I1_O)      0.217     2.792 r  reg32/write_data_to_mem_reg[14]_i_2/O
-                         net (fo=2, routed)           0.000     2.792    reg32/write_data_to_mem_reg[14]_i_2_n_0
-    SLICE_X63Y81         MUXF8 (Prop_muxf8_I1_O)      0.094     2.886 r  reg32/D0__0_i_22/O
-                         net (fo=2, estimated)        0.866     3.752    reg32/D0__0_i_22_n_0
-    SLICE_X60Y78         LUT5 (Prop_lut5_I2_O)        0.316     4.068 r  reg32/D0__0_i_3/O
-                         net (fo=25, estimated)       1.502     5.570    reg32/b[14]
-    SLICE_X44Y73         LUT5 (Prop_lut5_I0_O)        0.124     5.694 r  reg32/mem_addr[24]_INST_0_i_30/O
-                         net (fo=4, estimated)        0.999     6.693    reg32/mem_addr[24]_INST_0_i_30_n_0
-    SLICE_X39Y71         LUT6 (Prop_lut6_I1_O)        0.124     6.817 r  reg32/mem_addr[23]_INST_0_i_14/O
-                         net (fo=2, estimated)        0.658     7.475    reg32/mem_addr[23]_INST_0_i_14_n_0
-    SLICE_X44Y77         LUT5 (Prop_lut5_I4_O)        0.124     7.599 r  reg32/mem_addr[22]_INST_0_i_7/O
-                         net (fo=1, routed)           0.000     7.599    ctrlMIPS/mem_addr[22]_INST_0_i_1_0
-    SLICE_X44Y77         MUXF7 (Prop_muxf7_I0_O)      0.212     7.811 r  ctrlMIPS/mem_addr[22]_INST_0_i_3/O
-                         net (fo=1, estimated)        0.768     8.579    ctrlMIPS/mem_addr[22]_INST_0_i_3_n_0
-    SLICE_X45Y77         LUT6 (Prop_lut6_I0_O)        0.299     8.878 r  ctrlMIPS/mem_addr[22]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.310     9.188    ctrlMIPS/mem_addr[22]_INST_0_i_1_n_0
-    SLICE_X46Y77         LUT5 (Prop_lut5_I3_O)        0.124     9.312 r  ctrlMIPS/mem[31][24]_i_1/O
-                         net (fo=31, estimated)       0.990    10.302    reg32/D[24]
-    SLICE_X52Y92         FDCE                                         r  reg32/mem_reg[7][24]/D
+    SLICE_X51Y90         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[29][19]/Q
+                         net (fo=2, estimated)        1.083     2.512    reg32/mem_reg[29]_2[19]
+    SLICE_X56Y92         LUT6 (Prop_lut6_I0_O)        0.124     2.636 r  reg32/write_data_to_mem_reg[19]_i_9/O
+                         net (fo=1, routed)           0.000     2.636    reg32/write_data_to_mem_reg[19]_i_9_n_0
+    SLICE_X56Y92         MUXF7 (Prop_muxf7_I1_O)      0.245     2.881 r  reg32/write_data_to_mem_reg[19]_i_3/O
+                         net (fo=2, routed)           0.000     2.881    reg32/write_data_to_mem_reg[19]_i_3_n_0
+    SLICE_X56Y92         MUXF8 (Prop_muxf8_I0_O)      0.104     2.985 r  reg32/D0_i_42/O
+                         net (fo=1, estimated)        0.798     3.783    reg32/D0_i_42_n_0
+    SLICE_X54Y92         LUT5 (Prop_lut5_I2_O)        0.316     4.099 r  reg32/D0_i_13/O
+                         net (fo=22, estimated)       1.462     5.561    reg32/b[19]
+    SLICE_X45Y85         LUT5 (Prop_lut5_I4_O)        0.152     5.713 r  reg32/mem_addr[24]_INST_0_i_24/O
+                         net (fo=4, estimated)        0.601     6.314    reg32/mem_addr[24]_INST_0_i_24_n_0
+    SLICE_X45Y84         LUT6 (Prop_lut6_I1_O)        0.326     6.640 r  reg32/mem_addr[20]_INST_0_i_14/O
+                         net (fo=2, estimated)        0.559     7.199    reg32/mem_addr[20]_INST_0_i_14_n_0
+    SLICE_X45Y86         LUT5 (Prop_lut5_I2_O)        0.124     7.323 r  reg32/mem_addr[20]_INST_0_i_7/O
+                         net (fo=1, routed)           0.000     7.323    ctrlMIPS/mem_addr[20]_INST_0_i_1_0
+    SLICE_X45Y86         MUXF7 (Prop_muxf7_I0_O)      0.212     7.535 r  ctrlMIPS/mem_addr[20]_INST_0_i_3/O
+                         net (fo=1, estimated)        0.799     8.334    ctrlMIPS/mem_addr[20]_INST_0_i_3_n_0
+    SLICE_X46Y87         LUT6 (Prop_lut6_I0_O)        0.299     8.633 r  ctrlMIPS/mem_addr[20]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.509     9.142    ctrlMIPS/mem_addr[20]_INST_0_i_1_n_0
+    SLICE_X51Y92         LUT5 (Prop_lut5_I3_O)        0.124     9.266 r  ctrlMIPS/mem[31][22]_i_1/O
+                         net (fo=31, estimated)       1.036    10.302    reg32/D[22]
+    SLICE_X60Y100        FDCE                                         r  reg32/mem_reg[17][22]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)    10.000    10.000 r  
                                                       0.000    10.000 r  clk (IN)
                          net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X52Y92         FDCE                                         r  reg32/mem_reg[7][24]/C
+    SLICE_X60Y100        FDCE                                         r  reg32/mem_reg[17][22]/C
                          clock pessimism              0.000    10.924    
                          clock uncertainty           -0.035    10.889    
-    SLICE_X52Y92         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[7][24]
+    SLICE_X60Y100        FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[17][22]
   -------------------------------------------------------------------
                          required time                         10.822    
                          arrival time                         -10.302    
@@ -680,77 +806,14 @@ Slack (MET) :             0.520ns  (required time - arrival time)
                          slack                                  0.520    
 
 Slack (MET) :             0.521ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[21][2]/C
+  Source:                 reg32/mem_reg[29][19]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[28][21]/D
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             SysClk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.328ns  (logic 2.157ns (23.124%)  route 7.171ns (76.876%))
-  Logic Levels:           9  (LUT5=2 LUT6=5 MUXF7=2)
-  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
-    Source Clock Delay      (SCD):    0.973ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X60Y66         FDCE                                         r  reg32/mem_reg[21][2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X60Y66         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[21][2]/Q
-                         net (fo=2, estimated)        0.905     2.334    reg32/mem_reg[21]_10[2]
-    SLICE_X58Y68         LUT6 (Prop_lut6_I3_O)        0.124     2.458 r  reg32/pc_reg[2]_i_9/O
-                         net (fo=1, routed)           0.000     2.458    reg32/pc_reg[2]_i_9_n_0
-    SLICE_X58Y68         MUXF7 (Prop_muxf7_I1_O)      0.247     2.705 r  reg32/pc_reg_reg[2]_i_3/O
-                         net (fo=1, estimated)        0.961     3.666    reg32/pc_reg_reg[2]_i_3_n_0
-    SLICE_X59Y69         LUT6 (Prop_lut6_I1_O)        0.298     3.964 r  reg32/pc_reg[2]_i_1/O
-                         net (fo=84, estimated)       1.628     5.592    reg32/a[2]
-    SLICE_X45Y73         LUT6 (Prop_lut6_I1_O)        0.124     5.716 r  reg32/mem_addr[20]_INST_0_i_17/O
-                         net (fo=4, estimated)        0.741     6.457    reg32/mem_addr[20]_INST_0_i_17_n_0
-    SLICE_X43Y74         LUT6 (Prop_lut6_I1_O)        0.124     6.581 r  reg32/mem_addr[19]_INST_0_i_13/O
-                         net (fo=2, estimated)        0.730     7.311    reg32/inst[21]_7
-    SLICE_X43Y77         LUT5 (Prop_lut5_I0_O)        0.124     7.435 r  reg32/mem_addr[19]_INST_0_i_7/O
-                         net (fo=1, routed)           0.000     7.435    ctrlMIPS/mem_addr[19]_INST_0_i_1_0
-    SLICE_X43Y77         MUXF7 (Prop_muxf7_I0_O)      0.238     7.673 r  ctrlMIPS/mem_addr[19]_INST_0_i_3/O
-                         net (fo=1, estimated)        0.861     8.534    ctrlMIPS/mem_addr[19]_INST_0_i_3_n_0
-    SLICE_X46Y81         LUT6 (Prop_lut6_I0_O)        0.298     8.832 r  ctrlMIPS/mem_addr[19]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.312     9.144    ctrlMIPS/mem_addr[19]_INST_0_i_1_n_0
-    SLICE_X49Y81         LUT5 (Prop_lut5_I3_O)        0.124     9.268 r  ctrlMIPS/mem[31][21]_i_1/O
-                         net (fo=31, estimated)       1.033    10.301    reg32/D[21]
-    SLICE_X61Y88         FDCE                                         r  reg32/mem_reg[28][21]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock SysClk rise edge)    10.000    10.000 r  
-                                                      0.000    10.000 r  clk (IN)
-                         net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X61Y88         FDCE                                         r  reg32/mem_reg[28][21]/C
-                         clock pessimism              0.000    10.924    
-                         clock uncertainty           -0.035    10.889    
-    SLICE_X61Y88         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[28][21]
-  -------------------------------------------------------------------
-                         required time                         10.822    
-                         arrival time                         -10.301    
-  -------------------------------------------------------------------
-                         slack                                  0.521    
-
-Slack (MET) :             0.524ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[31][14]/C
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[7][25]/D
+  Destination:            reg32/mem_reg[25][22]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.325ns  (logic 2.276ns (24.408%)  route 7.049ns (75.592%))
+  Data Path Delay:        9.328ns  (logic 2.482ns (26.608%)  route 6.846ns (73.392%))
   Logic Levels:           10  (LUT5=4 LUT6=3 MUXF7=2 MUXF8=1)
   Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
@@ -767,108 +830,45 @@ Slack (MET) :             0.524ns  (required time - arrival time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X62Y80         FDCE                                         r  reg32/mem_reg[31][14]/C
+    SLICE_X51Y90         FDCE                                         r  reg32/mem_reg[29][19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X62Y80         FDCE (Prop_fdce_C_Q)         0.518     1.491 r  reg32/mem_reg[31][14]/Q
-                         net (fo=2, estimated)        0.960     2.451    reg32/mem_reg[31]_0[14]
-    SLICE_X63Y81         LUT6 (Prop_lut6_I0_O)        0.124     2.575 r  reg32/write_data_to_mem_reg[14]_i_7/O
-                         net (fo=1, routed)           0.000     2.575    reg32/write_data_to_mem_reg[14]_i_7_n_0
-    SLICE_X63Y81         MUXF7 (Prop_muxf7_I1_O)      0.217     2.792 r  reg32/write_data_to_mem_reg[14]_i_2/O
-                         net (fo=2, routed)           0.000     2.792    reg32/write_data_to_mem_reg[14]_i_2_n_0
-    SLICE_X63Y81         MUXF8 (Prop_muxf8_I1_O)      0.094     2.886 r  reg32/D0__0_i_22/O
-                         net (fo=2, estimated)        0.866     3.752    reg32/D0__0_i_22_n_0
-    SLICE_X60Y78         LUT5 (Prop_lut5_I2_O)        0.316     4.068 r  reg32/D0__0_i_3/O
-                         net (fo=25, estimated)       1.502     5.570    reg32/b[14]
-    SLICE_X44Y73         LUT5 (Prop_lut5_I0_O)        0.124     5.694 r  reg32/mem_addr[24]_INST_0_i_30/O
-                         net (fo=4, estimated)        0.999     6.693    reg32/mem_addr[24]_INST_0_i_30_n_0
-    SLICE_X39Y71         LUT6 (Prop_lut6_I1_O)        0.124     6.817 r  reg32/mem_addr[23]_INST_0_i_14/O
-                         net (fo=2, estimated)        0.703     7.520    reg32/mem_addr[23]_INST_0_i_14_n_0
-    SLICE_X39Y75         LUT5 (Prop_lut5_I2_O)        0.124     7.644 r  reg32/mem_addr[23]_INST_0_i_7/O
-                         net (fo=1, routed)           0.000     7.644    ctrlMIPS/mem_addr[23]_INST_0_i_1_0
-    SLICE_X39Y75         MUXF7 (Prop_muxf7_I0_O)      0.212     7.856 r  ctrlMIPS/mem_addr[23]_INST_0_i_3/O
-                         net (fo=1, estimated)        0.577     8.433    ctrlMIPS/mem_addr[23]_INST_0_i_3_n_0
-    SLICE_X39Y76         LUT6 (Prop_lut6_I0_O)        0.299     8.732 r  ctrlMIPS/mem_addr[23]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.465     9.197    ctrlMIPS/mem_addr[23]_INST_0_i_1_n_0
-    SLICE_X39Y77         LUT5 (Prop_lut5_I3_O)        0.124     9.321 r  ctrlMIPS/mem[31][25]_i_1/O
-                         net (fo=31, estimated)       0.977    10.298    reg32/D[25]
-    SLICE_X44Y91         FDCE                                         r  reg32/mem_reg[7][25]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock SysClk rise edge)    10.000    10.000 r  
-                                                      0.000    10.000 r  clk (IN)
-                         net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X44Y91         FDCE                                         r  reg32/mem_reg[7][25]/C
-                         clock pessimism              0.000    10.924    
-                         clock uncertainty           -0.035    10.889    
-    SLICE_X44Y91         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[7][25]
-  -------------------------------------------------------------------
-                         required time                         10.822    
-                         arrival time                         -10.298    
-  -------------------------------------------------------------------
-                         slack                                  0.524    
-
-Slack (MET) :             0.525ns  (required time - arrival time)
-  Source:                 reg32/mem_reg[21][2]/C
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reg32/mem_reg[2][18]/D
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             SysClk
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (SysClk rise@10.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        9.324ns  (logic 2.157ns (23.134%)  route 7.167ns (76.866%))
-  Logic Levels:           9  (LUT5=2 LUT6=5 MUXF7=2)
-  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
-    Source Clock Delay      (SCD):    0.973ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.973     0.973    reg32/clk
-    SLICE_X60Y66         FDCE                                         r  reg32/mem_reg[21][2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X60Y66         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[21][2]/Q
-                         net (fo=2, estimated)        0.905     2.334    reg32/mem_reg[21]_10[2]
-    SLICE_X58Y68         LUT6 (Prop_lut6_I3_O)        0.124     2.458 r  reg32/pc_reg[2]_i_9/O
-                         net (fo=1, routed)           0.000     2.458    reg32/pc_reg[2]_i_9_n_0
-    SLICE_X58Y68         MUXF7 (Prop_muxf7_I1_O)      0.247     2.705 r  reg32/pc_reg_reg[2]_i_3/O
-                         net (fo=1, estimated)        0.961     3.666    reg32/pc_reg_reg[2]_i_3_n_0
-    SLICE_X59Y69         LUT6 (Prop_lut6_I1_O)        0.298     3.964 r  reg32/pc_reg[2]_i_1/O
-                         net (fo=84, estimated)       1.536     5.500    reg32/a[2]
-    SLICE_X43Y73         LUT6 (Prop_lut6_I1_O)        0.124     5.624 r  reg32/mem_addr[18]_INST_0_i_17/O
-                         net (fo=3, estimated)        0.815     6.439    reg32/mem_addr[18]_INST_0_i_17_n_0
-    SLICE_X42Y73         LUT5 (Prop_lut5_I0_O)        0.124     6.563 r  reg32/mem_addr[16]_INST_0_i_13/O
-                         net (fo=4, estimated)        0.735     7.298    reg32/mem_addr[16]_INST_0_i_13_n_0
-    SLICE_X41Y75         LUT6 (Prop_lut6_I1_O)        0.124     7.422 r  reg32/mem_addr[16]_INST_0_i_7/O
-                         net (fo=1, routed)           0.000     7.422    reg32/mem_addr[16]_INST_0_i_7_n_0
-    SLICE_X41Y75         MUXF7 (Prop_muxf7_I0_O)      0.238     7.660 r  reg32/mem_addr[16]_INST_0_i_3/O
-                         net (fo=1, estimated)        0.645     8.305    reg32/mem_addr[16]_INST_0_i_3_n_0
-    SLICE_X41Y76         LUT6 (Prop_lut6_I0_O)        0.298     8.603 r  reg32/mem_addr[16]_INST_0_i_1/O
-                         net (fo=2, estimated)        0.162     8.765    ctrlMIPS/mem_reg[1][18]
-    SLICE_X41Y76         LUT5 (Prop_lut5_I3_O)        0.124     8.889 r  ctrlMIPS/mem[31][18]_i_1/O
-                         net (fo=31, estimated)       1.408    10.297    reg32/D[18]
-    SLICE_X55Y91         FDCE                                         r  reg32/mem_reg[2][18]/D
+    SLICE_X51Y90         FDCE (Prop_fdce_C_Q)         0.456     1.429 r  reg32/mem_reg[29][19]/Q
+                         net (fo=2, estimated)        1.083     2.512    reg32/mem_reg[29]_2[19]
+    SLICE_X56Y92         LUT6 (Prop_lut6_I0_O)        0.124     2.636 r  reg32/write_data_to_mem_reg[19]_i_9/O
+                         net (fo=1, routed)           0.000     2.636    reg32/write_data_to_mem_reg[19]_i_9_n_0
+    SLICE_X56Y92         MUXF7 (Prop_muxf7_I1_O)      0.245     2.881 r  reg32/write_data_to_mem_reg[19]_i_3/O
+                         net (fo=2, routed)           0.000     2.881    reg32/write_data_to_mem_reg[19]_i_3_n_0
+    SLICE_X56Y92         MUXF8 (Prop_muxf8_I0_O)      0.104     2.985 r  reg32/D0_i_42/O
+                         net (fo=1, estimated)        0.798     3.783    reg32/D0_i_42_n_0
+    SLICE_X54Y92         LUT5 (Prop_lut5_I2_O)        0.316     4.099 r  reg32/D0_i_13/O
+                         net (fo=22, estimated)       1.462     5.561    reg32/b[19]
+    SLICE_X45Y85         LUT5 (Prop_lut5_I4_O)        0.152     5.713 r  reg32/mem_addr[24]_INST_0_i_24/O
+                         net (fo=4, estimated)        0.601     6.314    reg32/mem_addr[24]_INST_0_i_24_n_0
+    SLICE_X45Y84         LUT6 (Prop_lut6_I1_O)        0.326     6.640 r  reg32/mem_addr[20]_INST_0_i_14/O
+                         net (fo=2, estimated)        0.559     7.199    reg32/mem_addr[20]_INST_0_i_14_n_0
+    SLICE_X45Y86         LUT5 (Prop_lut5_I2_O)        0.124     7.323 r  reg32/mem_addr[20]_INST_0_i_7/O
+                         net (fo=1, routed)           0.000     7.323    ctrlMIPS/mem_addr[20]_INST_0_i_1_0
+    SLICE_X45Y86         MUXF7 (Prop_muxf7_I0_O)      0.212     7.535 r  ctrlMIPS/mem_addr[20]_INST_0_i_3/O
+                         net (fo=1, estimated)        0.799     8.334    ctrlMIPS/mem_addr[20]_INST_0_i_3_n_0
+    SLICE_X46Y87         LUT6 (Prop_lut6_I0_O)        0.299     8.633 r  ctrlMIPS/mem_addr[20]_INST_0_i_1/O
+                         net (fo=2, estimated)        0.509     9.142    ctrlMIPS/mem_addr[20]_INST_0_i_1_n_0
+    SLICE_X51Y92         LUT5 (Prop_lut5_I3_O)        0.124     9.266 r  ctrlMIPS/mem[31][22]_i_1/O
+                         net (fo=31, estimated)       1.035    10.301    reg32/D[22]
+    SLICE_X57Y102        FDCE                                         r  reg32/mem_reg[25][22]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)    10.000    10.000 r  
                                                       0.000    10.000 r  clk (IN)
                          net (fo=1021, unset)         0.924    10.924    reg32/clk
-    SLICE_X55Y91         FDCE                                         r  reg32/mem_reg[2][18]/C
+    SLICE_X57Y102        FDCE                                         r  reg32/mem_reg[25][22]/C
                          clock pessimism              0.000    10.924    
                          clock uncertainty           -0.035    10.889    
-    SLICE_X55Y91         FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[2][18]
+    SLICE_X57Y102        FDCE (Setup_fdce_C_D)       -0.067    10.822    reg32/mem_reg[25][22]
   -------------------------------------------------------------------
                          required time                         10.822    
-                         arrival time                         -10.297    
+                         arrival time                         -10.301    
   -------------------------------------------------------------------
-                         slack                                  0.525    
+                         slack                                  0.521    
 
 
 
@@ -876,105 +876,15 @@ Slack (MET) :             0.525ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.812ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[4][26]/C
+Slack (MET) :             0.753ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[16][30]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pc_reg_reg[26]/D
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             SysClk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.897ns  (logic 0.381ns (42.478%)  route 0.516ns (57.522%))
-  Logic Levels:           3  (LUT6=2 MUXF7=1)
-  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    0.432ns
-    Source Clock Delay      (SCD):    0.410ns
-    Clock Pessimism Removal (CPR):    -0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X50Y88         FDCE                                         r  reg32/mem_reg[4][26]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X50Y88         FDCE (Prop_fdce_C_Q)         0.164     0.574 r  reg32/mem_reg[4][26]/Q
-                         net (fo=2, estimated)        0.135     0.709    reg32/mem_reg[4]_27[26]
-    SLICE_X50Y87         LUT6 (Prop_lut6_I5_O)        0.045     0.754 r  reg32/pc_reg[26]_i_13/O
-                         net (fo=1, routed)           0.000     0.754    reg32/pc_reg[26]_i_13_n_0
-    SLICE_X50Y87         MUXF7 (Prop_muxf7_I1_O)      0.064     0.818 r  reg32/pc_reg_reg[26]_i_5/O
-                         net (fo=1, estimated)        0.145     0.963    reg32/pc_reg_reg[26]_i_5_n_0
-    SLICE_X51Y87         LUT6 (Prop_lut6_I5_O)        0.108     1.071 r  reg32/pc_reg[26]_i_1/O
-                         net (fo=17, estimated)       0.236     1.307    a[26]
-    SLICE_X46Y86         FDCE                                         r  pc_reg_reg[26]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X46Y86         FDCE                                         r  pc_reg_reg[26]/C
-                         clock pessimism              0.000     0.432    
-    SLICE_X46Y86         FDCE (Hold_fdce_C_D)         0.063     0.495    pc_reg_reg[26]
-  -------------------------------------------------------------------
-                         required time                         -0.495    
-                         arrival time                           1.307    
-  -------------------------------------------------------------------
-                         slack                                  0.812    
-
-Slack (MET) :             0.820ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[4][24]/C
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pc_reg_reg[24]/D
+  Destination:            pc_reg_reg[30]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.913ns  (logic 0.359ns (39.308%)  route 0.554ns (60.692%))
-  Logic Levels:           3  (LUT6=2 MUXF7=1)
-  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    0.432ns
-    Source Clock Delay      (SCD):    0.410ns
-    Clock Pessimism Removal (CPR):    -0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X44Y83         FDCE                                         r  reg32/mem_reg[4][24]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X44Y83         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[4][24]/Q
-                         net (fo=2, estimated)        0.127     0.678    reg32/mem_reg[4]_27[24]
-    SLICE_X47Y83         LUT6 (Prop_lut6_I5_O)        0.045     0.723 r  reg32/pc_reg[24]_i_13/O
-                         net (fo=1, routed)           0.000     0.723    reg32/pc_reg[24]_i_13_n_0
-    SLICE_X47Y83         MUXF7 (Prop_muxf7_I1_O)      0.065     0.788 r  reg32/pc_reg_reg[24]_i_5/O
-                         net (fo=1, estimated)        0.138     0.927    reg32/pc_reg_reg[24]_i_5_n_0
-    SLICE_X48Y82         LUT6 (Prop_lut6_I5_O)        0.108     1.035 r  reg32/pc_reg[24]_i_1/O
-                         net (fo=17, estimated)       0.289     1.323    a[24]
-    SLICE_X53Y84         FDCE                                         r  pc_reg_reg[24]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X53Y84         FDCE                                         r  pc_reg_reg[24]/C
-                         clock pessimism              0.000     0.432    
-    SLICE_X53Y84         FDCE (Hold_fdce_C_D)         0.072     0.504    pc_reg_reg[24]
-  -------------------------------------------------------------------
-                         required time                         -0.504    
-                         arrival time                           1.323    
-  -------------------------------------------------------------------
-                         slack                                  0.820    
-
-Slack (MET) :             0.837ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[16][7]/C
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pc_reg_reg[7]/D
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             SysClk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.928ns  (logic 0.365ns (39.326%)  route 0.563ns (60.674%))
+  Data Path Delay:        0.845ns  (logic 0.356ns (42.153%)  route 0.489ns (57.847%))
   Logic Levels:           3  (LUT5=1 LUT6=1 MUXF7=1)
   Clock Path Skew:        0.022ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.432ns
@@ -986,32 +896,32 @@ Slack (MET) :             0.837ns  (arrival time - required time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X60Y78         FDCE                                         r  reg32/mem_reg[16][7]/C
+    SLICE_X40Y102        FDCE                                         r  reg32/mem_reg[16][30]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X60Y78         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][7]/Q
-                         net (fo=2, estimated)        0.131     0.682    reg32/mem_reg[16]_15[7]
-    SLICE_X61Y79         LUT5 (Prop_lut5_I4_O)        0.045     0.727 r  reg32/pc_reg[7]_i_12/O
-                         net (fo=1, routed)           0.000     0.727    reg32/pc_reg[7]_i_12_n_0
-    SLICE_X61Y79         MUXF7 (Prop_muxf7_I0_O)      0.071     0.798 r  reg32/pc_reg_reg[7]_i_5/O
-                         net (fo=1, estimated)        0.183     0.980    reg32/pc_reg_reg[7]_i_5_n_0
-    SLICE_X63Y79         LUT6 (Prop_lut6_I5_O)        0.108     1.088 r  reg32/pc_reg[7]_i_1/O
-                         net (fo=17, estimated)       0.250     1.338    a[7]
-    SLICE_X63Y71         FDCE                                         r  pc_reg_reg[7]/D
+    SLICE_X40Y102        FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][30]/Q
+                         net (fo=2, estimated)        0.130     0.681    reg32/mem_reg[16]_15[30]
+    SLICE_X39Y102        LUT5 (Prop_lut5_I4_O)        0.045     0.726 r  reg32/pc_reg[30]_i_12/O
+                         net (fo=1, routed)           0.000     0.726    reg32/pc_reg[30]_i_12_n_0
+    SLICE_X39Y102        MUXF7 (Prop_muxf7_I0_O)      0.062     0.788 r  reg32/pc_reg_reg[30]_i_5/O
+                         net (fo=1, estimated)        0.127     0.915    reg32/pc_reg_reg[30]_i_5_n_0
+    SLICE_X39Y100        LUT6 (Prop_lut6_I5_O)        0.108     1.023 r  reg32/pc_reg[30]_i_1/O
+                         net (fo=17, estimated)       0.231     1.255    a[30]
+    SLICE_X41Y97         FDCE                                         r  pc_reg_reg[30]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X63Y71         FDCE                                         r  pc_reg_reg[7]/C
+    SLICE_X41Y97         FDCE                                         r  pc_reg_reg[30]/C
                          clock pessimism              0.000     0.432    
-    SLICE_X63Y71         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[7]
+    SLICE_X41Y97         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[30]
   -------------------------------------------------------------------
                          required time                         -0.502    
-                         arrival time                           1.338    
+                         arrival time                           1.255    
   -------------------------------------------------------------------
-                         slack                                  0.837    
+                         slack                                  0.753    
 
-Slack (MET) :             0.843ns  (arrival time - required time)
+Slack (MET) :             0.816ns  (arrival time - required time)
   Source:                 reg32/mem_reg[4][28]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            pc_reg_reg[28]/D
@@ -1019,7 +929,7 @@ Slack (MET) :             0.843ns  (arrival time - required time)
   Path Group:             SysClk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.923ns  (logic 0.359ns (38.877%)  route 0.564ns (61.123%))
+  Data Path Delay:        0.908ns  (logic 0.381ns (41.965%)  route 0.527ns (58.035%))
   Logic Levels:           3  (LUT6=2 MUXF7=1)
   Clock Path Skew:        0.022ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.432ns
@@ -1031,85 +941,40 @@ Slack (MET) :             0.843ns  (arrival time - required time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X43Y95         FDCE                                         r  reg32/mem_reg[4][28]/C
+    SLICE_X54Y94         FDCE                                         r  reg32/mem_reg[4][28]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X43Y95         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[4][28]/Q
-                         net (fo=2, estimated)        0.150     0.702    reg32/mem_reg[4]_27[28]
-    SLICE_X43Y95         LUT6 (Prop_lut6_I5_O)        0.045     0.747 r  reg32/pc_reg[28]_i_13/O
-                         net (fo=1, routed)           0.000     0.747    reg32/pc_reg[28]_i_13_n_0
-    SLICE_X43Y95         MUXF7 (Prop_muxf7_I1_O)      0.065     0.812 r  reg32/pc_reg_reg[28]_i_5/O
-                         net (fo=1, estimated)        0.193     1.005    reg32/pc_reg_reg[28]_i_5_n_0
-    SLICE_X43Y94         LUT6 (Prop_lut6_I5_O)        0.108     1.113 r  reg32/pc_reg[28]_i_1/O
-                         net (fo=17, estimated)       0.221     1.334    a[28]
-    SLICE_X46Y95         FDCE                                         r  pc_reg_reg[28]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X46Y95         FDCE                                         r  pc_reg_reg[28]/C
-                         clock pessimism              0.000     0.432    
-    SLICE_X46Y95         FDCE (Hold_fdce_C_D)         0.059     0.491    pc_reg_reg[28]
-  -------------------------------------------------------------------
-                         required time                         -0.491    
-                         arrival time                           1.334    
-  -------------------------------------------------------------------
-                         slack                                  0.843    
-
-Slack (MET) :             0.866ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[4][11]/C
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pc_reg_reg[11]/D
-                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             SysClk
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.957ns  (logic 0.359ns (37.508%)  route 0.598ns (62.492%))
-  Logic Levels:           3  (LUT6=2 MUXF7=1)
-  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    0.432ns
-    Source Clock Delay      (SCD):    0.410ns
-    Clock Pessimism Removal (CPR):    -0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock SysClk rise edge)     0.000     0.000 r  
-                                                      0.000     0.000 r  clk (IN)
-                         net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X67Y72         FDCE                                         r  reg32/mem_reg[4][11]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X67Y72         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[4][11]/Q
-                         net (fo=2, estimated)        0.215     0.766    reg32/mem_reg[4]_27[11]
-    SLICE_X64Y73         LUT6 (Prop_lut6_I5_O)        0.045     0.811 r  reg32/pc_reg[11]_i_13/O
-                         net (fo=1, routed)           0.000     0.811    reg32/pc_reg[11]_i_13_n_0
-    SLICE_X64Y73         MUXF7 (Prop_muxf7_I1_O)      0.065     0.876 r  reg32/pc_reg_reg[11]_i_5/O
-                         net (fo=1, estimated)        0.131     1.007    reg32/pc_reg_reg[11]_i_5_n_0
-    SLICE_X62Y73         LUT6 (Prop_lut6_I5_O)        0.108     1.115 r  reg32/pc_reg[11]_i_1/O
-                         net (fo=17, estimated)       0.252     1.367    a[11]
-    SLICE_X63Y67         FDCE                                         r  pc_reg_reg[11]/D
+    SLICE_X54Y94         FDCE (Prop_fdce_C_Q)         0.164     0.574 r  reg32/mem_reg[4][28]/Q
+                         net (fo=2, estimated)        0.218     0.792    reg32/mem_reg[4]_27[28]
+    SLICE_X54Y101        LUT6 (Prop_lut6_I5_O)        0.045     0.837 r  reg32/pc_reg[28]_i_13/O
+                         net (fo=1, routed)           0.000     0.837    reg32/pc_reg[28]_i_13_n_0
+    SLICE_X54Y101        MUXF7 (Prop_muxf7_I1_O)      0.064     0.901 r  reg32/pc_reg_reg[28]_i_5/O
+                         net (fo=1, estimated)        0.138     1.039    reg32/pc_reg_reg[28]_i_5_n_0
+    SLICE_X56Y100        LUT6 (Prop_lut6_I5_O)        0.108     1.147 r  reg32/pc_reg[28]_i_1/O
+                         net (fo=17, estimated)       0.171     1.318    a[28]
+    SLICE_X55Y99         FDCE                                         r  pc_reg_reg[28]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X63Y67         FDCE                                         r  pc_reg_reg[11]/C
+    SLICE_X55Y99         FDCE                                         r  pc_reg_reg[28]/C
                          clock pessimism              0.000     0.432    
-    SLICE_X63Y67         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[11]
+    SLICE_X55Y99         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[28]
   -------------------------------------------------------------------
                          required time                         -0.502    
-                         arrival time                           1.367    
+                         arrival time                           1.318    
   -------------------------------------------------------------------
-                         slack                                  0.866    
+                         slack                                  0.816    
 
-Slack (MET) :             0.870ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[16][25]/C
+Slack (MET) :             0.880ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[16][24]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pc_reg_reg[25]/D
+  Destination:            pc_reg_reg[24]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.943ns  (logic 0.356ns (37.745%)  route 0.587ns (62.255%))
+  Data Path Delay:        0.972ns  (logic 0.365ns (37.552%)  route 0.607ns (62.448%))
   Logic Levels:           3  (LUT5=1 LUT6=1 MUXF7=1)
   Clock Path Skew:        0.022ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.432ns
@@ -1121,41 +986,86 @@ Slack (MET) :             0.870ns  (arrival time - required time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X41Y86         FDCE                                         r  reg32/mem_reg[16][25]/C
+    SLICE_X45Y101        FDCE                                         r  reg32/mem_reg[16][24]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y86         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][25]/Q
-                         net (fo=2, estimated)        0.215     0.766    reg32/mem_reg[16]_15[25]
-    SLICE_X44Y86         LUT5 (Prop_lut5_I4_O)        0.045     0.811 r  reg32/pc_reg[25]_i_12/O
-                         net (fo=1, routed)           0.000     0.811    reg32/pc_reg[25]_i_12_n_0
-    SLICE_X44Y86         MUXF7 (Prop_muxf7_I0_O)      0.062     0.873 r  reg32/pc_reg_reg[25]_i_5/O
-                         net (fo=1, estimated)        0.212     1.085    reg32/pc_reg_reg[25]_i_5_n_0
-    SLICE_X44Y86         LUT6 (Prop_lut6_I5_O)        0.108     1.193 r  reg32/pc_reg[25]_i_1/O
-                         net (fo=17, estimated)       0.161     1.353    a[25]
-    SLICE_X46Y86         FDCE                                         r  pc_reg_reg[25]/D
+    SLICE_X45Y101        FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][24]/Q
+                         net (fo=2, estimated)        0.130     0.681    reg32/mem_reg[16]_15[24]
+    SLICE_X45Y101        LUT5 (Prop_lut5_I4_O)        0.045     0.726 r  reg32/pc_reg[24]_i_12/O
+                         net (fo=1, routed)           0.000     0.726    reg32/pc_reg[24]_i_12_n_0
+    SLICE_X45Y101        MUXF7 (Prop_muxf7_I0_O)      0.071     0.797 r  reg32/pc_reg_reg[24]_i_5/O
+                         net (fo=1, estimated)        0.250     1.047    reg32/pc_reg_reg[24]_i_5_n_0
+    SLICE_X46Y97         LUT6 (Prop_lut6_I5_O)        0.108     1.155 r  reg32/pc_reg[24]_i_1/O
+                         net (fo=17, estimated)       0.227     1.382    a[24]
+    SLICE_X43Y96         FDCE                                         r  pc_reg_reg[24]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X46Y86         FDCE                                         r  pc_reg_reg[25]/C
+    SLICE_X43Y96         FDCE                                         r  pc_reg_reg[24]/C
                          clock pessimism              0.000     0.432    
-    SLICE_X46Y86         FDCE (Hold_fdce_C_D)         0.052     0.484    pc_reg_reg[25]
+    SLICE_X43Y96         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[24]
   -------------------------------------------------------------------
-                         required time                         -0.484    
-                         arrival time                           1.353    
+                         required time                         -0.502    
+                         arrival time                           1.382    
   -------------------------------------------------------------------
-                         slack                                  0.870    
+                         slack                                  0.880    
 
-Slack (MET) :             0.906ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[16][6]/C
+Slack (MET) :             0.919ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[16][9]/C
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pc_reg_reg[9]/D
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             SysClk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
+  Data Path Delay:        1.004ns  (logic 0.365ns (36.369%)  route 0.639ns (63.631%))
+  Logic Levels:           3  (LUT5=1 LUT6=1 MUXF7=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.410     0.410    reg32/clk
+    SLICE_X67Y84         FDCE                                         r  reg32/mem_reg[16][9]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X67Y84         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][9]/Q
+                         net (fo=2, estimated)        0.127     0.678    reg32/mem_reg[16]_15[9]
+    SLICE_X65Y84         LUT5 (Prop_lut5_I4_O)        0.045     0.723 r  reg32/pc_reg[9]_i_12/O
+                         net (fo=1, routed)           0.000     0.723    reg32/pc_reg[9]_i_12_n_0
+    SLICE_X65Y84         MUXF7 (Prop_muxf7_I0_O)      0.071     0.794 r  reg32/pc_reg_reg[9]_i_5/O
+                         net (fo=1, estimated)        0.193     0.987    reg32/pc_reg_reg[9]_i_5_n_0
+    SLICE_X62Y84         LUT6 (Prop_lut6_I5_O)        0.108     1.095 r  reg32/pc_reg[9]_i_1/O
+                         net (fo=17, estimated)       0.319     1.414    a[9]
+    SLICE_X58Y77         FDCE                                         r  pc_reg_reg[9]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.432     0.432    clk
+    SLICE_X58Y77         FDCE                                         r  pc_reg_reg[9]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X58Y77         FDCE (Hold_fdce_C_D)         0.063     0.495    pc_reg_reg[9]
+  -------------------------------------------------------------------
+                         required time                         -0.495    
+                         arrival time                           1.414    
+  -------------------------------------------------------------------
+                         slack                                  0.919    
+
+Slack (MET) :             0.942ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[2][6]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            pc_reg_reg[6]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.994ns  (logic 0.356ns (35.824%)  route 0.638ns (64.176%))
-  Logic Levels:           3  (LUT5=1 LUT6=1 MUXF7=1)
+  Data Path Delay:        1.035ns  (logic 0.356ns (34.394%)  route 0.679ns (65.606%))
+  Logic Levels:           3  (LUT6=2 MUXF7=1)
   Clock Path Skew:        0.022ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.432ns
     Source Clock Delay      (SCD):    0.410ns
@@ -1166,40 +1076,40 @@ Slack (MET) :             0.906ns  (arrival time - required time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X61Y67         FDCE                                         r  reg32/mem_reg[16][6]/C
+    SLICE_X37Y84         FDCE                                         r  reg32/mem_reg[2][6]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X61Y67         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][6]/Q
-                         net (fo=2, estimated)        0.191     0.743    reg32/mem_reg[16]_15[6]
-    SLICE_X60Y65         LUT5 (Prop_lut5_I4_O)        0.045     0.788 r  reg32/pc_reg[6]_i_12/O
-                         net (fo=1, routed)           0.000     0.788    reg32/pc_reg[6]_i_12_n_0
-    SLICE_X60Y65         MUXF7 (Prop_muxf7_I0_O)      0.062     0.850 r  reg32/pc_reg_reg[6]_i_5/O
-                         net (fo=1, estimated)        0.126     0.976    reg32/pc_reg_reg[6]_i_5_n_0
-    SLICE_X59Y65         LUT6 (Prop_lut6_I5_O)        0.108     1.084 r  reg32/pc_reg[6]_i_1/O
-                         net (fo=17, estimated)       0.320     1.404    a[6]
-    SLICE_X52Y65         FDCE                                         r  pc_reg_reg[6]/D
+    SLICE_X37Y84         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[2][6]/Q
+                         net (fo=2, estimated)        0.125     0.676    reg32/mem_reg[2]_29[6]
+    SLICE_X39Y84         LUT6 (Prop_lut6_I5_O)        0.045     0.721 r  reg32/pc_reg[6]_i_10/O
+                         net (fo=1, routed)           0.000     0.721    reg32/pc_reg[6]_i_10_n_0
+    SLICE_X39Y84         MUXF7 (Prop_muxf7_I0_O)      0.062     0.783 r  reg32/pc_reg_reg[6]_i_4/O
+                         net (fo=1, estimated)        0.249     1.032    reg32/pc_reg_reg[6]_i_4_n_0
+    SLICE_X36Y84         LUT6 (Prop_lut6_I3_O)        0.108     1.140 r  reg32/pc_reg[6]_i_1/O
+                         net (fo=17, estimated)       0.305     1.445    a[6]
+    SLICE_X39Y77         FDCE                                         r  pc_reg_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X52Y65         FDCE                                         r  pc_reg_reg[6]/C
+    SLICE_X39Y77         FDCE                                         r  pc_reg_reg[6]/C
                          clock pessimism              0.000     0.432    
-    SLICE_X52Y65         FDCE (Hold_fdce_C_D)         0.066     0.498    pc_reg_reg[6]
+    SLICE_X39Y77         FDCE (Hold_fdce_C_D)         0.071     0.503    pc_reg_reg[6]
   -------------------------------------------------------------------
-                         required time                         -0.498    
-                         arrival time                           1.404    
+                         required time                         -0.503    
+                         arrival time                           1.445    
   -------------------------------------------------------------------
-                         slack                                  0.906    
+                         slack                                  0.942    
 
-Slack (MET) :             0.913ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[16][5]/C
+Slack (MET) :             0.947ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[16][7]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pc_reg_reg[5]/D
+  Destination:            pc_reg_reg[7]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.987ns  (logic 0.356ns (36.068%)  route 0.631ns (63.932%))
+  Data Path Delay:        1.032ns  (logic 0.379ns (36.727%)  route 0.653ns (63.273%))
   Logic Levels:           3  (LUT5=1 LUT6=1 MUXF7=1)
   Clock Path Skew:        0.022ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.432ns
@@ -1211,41 +1121,131 @@ Slack (MET) :             0.913ns  (arrival time - required time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X52Y67         FDCE                                         r  reg32/mem_reg[16][5]/C
+    SLICE_X62Y81         FDCE                                         r  reg32/mem_reg[16][7]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X52Y67         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][5]/Q
-                         net (fo=2, estimated)        0.190     0.741    reg32/mem_reg[16]_15[5]
-    SLICE_X53Y69         LUT5 (Prop_lut5_I4_O)        0.045     0.786 r  reg32/pc_reg[5]_i_12/O
-                         net (fo=1, routed)           0.000     0.786    reg32/pc_reg[5]_i_12_n_0
-    SLICE_X53Y69         MUXF7 (Prop_muxf7_I0_O)      0.062     0.848 r  reg32/pc_reg_reg[5]_i_5/O
-                         net (fo=1, estimated)        0.134     0.981    reg32/pc_reg_reg[5]_i_5_n_0
-    SLICE_X50Y70         LUT6 (Prop_lut6_I5_O)        0.108     1.089 r  reg32/pc_reg[5]_i_1/O
-                         net (fo=17, estimated)       0.308     1.397    a[5]
-    SLICE_X50Y63         FDCE                                         r  pc_reg_reg[5]/D
+    SLICE_X62Y81         FDCE (Prop_fdce_C_Q)         0.164     0.574 r  reg32/mem_reg[16][7]/Q
+                         net (fo=2, estimated)        0.188     0.763    reg32/mem_reg[16]_15[7]
+    SLICE_X63Y83         LUT5 (Prop_lut5_I4_O)        0.045     0.808 r  reg32/pc_reg[7]_i_12/O
+                         net (fo=1, routed)           0.000     0.808    reg32/pc_reg[7]_i_12_n_0
+    SLICE_X63Y83         MUXF7 (Prop_muxf7_I0_O)      0.062     0.870 r  reg32/pc_reg_reg[7]_i_5/O
+                         net (fo=1, estimated)        0.182     1.052    reg32/pc_reg_reg[7]_i_5_n_0
+    SLICE_X59Y83         LUT6 (Prop_lut6_I5_O)        0.108     1.160 r  reg32/pc_reg[7]_i_1/O
+                         net (fo=17, estimated)       0.282     1.442    a[7]
+    SLICE_X58Y77         FDCE                                         r  pc_reg_reg[7]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X50Y63         FDCE                                         r  pc_reg_reg[5]/C
+    SLICE_X58Y77         FDCE                                         r  pc_reg_reg[7]/C
                          clock pessimism              0.000     0.432    
-    SLICE_X50Y63         FDCE (Hold_fdce_C_D)         0.052     0.484    pc_reg_reg[5]
+    SLICE_X58Y77         FDCE (Hold_fdce_C_D)         0.063     0.495    pc_reg_reg[7]
   -------------------------------------------------------------------
-                         required time                         -0.484    
-                         arrival time                           1.397    
+                         required time                         -0.495    
+                         arrival time                           1.442    
   -------------------------------------------------------------------
-                         slack                                  0.913    
+                         slack                                  0.947    
 
-Slack (MET) :             0.921ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[4][29]/C
+Slack (MET) :             0.970ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[2][26]/C
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pc_reg_reg[26]/D
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             SysClk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
+  Data Path Delay:        1.062ns  (logic 0.356ns (33.534%)  route 0.706ns (66.466%))
+  Logic Levels:           3  (LUT6=2 MUXF7=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.410     0.410    reg32/clk
+    SLICE_X41Y105        FDCE                                         r  reg32/mem_reg[2][26]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y105        FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[2][26]/Q
+                         net (fo=2, estimated)        0.152     0.703    reg32/mem_reg[2]_29[26]
+    SLICE_X40Y105        LUT6 (Prop_lut6_I5_O)        0.045     0.748 r  reg32/pc_reg[26]_i_10/O
+                         net (fo=1, routed)           0.000     0.748    reg32/pc_reg[26]_i_10_n_0
+    SLICE_X40Y105        MUXF7 (Prop_muxf7_I0_O)      0.062     0.810 r  reg32/pc_reg_reg[26]_i_4/O
+                         net (fo=1, estimated)        0.250     1.061    reg32/pc_reg_reg[26]_i_4_n_0
+    SLICE_X39Y104        LUT6 (Prop_lut6_I3_O)        0.108     1.169 r  reg32/pc_reg[26]_i_1/O
+                         net (fo=17, estimated)       0.303     1.472    a[26]
+    SLICE_X48Y105        FDCE                                         r  pc_reg_reg[26]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.432     0.432    clk
+    SLICE_X48Y105        FDCE                                         r  pc_reg_reg[26]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X48Y105        FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[26]
+  -------------------------------------------------------------------
+                         required time                         -0.502    
+                         arrival time                           1.472    
+  -------------------------------------------------------------------
+                         slack                                  0.970    
+
+Slack (MET) :             0.971ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[16][11]/C
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pc_reg_reg[11]/D
+                            (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             SysClk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
+  Data Path Delay:        1.062ns  (logic 0.356ns (33.507%)  route 0.706ns (66.493%))
+  Logic Levels:           3  (LUT5=1 LUT6=1 MUXF7=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.410     0.410    reg32/clk
+    SLICE_X59Y86         FDCE                                         r  reg32/mem_reg[16][11]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X59Y86         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[16][11]/Q
+                         net (fo=2, estimated)        0.188     0.740    reg32/mem_reg[16]_15[11]
+    SLICE_X59Y87         LUT5 (Prop_lut5_I4_O)        0.045     0.785 r  reg32/pc_reg[11]_i_12/O
+                         net (fo=1, routed)           0.000     0.785    reg32/pc_reg[11]_i_12_n_0
+    SLICE_X59Y87         MUXF7 (Prop_muxf7_I0_O)      0.062     0.847 r  reg32/pc_reg_reg[11]_i_5/O
+                         net (fo=1, estimated)        0.126     0.973    reg32/pc_reg_reg[11]_i_5_n_0
+    SLICE_X61Y87         LUT6 (Prop_lut6_I5_O)        0.108     1.081 r  reg32/pc_reg[11]_i_1/O
+                         net (fo=17, estimated)       0.392     1.473    a[11]
+    SLICE_X59Y77         FDCE                                         r  pc_reg_reg[11]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock SysClk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=1021, unset)         0.432     0.432    clk
+    SLICE_X59Y77         FDCE                                         r  pc_reg_reg[11]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X59Y77         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[11]
+  -------------------------------------------------------------------
+                         required time                         -0.502    
+                         arrival time                           1.473    
+  -------------------------------------------------------------------
+                         slack                                  0.971    
+
+Slack (MET) :             0.978ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[16][29]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            pc_reg_reg[29]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        0.995ns  (logic 0.359ns (36.078%)  route 0.636ns (63.922%))
-  Logic Levels:           3  (LUT6=2 MUXF7=1)
+  Data Path Delay:        1.069ns  (logic 0.379ns (35.439%)  route 0.690ns (64.561%))
+  Logic Levels:           3  (LUT5=1 LUT6=1 MUXF7=1)
   Clock Path Skew:        0.022ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.432ns
     Source Clock Delay      (SCD):    0.410ns
@@ -1256,40 +1256,40 @@ Slack (MET) :             0.921ns  (arrival time - required time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X48Y93         FDCE                                         r  reg32/mem_reg[4][29]/C
+    SLICE_X58Y99         FDCE                                         r  reg32/mem_reg[16][29]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X48Y93         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[4][29]/Q
-                         net (fo=2, estimated)        0.134     0.686    reg32/mem_reg[4]_27[29]
-    SLICE_X48Y92         LUT6 (Prop_lut6_I5_O)        0.045     0.731 r  reg32/pc_reg[29]_i_13/O
-                         net (fo=1, routed)           0.000     0.731    reg32/pc_reg[29]_i_13_n_0
-    SLICE_X48Y92         MUXF7 (Prop_muxf7_I1_O)      0.065     0.796 r  reg32/pc_reg_reg[29]_i_5/O
-                         net (fo=1, estimated)        0.193     0.989    reg32/pc_reg_reg[29]_i_5_n_0
-    SLICE_X47Y90         LUT6 (Prop_lut6_I5_O)        0.108     1.097 r  reg32/pc_reg[29]_i_1/O
-                         net (fo=17, estimated)       0.309     1.405    a[29]
-    SLICE_X38Y85         FDCE                                         r  pc_reg_reg[29]/D
+    SLICE_X58Y99         FDCE (Prop_fdce_C_Q)         0.164     0.574 r  reg32/mem_reg[16][29]/Q
+                         net (fo=2, estimated)        0.134     0.709    reg32/mem_reg[16]_15[29]
+    SLICE_X58Y97         LUT5 (Prop_lut5_I4_O)        0.045     0.754 r  reg32/pc_reg[29]_i_12/O
+                         net (fo=1, routed)           0.000     0.754    reg32/pc_reg[29]_i_12_n_0
+    SLICE_X58Y97         MUXF7 (Prop_muxf7_I0_O)      0.062     0.816 r  reg32/pc_reg_reg[29]_i_5/O
+                         net (fo=1, estimated)        0.185     1.001    reg32/pc_reg_reg[29]_i_5_n_0
+    SLICE_X56Y96         LUT6 (Prop_lut6_I5_O)        0.108     1.109 r  reg32/pc_reg[29]_i_1/O
+                         net (fo=17, estimated)       0.371     1.480    a[29]
+    SLICE_X51Y87         FDCE                                         r  pc_reg_reg[29]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X38Y85         FDCE                                         r  pc_reg_reg[29]/C
+    SLICE_X51Y87         FDCE                                         r  pc_reg_reg[29]/C
                          clock pessimism              0.000     0.432    
-    SLICE_X38Y85         FDCE (Hold_fdce_C_D)         0.052     0.484    pc_reg_reg[29]
+    SLICE_X51Y87         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[29]
   -------------------------------------------------------------------
-                         required time                         -0.484    
-                         arrival time                           1.405    
+                         required time                         -0.502    
+                         arrival time                           1.480    
   -------------------------------------------------------------------
-                         slack                                  0.921    
+                         slack                                  0.978    
 
-Slack (MET) :             0.947ns  (arrival time - required time)
-  Source:                 reg32/mem_reg[4][21]/C
+Slack (MET) :             0.983ns  (arrival time - required time)
+  Source:                 reg32/mem_reg[6][25]/C
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            pc_reg_reg[21]/D
+  Destination:            pc_reg_reg[25]/D
                             (rising edge-triggered cell FDCE clocked by SysClk  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             SysClk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (SysClk rise@0.000ns - SysClk rise@0.000ns)
-  Data Path Delay:        1.038ns  (logic 0.369ns (35.536%)  route 0.669ns (64.464%))
+  Data Path Delay:        1.057ns  (logic 0.359ns (33.976%)  route 0.698ns (66.024%))
   Logic Levels:           3  (LUT6=2 MUXF7=1)
   Clock Path Skew:        0.022ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.432ns
@@ -1301,30 +1301,30 @@ Slack (MET) :             0.947ns  (arrival time - required time)
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.410     0.410    reg32/clk
-    SLICE_X56Y89         FDCE                                         r  reg32/mem_reg[4][21]/C
+    SLICE_X45Y106        FDCE                                         r  reg32/mem_reg[6][25]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X56Y89         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[4][21]/Q
-                         net (fo=2, estimated)        0.131     0.682    reg32/mem_reg[4]_27[21]
-    SLICE_X58Y89         LUT6 (Prop_lut6_I5_O)        0.045     0.727 r  reg32/pc_reg[21]_i_13/O
-                         net (fo=1, routed)           0.000     0.727    reg32/pc_reg[21]_i_13_n_0
-    SLICE_X58Y89         MUXF7 (Prop_muxf7_I1_O)      0.075     0.802 r  reg32/pc_reg_reg[21]_i_5/O
-                         net (fo=1, estimated)        0.250     1.052    reg32/pc_reg_reg[21]_i_5_n_0
-    SLICE_X58Y85         LUT6 (Prop_lut6_I5_O)        0.108     1.160 r  reg32/pc_reg[21]_i_1/O
-                         net (fo=17, estimated)       0.288     1.449    a[21]
-    SLICE_X57Y82         FDCE                                         r  pc_reg_reg[21]/D
+    SLICE_X45Y106        FDCE (Prop_fdce_C_Q)         0.141     0.551 r  reg32/mem_reg[6][25]/Q
+                         net (fo=2, estimated)        0.212     0.764    reg32/mem_reg[6]_25[25]
+    SLICE_X44Y104        LUT6 (Prop_lut6_I5_O)        0.045     0.809 r  reg32/pc_reg[25]_i_11/O
+                         net (fo=1, routed)           0.000     0.809    reg32/pc_reg[25]_i_11_n_0
+    SLICE_X44Y104        MUXF7 (Prop_muxf7_I1_O)      0.065     0.874 r  reg32/pc_reg_reg[25]_i_4/O
+                         net (fo=1, estimated)        0.187     1.061    reg32/pc_reg_reg[25]_i_4_n_0
+    SLICE_X44Y104        LUT6 (Prop_lut6_I3_O)        0.108     1.169 r  reg32/pc_reg[25]_i_1/O
+                         net (fo=17, estimated)       0.298     1.467    a[25]
+    SLICE_X36Y106        FDCE                                         r  pc_reg_reg[25]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock SysClk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  clk (IN)
                          net (fo=1021, unset)         0.432     0.432    clk
-    SLICE_X57Y82         FDCE                                         r  pc_reg_reg[21]/C
+    SLICE_X36Y106        FDCE                                         r  pc_reg_reg[25]/C
                          clock pessimism              0.000     0.432    
-    SLICE_X57Y82         FDCE (Hold_fdce_C_D)         0.070     0.502    pc_reg_reg[21]
+    SLICE_X36Y106        FDCE (Hold_fdce_C_D)         0.052     0.484    pc_reg_reg[25]
   -------------------------------------------------------------------
-                         required time                         -0.502    
-                         arrival time                           1.449    
+                         required time                         -0.484    
+                         arrival time                           1.467    
   -------------------------------------------------------------------
-                         slack                                  0.947    
+                         slack                                  0.983    
 
 
 
@@ -1338,36 +1338,36 @@ Period(ns):         10.000
 Sources:            { clk }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X52Y65  pc_reg_reg[10]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X63Y67  pc_reg_reg[11]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X38Y65  pc_reg_reg[12]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X48Y74  pc_reg_reg[13]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X38Y77  pc_reg_reg[14]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X38Y75  pc_reg_reg[15]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X38Y77  pc_reg_reg[16]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X46Y67  pc_reg_reg[17]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X49Y68  pc_reg_reg[18]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X38Y65  pc_reg_reg[19]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X52Y65  pc_reg_reg[10]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X63Y67  pc_reg_reg[11]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y65  pc_reg_reg[12]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X48Y74  pc_reg_reg[13]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y77  pc_reg_reg[14]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y75  pc_reg_reg[15]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y77  pc_reg_reg[16]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X46Y67  pc_reg_reg[17]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X49Y68  pc_reg_reg[18]/C
-Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y65  pc_reg_reg[19]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X52Y65  pc_reg_reg[10]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X52Y65  pc_reg_reg[10]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X63Y67  pc_reg_reg[11]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X63Y67  pc_reg_reg[11]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y65  pc_reg_reg[12]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y65  pc_reg_reg[12]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X48Y74  pc_reg_reg[13]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X48Y74  pc_reg_reg[13]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y77  pc_reg_reg[14]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y77  pc_reg_reg[14]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X35Y77  pc_reg_reg[10]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X59Y77  pc_reg_reg[11]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X39Y77  pc_reg_reg[12]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X56Y75  pc_reg_reg[13]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X39Y77  pc_reg_reg[14]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X58Y77  pc_reg_reg[15]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X58Y77  pc_reg_reg[16]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X38Y75  pc_reg_reg[17]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X39Y77  pc_reg_reg[18]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X44Y75  pc_reg_reg[19]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X35Y77  pc_reg_reg[10]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X59Y77  pc_reg_reg[11]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X39Y77  pc_reg_reg[12]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X56Y75  pc_reg_reg[13]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X39Y77  pc_reg_reg[14]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X58Y77  pc_reg_reg[15]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X58Y77  pc_reg_reg[16]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X38Y75  pc_reg_reg[17]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X39Y77  pc_reg_reg[18]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X44Y75  pc_reg_reg[19]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X35Y77  pc_reg_reg[10]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X35Y77  pc_reg_reg[10]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X59Y77  pc_reg_reg[11]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X59Y77  pc_reg_reg[11]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X39Y77  pc_reg_reg[12]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X39Y77  pc_reg_reg[12]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X56Y75  pc_reg_reg[13]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X56Y75  pc_reg_reg[13]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X39Y77  pc_reg_reg[14]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X39Y77  pc_reg_reg[14]/C
 
 
 

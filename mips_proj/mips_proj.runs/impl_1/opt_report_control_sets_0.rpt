@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Sun Aug 20 22:40:00 2023
-| Host         : chanon-Yoga running 64-bit Ubuntu 22.04.3 LTS
+| Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date         : Tue Aug 22 13:16:14 2023
+| Host         : chanon running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file opt_report_control_sets_0.rpt
 | Design       : mips_core
 | Device       : xc7z020
@@ -73,47 +73,47 @@ Table of Contents
 +---------------------------------------+-------------------------+-------------------------------+------------------+----------------+--------------+
 |              Clock Signal             |      Enable Signal      |        Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
 +---------------------------------------+-------------------------+-------------------------------+------------------+----------------+--------------+
+|  ctrlMIPS/RegDst_reg/G0               |                         |                               |                0 |              1 |           NA |
+|  ctrlMIPS/RegDst_reg_i_1_n_0          |                         | ctrlMIPS/MemtoReg_reg_i_2_n_0 |                0 |              1 |           NA |
 |  ctrlMIPS/ALUSrc_reg_i_2_n_0          |                         | ctrlMIPS/ALUSrc_reg_i_3_n_0   |                0 |              1 |           NA |
 |  ctrlMIPS/MemWrite_reg_i_3_n_0        |                         |                               |                0 |              1 |           NA |
-|  ctrlMIPS/MemtoReg_reg_i_2_n_0        |                         | ctrlMIPS/MemtoReg_reg_i_3_n_0 |                0 |              1 |           NA |
-|  ctrlMIPS/RegDst_reg/G0               |                         |                               |                0 |              1 |           NA |
 |  ctrlMIPS/MemWrite_reg_i_2_n_0        |                         | ctrlMIPS/MemWrite_reg_i_3_n_0 |                0 |              2 |           NA |
-|  ctrlMIPS/ALUop_reg[1]_i_1_n_0        |                         |                               |                0 |              3 |           NA |
 |  ctrlMIPS/SpecialMemOp_reg[2]_i_2_n_0 |                         |                               |                0 |              3 |           NA |
+|  ctrlMIPS/MemWrite_reg_i_2_n_0        |                         |                               |                0 |              3 |           NA |
 |  clk                                  |                         | reg32/rst_b_0                 |                0 |             30 |           NA |
-|  clk                                  | ctrlMIPS/inst[16]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  ctrlMIPS/E[0]                        |                         |                               |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[16]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[17][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[17]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[18][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[18]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[18]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[18]_2[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[18]_3[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[19]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[19]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[19]_2[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[19]_3[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[19]_4[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[19][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15]_2[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  ctrlMIPS/mem_write_en[0]             |                         |                               |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[18]_2[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[15]_5[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[18]_4[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[15]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[15]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[15]_10[0] | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[15]_8[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15]_11[0] | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[15]_12[0] | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[16][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[16]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[17][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[19]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15]_3[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[19]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[18]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15]_4[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[15]_5[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15]_6[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15]_7[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
-|  clk                                  | ctrlMIPS/inst[15]_8[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[17]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[18][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[18]_3[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[15]_12[0] | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[19]_3[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[18]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[19]_4[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
 |  clk                                  | ctrlMIPS/inst[15]_9[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[19][0]    | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[15]_0[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[15]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[16]_1[0]  | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  clk                                  | ctrlMIPS/inst[15]_10[0] | reg32/rst_b_0                 |                0 |             32 |           NA |
+|  ctrlMIPS/E[0]                        |                         |                               |                0 |             32 |           NA |
+|  ctrlMIPS/mem_write_en[0]             |                         |                               |                0 |             32 |           NA |
 +---------------------------------------+-------------------------+-------------------------------+------------------+----------------+--------------+
 
 

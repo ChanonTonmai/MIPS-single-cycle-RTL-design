@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.tcl"
+  variable script "D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.tcl"
   variable category "vivado_synth"
 }
 
@@ -77,30 +77,30 @@ create_project -in_memory -part xc7z020clg484-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/wt [current_project]
-set_property parent.project_path /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.xpr [current_project]
+set_property webtalk.parent_dir D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/wt [current_project]
+set_property parent.project_path D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part em.avnet.com:zed:part0:1.4 [current_project]
-set_property ip_output_repo /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/ip [current_project]
+set_property ip_output_repo d:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_mem {
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/tb/mem/mem.kdata.dat
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/tb/mem/mem.text.dat
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/tb/mem/mem.data.dat
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/tb/mem/mem.stack.dat
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/tb/mem/mem.ktext.dat
+  D:/github/MIPS-single-cycle-RTL-design/tb/mem/mem.kdata.dat
+  D:/github/MIPS-single-cycle-RTL-design/tb/mem/mem.text.dat
+  D:/github/MIPS-single-cycle-RTL-design/tb/mem/mem.data.dat
+  D:/github/MIPS-single-cycle-RTL-design/tb/mem/mem.stack.dat
+  D:/github/MIPS-single-cycle-RTL-design/tb/mem/mem.ktext.dat
 }
 read_vhdl -vhdl2008 -library xil_defaultlib {
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_alu.vhd
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_defines.vhd
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_mem.vhd
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd
-  /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd
+  D:/github/MIPS-single-cycle-RTL-design/src/mips_alu.vhd
+  D:/github/MIPS-single-cycle-RTL-design/src/mips_defines.vhd
+  D:/github/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd
+  D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd
+  D:/github/MIPS-single-cycle-RTL-design/src/mips_mem.vhd
+  D:/github/MIPS-single-cycle-RTL-design/src/mips_register.vhd
+  D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -111,8 +111,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc
-set_property used_in_implementation false [get_files /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc]
+read_xdc D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc
+set_property used_in_implementation false [get_files D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

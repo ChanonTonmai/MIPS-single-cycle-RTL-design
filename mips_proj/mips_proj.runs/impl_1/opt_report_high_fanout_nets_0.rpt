@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Sun Aug 20 22:40:00 2023
-| Host         : chanon-Yoga running 64-bit Ubuntu 22.04.3 LTS
+| Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date         : Tue Aug 22 13:16:14 2023
+| Host         : chanon running 64-bit major release  (build 9200)
 | Command      : report_high_fanout_nets -file opt_report_high_fanout_nets_0.rpt
 | Design       : mips_core
 | Device       : xc7z020
@@ -17,13 +17,13 @@ High Fan-out Nets Information
 | Net Name             | Fanout | Driver Type |
 +----------------------+--------+-------------+
 | reg32/rst_b_0        |   1022 | LUT1        |
+| inst[19]             |    261 | PORT        |
 | inst[20]             |    261 | PORT        |
-| inst[19]             |    260 | PORT        |
 | inst[24]             |    256 | PORT        |
 | inst[25]             |    256 | PORT        |
 | ctrlMIPS/inst[26][0] |    223 | LUT6        |
 | ctrlMIPS/inst[26][1] |    173 | LUT6        |
-| inst[18]             |    132 | PORT        |
+| inst[18]             |    133 | PORT        |
 | inst[23]             |    128 | PORT        |
 | inst[10]             |    101 | PORT        |
 +----------------------+--------+-------------+

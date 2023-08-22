@@ -1,13 +1,13 @@
 #-----------------------------------------------------------
 # Vivado v2020.1 (64-bit)
-# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Sun Aug 20 22:30:50 2023
-# Process ID: 133082
-# Current directory: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1
-# Command line: vivado -log mips_core.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mips_core.tcl
-# Log file: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.vds
-# Journal file: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/vivado.jou
+# Start of session at: Tue Aug 22 13:12:51 2023
+# Process ID: 13772
+# Current directory: D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1
+# Command line: vivado.exe -log mips_core.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mips_core.tcl
+# Log file: D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.vds
+# Journal file: D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source mips_core.tcl -notrace
 Command: synth_design -top mips_core -part xc7z020clg484-1 -mode out_of_context
@@ -15,96 +15,96 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg484-1
-INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 133116
+INFO: [Synth 8-7075] Helper process launched with PID 18624
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2136.465 ; gain = 0.000 ; free physical = 144 ; free virtual = 5677
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 1071.430 ; gain = 0.000
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'mips_core' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:30]
-INFO: [Synth 8-3491] module 'mips_ctrl' declared at '/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:6' bound to instance 'ctrlMIPS' of component 'mips_ctrl' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:175]
-INFO: [Synth 8-638] synthesizing module 'mips_ctrl' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:25]
-INFO: [Synth 8-256] done synthesizing module 'mips_ctrl' (1#1) [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:25]
-INFO: [Synth 8-3491] module 'mips_reg' declared at '/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd:6' bound to instance 'reg32' of component 'mips_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:198]
-INFO: [Synth 8-638] synthesizing module 'mips_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd:21]
-INFO: [Synth 8-256] done synthesizing module 'mips_reg' (2#1) [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_register.vhd:21]
-INFO: [Synth 8-3491] module 'mips_alu' declared at '/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:5' bound to instance 'mipsAlu_32' of component 'mips_alu' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:218]
-INFO: [Synth 8-638] synthesizing module 'mips_alu' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:17]
-INFO: [Synth 8-256] done synthesizing module 'mips_alu' (3#1) [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:17]
-INFO: [Synth 8-3491] module 'mips_aluctrl' declared at '/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:7' bound to instance 'aluctrlmips' of component 'mips_aluctrl' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:229]
-INFO: [Synth 8-638] synthesizing module 'mips_aluctrl' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:16]
-INFO: [Synth 8-256] done synthesizing module 'mips_aluctrl' (4#1) [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:16]
-INFO: [Synth 8-3491] module 'DataMemory' declared at '/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:5' bound to instance 'memMIPS' of component 'DataMemory' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:304]
-INFO: [Synth 8-638] synthesizing module 'DataMemory' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:21]
-INFO: [Synth 8-256] done synthesizing module 'DataMemory' (5#1) [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:21]
-INFO: [Synth 8-256] done synthesizing module 'mips_core' (6#1) [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:30]
+INFO: [Synth 8-638] synthesizing module 'mips_core' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:30]
+INFO: [Synth 8-3491] module 'mips_ctrl' declared at 'D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:6' bound to instance 'ctrlMIPS' of component 'mips_ctrl' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:175]
+INFO: [Synth 8-638] synthesizing module 'mips_ctrl' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'mips_ctrl' (1#1) [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:25]
+INFO: [Synth 8-3491] module 'mips_reg' declared at 'D:/github/MIPS-single-cycle-RTL-design/src/mips_register.vhd:6' bound to instance 'reg32' of component 'mips_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:198]
+INFO: [Synth 8-638] synthesizing module 'mips_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_register.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'mips_reg' (2#1) [D:/github/MIPS-single-cycle-RTL-design/src/mips_register.vhd:21]
+INFO: [Synth 8-3491] module 'mips_alu' declared at 'D:/github/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:5' bound to instance 'mipsAlu_32' of component 'mips_alu' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:218]
+INFO: [Synth 8-638] synthesizing module 'mips_alu' [D:/github/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:17]
+INFO: [Synth 8-256] done synthesizing module 'mips_alu' (3#1) [D:/github/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:17]
+INFO: [Synth 8-3491] module 'mips_aluctrl' declared at 'D:/github/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:7' bound to instance 'aluctrlmips' of component 'mips_aluctrl' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:229]
+INFO: [Synth 8-638] synthesizing module 'mips_aluctrl' [D:/github/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'mips_aluctrl' (4#1) [D:/github/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:16]
+INFO: [Synth 8-3491] module 'DataMemory' declared at 'D:/github/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:5' bound to instance 'memMIPS' of component 'DataMemory' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:304]
+INFO: [Synth 8-638] synthesizing module 'DataMemory' [D:/github/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'DataMemory' (5#1) [D:/github/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'mips_core' (6#1) [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:30]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2158.488 ; gain = 22.023 ; free physical = 831 ; free virtual = 6336
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 1071.430 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2174.332 ; gain = 37.867 ; free physical = 826 ; free virtual = 6333
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1071.430 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2174.332 ; gain = 37.867 ; free physical = 826 ; free virtual = 6333
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1071.430 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2174.332 ; gain = 0.000 ; free physical = 821 ; free virtual = 6327
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1071.430 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc]
-Finished Parsing XDC File [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc]
+Parsing XDC File [D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc]
+Finished Parsing XDC File [D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2343.082 ; gain = 0.000 ; free physical = 726 ; free virtual = 6232
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1179.559 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2346.051 ; gain = 2.969 ; free physical = 725 ; free virtual = 6231
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 1191.199 ; gain = 11.641
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 2346.051 ; gain = 209.586 ; free physical = 803 ; free virtual = 6304
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1191.199 ; gain = 119.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 2346.051 ; gain = 209.586 ; free physical = 800 ; free virtual = 6301
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1191.199 ; gain = 119.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 2346.051 ; gain = 209.586 ; free physical = 796 ; free virtual = 6297
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1191.199 ; gain = 119.770
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'RegDst_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:58]
-WARNING: [Synth 8-327] inferring latch for variable 'Jump_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:64]
-WARNING: [Synth 8-327] inferring latch for variable 'Branch_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:67]
-WARNING: [Synth 8-327] inferring latch for variable 'MemRead_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:62]
-WARNING: [Synth 8-327] inferring latch for variable 'MemtoReg_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:60]
-WARNING: [Synth 8-327] inferring latch for variable 'ALUop_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:69]
-WARNING: [Synth 8-327] inferring latch for variable 'MemWrite_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:63]
-WARNING: [Synth 8-327] inferring latch for variable 'ALUSrc_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:59]
-WARNING: [Synth 8-327] inferring latch for variable 'RegWrite_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:61]
-WARNING: [Synth 8-327] inferring latch for variable 'BranchType_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:68]
-WARNING: [Synth 8-327] inferring latch for variable 'AndLink_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:65]
-WARNING: [Synth 8-327] inferring latch for variable 'ALR_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:66]
-WARNING: [Synth 8-327] inferring latch for variable 'SpecialMemOp_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:257]
-WARNING: [Synth 8-327] inferring latch for variable 'mult_temp_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:69]
-WARNING: [Synth 8-327] inferring latch for variable 'JalrCtrl_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:47]
-WARNING: [Synth 8-327] inferring latch for variable 'write_data_to_mem_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:42]
-WARNING: [Synth 8-327] inferring latch for variable 'pcPlusFour2_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:246]
-WARNING: [Synth 8-327] inferring latch for variable 'condALU_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:244]
-WARNING: [Synth 8-327] inferring latch for variable 'condNotEq_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:251]
-WARNING: [Synth 8-327] inferring latch for variable 'condBgez_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:259]
-WARNING: [Synth 8-327] inferring latch for variable 'condBltz_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:267]
-WARNING: [Synth 8-327] inferring latch for variable 'condBlez_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:275]
-WARNING: [Synth 8-327] inferring latch for variable 'condBgtz_reg' [/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/src/mips_core.vhd:283]
+WARNING: [Synth 8-327] inferring latch for variable 'RegDst_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:58]
+WARNING: [Synth 8-327] inferring latch for variable 'Jump_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:64]
+WARNING: [Synth 8-327] inferring latch for variable 'Branch_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:67]
+WARNING: [Synth 8-327] inferring latch for variable 'MemRead_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:62]
+WARNING: [Synth 8-327] inferring latch for variable 'MemtoReg_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:60]
+WARNING: [Synth 8-327] inferring latch for variable 'ALUop_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:69]
+WARNING: [Synth 8-327] inferring latch for variable 'MemWrite_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:63]
+WARNING: [Synth 8-327] inferring latch for variable 'ALUSrc_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:59]
+WARNING: [Synth 8-327] inferring latch for variable 'RegWrite_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:61]
+WARNING: [Synth 8-327] inferring latch for variable 'BranchType_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:68]
+WARNING: [Synth 8-327] inferring latch for variable 'AndLink_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:65]
+WARNING: [Synth 8-327] inferring latch for variable 'ALR_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:66]
+WARNING: [Synth 8-327] inferring latch for variable 'SpecialMemOp_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_ctrl.vhd:257]
+WARNING: [Synth 8-327] inferring latch for variable 'mult_temp_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_alu.vhd:69]
+WARNING: [Synth 8-327] inferring latch for variable 'JalrCtrl_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_aluctrl.vhd:47]
+WARNING: [Synth 8-327] inferring latch for variable 'write_data_to_mem_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_mem.vhd:42]
+WARNING: [Synth 8-327] inferring latch for variable 'pcPlusFour2_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:246]
+WARNING: [Synth 8-327] inferring latch for variable 'condALU_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:244]
+WARNING: [Synth 8-327] inferring latch for variable 'condNotEq_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:251]
+WARNING: [Synth 8-327] inferring latch for variable 'condBgez_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:259]
+WARNING: [Synth 8-327] inferring latch for variable 'condBltz_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:267]
+WARNING: [Synth 8-327] inferring latch for variable 'condBlez_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:275]
+WARNING: [Synth 8-327] inferring latch for variable 'condBgtz_reg' [D:/github/MIPS-single-cycle-RTL-design/src/mips_core.vhd:283]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 2346.051 ; gain = 209.586 ; free physical = 802 ; free virtual = 6306
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1191.199 ; gain = 119.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -128,27 +128,24 @@ Detailed RTL Component Info :
 	  13 Input    5 Bit        Muxes := 1     
 	   2 Input    5 Bit        Muxes := 3     
 	   4 Input    4 Bit        Muxes := 1     
-	   6 Input    3 Bit        Muxes := 2     
+	   6 Input    3 Bit        Muxes := 1     
 	   4 Input    3 Bit        Muxes := 4     
 	   5 Input    3 Bit        Muxes := 1     
-	  12 Input    3 Bit        Muxes := 1     
-	   3 Input    3 Bit        Muxes := 1     
-	   2 Input    3 Bit        Muxes := 1     
-	   7 Input    2 Bit        Muxes := 7     
-	   6 Input    2 Bit        Muxes := 1     
-	   3 Input    2 Bit        Muxes := 1     
-	   4 Input    2 Bit        Muxes := 1     
-	   8 Input    2 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 86    
-	  11 Input    1 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 2     
+	   7 Input    3 Bit        Muxes := 1     
+	   7 Input    2 Bit        Muxes := 6     
+	   6 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 2     
+	   8 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 79    
+	   8 Input    1 Bit        Muxes := 3     
 	   3 Input    1 Bit        Muxes := 6     
-	   8 Input    1 Bit        Muxes := 4     
-	   4 Input    1 Bit        Muxes := 10    
+	   4 Input    1 Bit        Muxes := 8     
+	   5 Input    1 Bit        Muxes := 7     
 	   7 Input    1 Bit        Muxes := 2     
-	   5 Input    1 Bit        Muxes := 5     
-	   6 Input    1 Bit        Muxes := 5     
 	  20 Input    1 Bit        Muxes := 1     
 	  28 Input    1 Bit        Muxes := 1     
+	   6 Input    1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -177,7 +174,7 @@ DSP Report: Generating DSP D0, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator D0 is absorbed into DSP D0.
 DSP Report: operator D0 is absorbed into DSP D0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 2346.051 ; gain = 209.586 ; free physical = 778 ; free virtual = 6287
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1191.199 ; gain = 119.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -201,19 +198,19 @@ Finished ROM, RAM, DSP and Shift Register Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 2346.051 ; gain = 209.586 ; free physical = 650 ; free virtual = 6159
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1200.961 ; gain = 129.531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 634 ; free virtual = 6142
+Finished Timing Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:54 . Memory (MB): peak = 1286.023 ; gain = 214.594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:39 ; elapsed = 00:00:42 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 625 ; free virtual = 6134
+Finished Technology Mapping : Time (s): cpu = 00:00:58 ; elapsed = 00:00:59 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -231,37 +228,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 605 ; free virtual = 6116
+Finished IO Insertion : Time (s): cpu = 00:01:01 ; elapsed = 00:01:02 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 605 ; free virtual = 6116
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:01 ; elapsed = 00:01:02 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 604 ; free virtual = 6116
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:01 ; elapsed = 00:01:03 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 604 ; free virtual = 6116
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:01 ; elapsed = 00:01:03 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 604 ; free virtual = 6116
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:01 ; elapsed = 00:01:03 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 604 ; free virtual = 6116
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:01 ; elapsed = 00:01:03 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -280,11 +277,11 @@ Report Cell Usage:
 |1     |CARRY4  |    44|
 |2     |DSP48E1 |     3|
 |3     |LUT1    |     1|
-|4     |LUT2    |   167|
+|4     |LUT2    |   170|
 |5     |LUT3    |    57|
-|6     |LUT4    |   105|
-|7     |LUT5    |   287|
-|8     |LUT6    |   904|
+|6     |LUT4    |   106|
+|7     |LUT5    |   285|
+|8     |LUT6    |   896|
 |9     |MUXF7   |   339|
 |10    |MUXF8   |    64|
 |11    |FDCE    |  1021|
@@ -295,19 +292,19 @@ Report Cell Usage:
 |16    |LDP     |     1|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.066 ; gain = 223.602 ; free physical = 604 ; free virtual = 6116
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:01 ; elapsed = 00:01:03 . Memory (MB): peak = 1286.984 ; gain = 215.555
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 23 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 2360.066 ; gain = 51.883 ; free physical = 668 ; free virtual = 6179
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 2360.074 ; gain = 223.602 ; free physical = 668 ; free virtual = 6179
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:55 ; elapsed = 00:01:01 . Memory (MB): peak = 1286.984 ; gain = 95.785
+Synthesis Optimization Complete : Time (s): cpu = 00:01:02 ; elapsed = 00:01:03 . Memory (MB): peak = 1286.984 ; gain = 215.555
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2360.074 ; gain = 0.000 ; free physical = 744 ; free virtual = 6255
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 1298.832 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 526 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 WARNING: [Netlist 29-101] Netlist 'mips_core' is not ideal for floorplanning, since the cellview 'mips_reg' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2392.082 ; gain = 0.000 ; free physical = 689 ; free virtual = 6197
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1298.832 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 76 instances were transformed.
   LD => LDCE: 71 instances
@@ -318,7 +315,7 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 31 Infos, 24 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:49 . Memory (MB): peak = 2392.082 ; gain = 255.617 ; free physical = 835 ; free virtual = 6344
-INFO: [Common 17-1381] The checkpoint '/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.dcp' has been generated.
+synth_design: Time (s): cpu = 00:01:06 ; elapsed = 00:01:09 . Memory (MB): peak = 1298.832 ; gain = 227.402
+INFO: [Common 17-1381] The checkpoint 'D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file mips_core_utilization_synth.rpt -pb mips_core_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Aug 20 22:31:45 2023...
+INFO: [Common 17-206] Exiting Vivado at Tue Aug 22 13:14:05 2023...

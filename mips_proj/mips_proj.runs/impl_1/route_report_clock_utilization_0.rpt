@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Sun Aug 20 22:40:54 2023
-| Host         : chanon-Yoga running 64-bit Ubuntu 22.04.3 LTS
+| Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date         : Tue Aug 22 13:19:36 2023
+| Host         : chanon running 64-bit major release  (build 9200)
 | Command      : report_clock_utilization -file route_report_clock_utilization_0.rpt
 | Design       : mips_core
 | Device       : 7z020-clg484
@@ -60,16 +60,16 @@ Table of Contents
 4. Local Clock Details
 ----------------------
 
-+----------+-----------------+------------+--------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------+--------------------------------------+
-| Local Id | Driver Type/Pin | Constraint | Site/BEL           | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin                         | Net                                  |
-+----------+-----------------+------------+--------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------+--------------------------------------||
-| 0        | LDCE/Q          | None       | SLICE_X35Y93/AFF   | X0Y1         |          32 |               2 |              |       | ctrlMIPS/MemWrite_reg/Q            | ctrlMIPS/mem_write_en[0]             - Static -
-| 1        | LUT5/O          | None       | SLICE_X34Y94/A6LUT | X0Y1         |           3 |               0 |              |       | ctrlMIPS/SpecialMemOp_reg[2]_i_2/O | ctrlMIPS/SpecialMemOp_reg[2]_i_2_n_0 - Static -
-| 2        | LUT6/O          | None       | SLICE_X35Y94/B6LUT | X0Y1         |           2 |               2 |              |       | ctrlMIPS/MemWrite_reg_i_2/O        | ctrlMIPS/MemWrite_reg_i_2_n_0        - Static -
-| 3        | LUT4/O          | None       | SLICE_X35Y94/A5LUT | X0Y1         |           1 |               0 |              |       | ctrlMIPS/ALUSrc_reg_i_2/O          | ctrlMIPS/ALUSrc_reg_i_2_n_0          - Static -
-| 4        | LUT6/O          | None       | SLICE_X34Y97/A6LUT | X0Y1         |           1 |               6 |              |       | ctrlMIPS/MemWrite_reg_i_3/O        | ctrlMIPS/MemWrite_reg_i_3_n_0        - Static -
-| 5        | LUT6/O          | None       | SLICE_X41Y87/B6LUT | X0Y1         |           1 |               0 |              |       | ctrlMIPS/MemtoReg_reg_i_2/O        | ctrlMIPS/MemtoReg_reg_i_2_n_0        - Static -
-+----------+-----------------+------------+--------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------+--------------------------------------||
++----------+-----------------+------------+---------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------+--------------------------------------+
+| Local Id | Driver Type/Pin | Constraint | Site/BEL            | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin                         | Net                                  |
++----------+-----------------+------------+---------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------+--------------------------------------||
+| 0        | LDCE/Q          | None       | SLICE_X64Y102/AFF   | X1Y2         |          32 |               2 |              |       | ctrlMIPS/MemWrite_reg/Q            | ctrlMIPS/mem_write_en[0]             - Static -
+| 1        | LUT4/O          | None       | SLICE_X66Y102/A5LUT | X1Y2         |           5 |               0 |              |       | ctrlMIPS/MemWrite_reg_i_2/O        | ctrlMIPS/MemWrite_reg_i_2_n_0        - Static -
+| 2        | LUT5/O          | None       | SLICE_X41Y111/A6LUT | X0Y2         |           3 |               0 |              |       | ctrlMIPS/SpecialMemOp_reg[2]_i_2/O | ctrlMIPS/SpecialMemOp_reg[2]_i_2_n_0 - Static -
+| 3        | LUT6/O          | None       | SLICE_X64Y101/A6LUT | X1Y2         |           2 |               2 |              |       | ctrlMIPS/RegDst_reg_i_1/O          | ctrlMIPS/RegDst_reg_i_1_n_0          - Static -
+| 4        | LUT6/O          | None       | SLICE_X62Y105/B6LUT | X1Y2         |           1 |               0 |              |       | ctrlMIPS/ALUSrc_reg_i_2/O          | ctrlMIPS/ALUSrc_reg_i_2_n_0          - Static -
+| 5        | LUT6/O          | None       | SLICE_X65Y105/A6LUT | X1Y2         |           1 |               5 |              |       | ctrlMIPS/MemWrite_reg_i_3/O        | ctrlMIPS/MemWrite_reg_i_3_n_0        - Static -
++----------+-----------------+------------+---------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------+--------------------------------------||
 * Local Clocks in this context represents only clocks driven by non-global buffers
 ** Clock Loads column represents the clock pin loads (pin count)
 *** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -85,10 +85,10 @@ Table of Contents
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 | X0Y0              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2500 |    0 |  1000 |    0 |    60 |    0 |    30 |    0 |    60 |
 | X1Y0              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3200 |    0 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
-| X0Y1              |    0 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |  1200 |   15 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
-| X1Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2600 |    6 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
-| X0Y2              |    0 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |  1200 |    0 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
-| X1Y2              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2600 |    0 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
+| X0Y1              |    0 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |  1200 |    1 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
+| X1Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2600 |    1 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
+| X0Y2              |    0 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |  1200 |    8 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
+| X1Y2              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2600 |    6 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 * Global Clock column represents track count; while other columns represents cell counts
 

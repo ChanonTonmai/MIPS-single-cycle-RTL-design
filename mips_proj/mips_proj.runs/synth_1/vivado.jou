@@ -1,12 +1,12 @@
 #-----------------------------------------------------------
 # Vivado v2020.1 (64-bit)
-# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Sun Aug 20 22:30:50 2023
-# Process ID: 133082
-# Current directory: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1
-# Command line: vivado -log mips_core.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mips_core.tcl
-# Log file: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.vds
-# Journal file: /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/vivado.jou
+# Start of session at: Tue Aug 22 13:12:51 2023
+# Process ID: 13772
+# Current directory: D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1
+# Command line: vivado.exe -log mips_core.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mips_core.tcl
+# Log file: D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.vds
+# Journal file: D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source mips_core.tcl -notrace

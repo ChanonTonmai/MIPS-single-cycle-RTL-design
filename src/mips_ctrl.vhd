@@ -320,6 +320,18 @@ begin
         Branch <= '0'; 
         BranchType <= std_logic_vector(to_unsigned(0,3)); 
         ALUop <= std_logic_vector(to_unsigned(1,3)); 
+    else 
+        RegDst <= '0';  
+        ALUSrc <= '0'; 
+        MemtoReg <= '0';
+        RegWrite <= '0'; 
+        MemRead <= '0'; 
+        MemWrite <= '0'; SpecialMemOp <= std_logic_vector(to_unsigned(0,3)); 
+        Jump <= '0'; 
+        AndLink <= '0';
+        Branch <= '0'; 
+        BranchType <= std_logic_vector(to_unsigned(0,3)); 
+        ALUop <= std_logic_vector(to_unsigned(0,3));
     end if; 
   end process;   
 

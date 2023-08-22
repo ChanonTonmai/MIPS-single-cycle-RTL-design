@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "/home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/impl_1/mips_core.tcl"
+  variable script "D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/impl_1/mips_core.tcl"
   variable category "vivado_impl"
 }
 
@@ -129,15 +129,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/wt [current_project]
-  set_property parent.project_path /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.xpr [current_project]
-  set_property ip_output_repo /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/ip [current_project]
+  set_property webtalk.parent_dir D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/wt [current_project]
+  set_property parent.project_path D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.xpr [current_project]
+  set_property ip_output_repo D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.dcp
+  add_files -quiet D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.runs/synth_1/mips_core.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc /home/chanon/comArchProj/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc
+  read_xdc D:/github/MIPS-single-cycle-RTL-design/mips_proj/mips_proj.srcs/constrs_1/new/const.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }
